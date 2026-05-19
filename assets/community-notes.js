@@ -81,6 +81,8 @@
     document.dispatchEvent(new CustomEvent("community-notes:ready"));
   }
 
+  document.dispatchEvent(new CustomEvent("community-notes:loading"));
+
   fetch(assets + "community-notes.json")
     .then(function (res) {
       if (!res.ok) throw new Error("community-notes.json missing");
@@ -90,6 +92,7 @@
     .catch(function () {
       root.innerHTML =
         '<p class="sub">Community notes load when served over HTTP (e.g. Open-Preview.bat).</p>';
+      document.dispatchEvent(new CustomEvent("community-notes:error"));
       document.dispatchEvent(new CustomEvent("community-notes:ready"));
     });
 })();
