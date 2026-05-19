@@ -24,8 +24,11 @@ Legacy `/concepts/*` paths redirect via **`dist/_redirects`** (Netlify / Cloudfl
 **Build deploy folder:**
 
 ```powershell
+python scripts/optimize_images.py   # optional: re-compress JPGs (needs Pillow)
 python scripts/build_deploy.py
 ```
+
+Deploy excludes dev-only assets (import HTML, SVG placeholders, `load-photos.js`, duplicate `hero-splash.jpg`, local `.webp` copies).
 
 Upload **`dist/`** to your static host. Entry URL: **`/`**
 

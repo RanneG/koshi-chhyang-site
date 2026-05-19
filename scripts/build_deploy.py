@@ -22,9 +22,12 @@ ASSET_SKIP = {
     "team-wix-urls.json",
     "image-urls.txt",
     "community-comments-export.json",
+    "load-photos.js",
+    "hero-splash.jpg",
 }
 
 ASSET_SKIP_DIRS = {"wix-import"}
+ASSET_SKIP_SUFFIXES = {".svg", ".webp"}
 
 REDIRECTS = """# Legacy concept paths (Netlify / Cloudflare Pages)
 /concepts/index.html / 301
@@ -44,6 +47,8 @@ def copy_tree(src: Path, dest: Path) -> None:
             copy_tree(child, dest / child.name)
         return
     if src.name in ASSET_SKIP:
+        return
+    if src.suffix.lower() in ASSET_SKIP_SUFFIXES:
         return
     dest.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src, dest)

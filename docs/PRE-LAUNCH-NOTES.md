@@ -50,7 +50,7 @@ Shared styles: `assets/brand.css` (all concept pages).
 | `heritage.html` | Heritage narrative |
 | `business.html` | Trade enquiries |
 
-**Deploy:** `python scripts/build_deploy.py` → upload **`dist/`**. No Lenis CDN; portraits in `assets/images/team/`; scrape dumps removed from repo.
+**Deploy:** `python scripts/build_deploy.py` → upload **`dist/`** (or Netlify build from `netlify.toml`). Run `scripts/optimize_images.py` after swapping photos. Heritage page skips playful button JS/CSS. Capybara loader on all pages.
 
 ## Post-launch checklist
 
