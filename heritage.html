@@ -11,11 +11,39 @@
   <link rel="stylesheet" href="assets/layout.css" />
   <link rel="stylesheet" href="assets/images.css" />
   <link rel="stylesheet" href="assets/site-nav.css" />
+  <link rel="stylesheet" href="assets/capybara-loader.css" />
   <link rel="stylesheet" href="assets/landing.css" />
   <link rel="stylesheet" href="assets/family-card.css" />
   <link rel="stylesheet" href="assets/btn-playful.css" />
 </head>
-<body class="theme-heritage page-heritage">
+<body class="theme-heritage page-heritage page-is-loading">
+  <div id="page-loader" class="page-loader" aria-live="polite" aria-busy="true" aria-label="Loading">
+    <div class="capybaraloader">
+      <div class="capybara">
+        <div class="capyhead">
+          <div class="capyear">
+            <div class="capyear2"></div>
+          </div>
+          <div class="capyear"></div>
+          <div class="capymouth">
+            <div class="capylips"></div>
+            <div class="capylips"></div>
+          </div>
+          <div class="capyeye"></div>
+          <div class="capyeye"></div>
+        </div>
+        <div class="capyleg"></div>
+        <div class="capyleg2"></div>
+        <div class="capyleg2"></div>
+        <div class="capy"></div>
+      </div>
+      <div class="loader">
+        <div class="loaderline"></div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/capybara-loader.js"></script>
+
   <header class="site-header" data-site-header>
     <nav class="site-nav site-nav--primary" aria-label="Site">
       <button type="button" class="site-nav__toggle" aria-expanded="false" aria-controls="site-nav-drawer" aria-label="Open menu">
