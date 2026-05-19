@@ -18,7 +18,7 @@
   var drawerPanel = drawer ? drawer.querySelector(".site-nav__drawer-panel") : null;
   var drawerLinks = drawer ? drawer.querySelectorAll("a") : [];
   var mobileNav = window.matchMedia("(max-width: 720px)");
-  var drawerMs = 3000;
+  var drawerMs = 1500;
 
   var lastY = 0;
   var scrollTicking = false;

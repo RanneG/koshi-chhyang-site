@@ -311,11 +311,11 @@ body.theme-heritage .site-header.is-scrolled .site-nav--primary {
 
 @media (max-width: 720px) {
   .site-nav__backdrop {
-    transition: opacity 3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .site-nav__drawer-panel {
-    transition: transform 3s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
   }
 }
 
