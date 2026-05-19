@@ -199,7 +199,8 @@ body.theme-heritage .site-header.is-scrolled .site-nav--primary {
 
   .site-nav__cta {
     order: 2;
-    margin-left: auto;
+    flex: 0 0 auto;
+    margin-inline: auto;
   }
 }
 
