@@ -192,6 +192,65 @@ body.theme-heritage .site-header.is-scrolled .site-nav--primary {
   outline-offset: 2px;
 }
 
+/* Inline links in pill bar (desktop) */
+.site-nav__links {
+  display: none;
+}
+
+.site-nav__links a {
+  position: relative;
+  padding: 0.35rem 0.15rem;
+  font-size: clamp(0.58rem, 1.2vw, 0.68rem);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: inherit;
+  opacity: 0.72;
+  white-space: nowrap;
+  transition: opacity 0.35s cubic-bezier(0.22, 1, 0.36, 1), color 0.35s ease;
+}
+
+.site-nav__links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0.1rem;
+  width: 0;
+  height: 1px;
+  background: var(--accent, #c78f57);
+  transition:
+    width 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    left 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.site-nav__links a:hover,
+.site-nav__links a:focus-visible {
+  opacity: 1;
+  outline: none;
+}
+
+.site-nav__links a:hover::after,
+.site-nav__links a:focus-visible::after {
+  width: 100%;
+  left: 0;
+}
+
+.site-nav__links a[aria-current="page"] {
+  opacity: 1;
+  color: var(--site-nav-active, #f0ede5);
+}
+
+.site-nav__links a[aria-current="page"]::after {
+  width: 100%;
+  left: 0;
+  height: 2px;
+}
+
+.site-nav__links a[data-nav="instagram"]::after {
+  display: none;
+}
+
 /* Drawer backdrop */
 .site-nav__backdrop {
   position: fixed;
@@ -202,7 +261,7 @@ body.theme-heritage .site-header.is-scrolled .site-nav--primary {
   -webkit-backdrop-filter: blur(6px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: opacity 1.05s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-nav__backdrop:not([hidden]) {
@@ -245,7 +304,7 @@ body.theme-heritage .site-header.is-scrolled .site-nav--primary {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   transform: translate3d(100%, 0, 0);
-  transition: transform 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 
@@ -296,6 +355,51 @@ body.theme-heritage .site-header.is-scrolled .site-nav--primary {
   opacity: 0.75;
   margin-top: 0.5rem;
   border-bottom: none;
+}
+
+/* —— Desktop: classic floating pill with inline links —— */
+@media (min-width: 721px) {
+  .site-nav--primary {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+
+  .site-nav__toggle {
+    display: none;
+  }
+
+  .site-nav__backdrop,
+  .site-nav__drawer {
+    display: none !important;
+  }
+
+  .site-nav__brand {
+    justify-self: auto;
+    text-align: left;
+    flex-shrink: 0;
+  }
+
+  .site-nav__links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex: 1;
+    min-width: 0;
+    gap: clamp(0.35rem, 1.5vw, 1.15rem);
+  }
+
+  .site-nav__cta {
+    justify-self: auto;
+    flex-shrink: 0;
+  }
+
+  body.site-nav--lock {
+    overflow: auto;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
