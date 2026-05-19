@@ -1,5 +1,5 @@
 /**
- * Full-page capybara loader — dismiss on window load (min display for motion users).
+ * Full-page loader — dismiss on window load (min display for motion users).
  */
 (function () {
   var loader = document.getElementById("page-loader");
