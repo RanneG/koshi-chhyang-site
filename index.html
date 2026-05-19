@@ -18,15 +18,21 @@
 <body class="page-home">
   <header class="site-header" data-site-header>
     <nav class="site-nav site-nav--primary" aria-label="Site">
+      <button type="button" class="site-nav__toggle" aria-expanded="false" aria-controls="site-nav-drawer" aria-label="Open menu">
+        <span class="site-nav__toggle-bars" aria-hidden="true"></span>
+      </button>
       <a href="/" class="site-nav__brand">Koshi Chhyang</a>
-      <div class="site-nav__links">
+      <a href="#rsvp" class="site-nav__cta">RSVP</a>
+    </nav>
+    <div class="site-nav__backdrop" data-nav-backdrop hidden></div>
+    <nav id="site-nav-drawer" class="site-nav__drawer" aria-label="Menu" hidden>
+      <div class="site-nav__drawer-panel">
         <a href="/" data-nav="home" aria-current="page">Home</a>
         <a href="heritage.html" data-nav="heritage">Heritage</a>
         <a href="collection.html" data-nav="collection">Collection</a>
         <a href="business.html" data-nav="business">Business</a>
         <a href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener" data-nav="instagram">Instagram</a>
       </div>
-      <a href="#rsvp" class="site-nav__cta">RSVP</a>
     </nav>
   </header>
 

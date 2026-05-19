@@ -1,5 +1,5 @@
 /**
- * Site header — scroll transitions (all motion pages)
+ * Site header — drawer menu + scroll hide/show
  */
 (function () {
   var motionPages = ["page-home", "page-heritage", "page-collection", "page-business"];
@@ -12,7 +12,77 @@
   var header = document.querySelector("[data-site-header]");
   if (!header) return;
 
+  var toggle = header.querySelector(".site-nav__toggle");
+  var backdrop = header.querySelector("[data-nav-backdrop]");
+  var drawer = document.getElementById("site-nav-drawer");
+  var drawerLinks = drawer ? drawer.querySelectorAll("a") : [];
+
   var lastY = 0;
+  var scrollTicking = false;
+  var scrollDelta = 6;
+
+  function setMenuOpen(open) {
+    header.classList.toggle("is-menu-open", open);
+    body.classList.toggle("site-nav--lock", open);
+
+    if (toggle) {
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+    }
+
+    if (backdrop) {
+      if (open) {
+        backdrop.removeAttribute("hidden");
+      } else {
+        backdrop.setAttribute("hidden", "");
+      }
+    }
+
+    if (drawer) {
+      if (open) {
+        drawer.removeAttribute("hidden");
+      } else {
+        drawer.setAttribute("hidden", "");
+      }
+    }
+  }
+
+  function closeMenu() {
+    if (header.classList.contains("is-menu-open")) {
+      setMenuOpen(false);
+    }
+  }
+
+  function openMenu() {
+    header.classList.remove("is-hidden");
+    setMenuOpen(true);
+  }
+
+  function toggleMenu() {
+    if (header.classList.contains("is-menu-open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  }
+
+  if (toggle) {
+    toggle.addEventListener("click", toggleMenu);
+  }
+
+  if (backdrop) {
+    backdrop.addEventListener("click", closeMenu);
+  }
+
+  drawerLinks.forEach(function (link) {
+    link.addEventListener("click", closeMenu);
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape") {
+      closeMenu();
+    }
+  });
 
   requestAnimationFrame(function () {
     header.classList.add("is-loaded");
@@ -21,11 +91,17 @@
   function onScroll(y) {
     header.classList.toggle("is-scrolled", y > 56);
 
+    if (header.classList.contains("is-menu-open")) {
+      lastY = y;
+      return;
+    }
+
     if (y < 72) {
       header.classList.remove("is-hidden");
-    } else if (y > lastY + 4) {
+    } else if (y > lastY + scrollDelta) {
+      closeMenu();
       header.classList.add("is-hidden");
-    } else if (y < lastY - 4) {
+    } else if (y < lastY - scrollDelta) {
       header.classList.remove("is-hidden");
     }
     lastY = y;
@@ -34,7 +110,12 @@
   window.addEventListener(
     "scroll",
     function () {
-      onScroll(window.scrollY);
+      if (scrollTicking) return;
+      scrollTicking = true;
+      requestAnimationFrame(function () {
+        onScroll(window.scrollY);
+        scrollTicking = false;
+      });
     },
     { passive: true }
   );
