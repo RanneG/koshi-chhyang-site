@@ -261,7 +261,7 @@ body.theme-heritage .site-header.is-scrolled .site-nav--primary {
   -webkit-backdrop-filter: blur(6px);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 1.5s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .site-nav__backdrop:not([hidden]) {
@@ -304,7 +304,7 @@ body.theme-heritage .site-header.is-scrolled .site-nav--primary {
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
   transform: translate3d(100%, 0, 0);
-  transition: transform 1.05s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 1.5s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 
