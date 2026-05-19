@@ -1,0 +1,84 @@
+{
+  "source": "https://www.instagram.com/koshichhyang/",
+  "note": "Post images map via posts.*.thumb (synced @koshichhyang slots). Handles below are placeholders until you import real comments: Import-CommunityComments.bat",
+  "posts": {
+    "hero": {
+      "thumb": "hero.jpg",
+      "caption": "UK launch / brand intro"
+    },
+    "pour": {
+      "thumb": "pour.jpg",
+      "caption": "Pour reel"
+    },
+    "brew": {
+      "thumb": "brew.jpg",
+      "caption": "Fermentation / brew reel"
+    },
+    "product-1": {
+      "thumb": "product-1.jpg",
+      "caption": "Heritage / Gurkha story"
+    },
+    "product-2": {
+      "thumb": "product-2.jpg",
+      "caption": "Bottle & branding"
+    },
+    "product-3": {
+      "thumb": "product-3.jpg",
+      "caption": "Terroir / landscape"
+    },
+    "event": {
+      "thumb": "event.jpg",
+      "caption": "Launch tasting / event"
+    }
+  },
+  "comments": [
+    {
+      "handle": "folkestone_eats",
+      "name": "Folkestone Eats",
+      "post": "hero",
+      "text": "Never tried Nepalese rice wine before — this looks incredible. Saving the launch date 📍"
+    },
+    {
+      "handle": "homebrew_kent",
+      "name": "Homebrew Kent",
+      "post": "brew",
+      "text": "The ferment story in your reel is so good. Proper slow craft — can't wait to taste at launch."
+    },
+    {
+      "handle": "maya.kitchen",
+      "name": "Maya",
+      "post": "pour",
+      "text": "That pour colour is gorgeous 😍 when can we buy?"
+    },
+    {
+      "handle": "gurkha_heritage_uk",
+      "name": "Gurkha Heritage UK",
+      "post": "product-1",
+      "text": "Chhyang done properly — proud to see this in Kent. See you in Folkestone."
+    },
+    {
+      "handle": "wineandthyme",
+      "name": "Wine & Thyme",
+      "post": "product-2",
+      "text": "Beautiful branding — love the bottle on this one. Following for launch news."
+    },
+    {
+      "handle": "kentfoodscene",
+      "name": "Kent Food Scene",
+      "post": "product-3",
+      "text": "A story that actually means something. Rooting for you 🙌"
+    },
+    {
+      "handle": "folkestone_wine_club",
+      "name": "Folkestone Wine Club",
+      "post": "event",
+      "text": "Counted down to July — exactly the kind of producer Kent needs. See you at launch 🥂"
+    },
+    {
+      "handle": "nepali_flavours",
+      "name": "Nepali Flavours",
+      "post": "pour",
+      "text": "That golden pour — tastes like home already. Respect for keeping it traditional."
+    }
+  ]
+}

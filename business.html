@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Koshi Chhyang — Business enquiries</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/brand.css" />
+  <link rel="stylesheet" href="assets/layout.css" />
+  <link rel="stylesheet" href="assets/site-nav.css" />
+  <link rel="stylesheet" href="assets/landing.css" />
+  <link rel="stylesheet" href="assets/btn-playful.css" />
+</head>
+<body class="page-business">
+  <header class="site-header" data-site-header>
+    <nav class="site-nav site-nav--primary" aria-label="Site">
+      <a href="/" class="site-nav__brand">Koshi Chhyang</a>
+      <div class="site-nav__links">
+        <a href="/" data-nav="home">Home</a>
+        <a href="heritage.html" data-nav="heritage">Heritage</a>
+        <a href="collection.html" data-nav="collection">Collection</a>
+        <a href="business.html" data-nav="business" aria-current="page">Business</a>
+        <a href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener" data-nav="instagram">Instagram</a>
+      </div>
+      <a href="index.html#rsvp" class="site-nav__cta">RSVP</a>
+    </nav>
+  </header>
+
+  <header class="page-hero" data-reveal>
+    <p class="section-label">Trade &amp; hospitality</p>
+    <h1>Partner with Koshi Chhyang</h1>
+    <p class="lead">Restaurants, retailers, and event hosts — tell us how you’d like to stock or serve our heritage rice wine.</p>
+  </header>
+
+  <main class="wrap">
+    <div data-reveal>
+      <p class="section-label">Ways to work with us</p>
+      <h2>At launch &amp; beyond</h2>
+    </div>
+    <div class="paths">
+      <article class="path-card" id="restaurants" data-reveal data-reveal-delay="1">
+        <h3>Restaurants</h3>
+        <p>By-the-glass programs, pairing menus, and staff training for launch week.</p>
+      </article>
+      <article class="path-card" id="retail" data-reveal data-reveal-delay="2">
+        <h3>Retail</h3>
+        <p>Independent shops and stockists — limited batches, story-led POS.</p>
+      </article>
+      <article class="path-card" id="private" data-reveal data-reveal-delay="3">
+        <h3>Private orders</h3>
+        <p>Corporate events, celebrations, and bulk bottle orders after launch.</p>
+      </article>
+    </div>
+
+    <section class="enquire-box" id="enquire" aria-labelledby="enquire-heading" data-reveal>
+      <h2 id="enquire-heading">Business enquiry</h2>
+      <p>Share a few details and we’ll come back before launch. For a quick reply, message us on Instagram.</p>
+      <form id="business-form" action="#" method="get">
+        <label for="biz-name">Your name</label>
+        <input id="biz-name" name="name" type="text" autocomplete="name" required />
+
+        <label for="biz-business">Business name</label>
+        <input id="biz-business" name="business" type="text" autocomplete="organization" required />
+
+        <label for="biz-type">Enquiry type</label>
+        <select id="biz-type" name="type" required>
+          <option value="Restaurant / bar">Restaurant / bar</option>
+          <option value="Retail / stockist">Retail / stockist</option>
+          <option value="Private / corporate event">Private / corporate event</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label for="biz-email">Email</label>
+        <input id="biz-email" name="email" type="email" autocomplete="email" required />
+
+        <label for="biz-message">Message</label>
+        <textarea id="biz-message" name="message" placeholder="Tell us about your venue, volumes, and timeline…" required></textarea>
+
+        <div class="btn-row">
+          <button class="btn primary" type="submit">Send enquiry</button>
+          <a class="btn ghost" href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener">Message on Instagram</a>
+        </div>
+      </form>
+      <p class="note">Pre-launch: enquiries open now; trade orders fulfil after July 2026 launch. We read every message.</p>
+    </section>
+  </main>
+
+  <footer class="site-nav" aria-label="Site">
+    <a href="/" data-nav="home">Home</a>
+    <a href="heritage.html" data-nav="heritage">Heritage</a>
+    <a href="collection.html" data-nav="collection">Collection</a>
+    <a href="business.html" data-nav="business" aria-current="page">Business</a>
+    <a href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener" data-nav="instagram">Instagram</a>
+  </footer>
+
+  <script src="assets/landing.js"></script>
+  <script src="assets/site-nav.js"></script>
+  <script src="assets/btn-playful.js" defer></script>
+  <script>
+    document.getElementById("business-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = document.getElementById("biz-name").value.trim();
+      var business = document.getElementById("biz-business").value.trim();
+      var type = document.getElementById("biz-type").value;
+      var email = document.getElementById("biz-email").value.trim();
+      var message = document.getElementById("biz-message").value.trim();
+      var subject = encodeURIComponent("Koshi Chhyang — business enquiry: " + business);
+      var body = encodeURIComponent(
+        "Name: " + name + "\nBusiness: " + business + "\nType: " + type + "\nEmail: " + email + "\n\n" + message
+      );
+      window.location.href = "mailto:hello@koshichhyang.com?subject=" + subject + "&body=" + body;
+    });
+  </script>
+</body>
+</html>

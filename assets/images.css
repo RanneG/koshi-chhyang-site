@@ -1,0 +1,10 @@
+/* Shared image helpers for concept pages */
+.img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.img-fallback {
+  background: linear-gradient(145deg, var(--primary, #5e718b), var(--primary-b, #55737a));
+}

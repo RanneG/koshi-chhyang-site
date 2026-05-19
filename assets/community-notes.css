@@ -1,0 +1,234 @@
+/* Community notes — seamless infinite horizontal loop on landing */
+.community {
+  margin-top: clamp(2rem, 5vh, 3rem);
+  padding-top: clamp(0.75rem, 2vh, 1.25rem);
+  border-top: 1px solid rgba(94, 113, 139, 0.12);
+}
+
+.community h2 {
+  margin-bottom: 0.35rem;
+  font-size: var(--text-section, clamp(1.5rem, 2vw + 1rem, 2.125rem));
+}
+
+.community .sub a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.community .sub a:hover {
+  text-decoration: underline;
+}
+
+/* —— Infinite marquee (full bleed, no end visible, non-interactive) —— */
+.community-marquee-wrap {
+  width: 100vw;
+  max-width: 100vw;
+  margin: clamp(1.35rem, 3vh, 2rem) 0 clamp(1.25rem, 2.5vh, 1.75rem);
+  margin-left: calc(50% - 50vw);
+  pointer-events: none;
+  user-select: none;
+}
+
+.community-marquee__viewport {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+}
+
+.community-marquee__track {
+  display: flex;
+  width: max-content;
+  align-items: stretch;
+  will-change: transform;
+}
+
+.community-marquee.is-running .community-marquee__track {
+  animation: community-marquee-loop var(--marquee-duration, 48s) linear infinite;
+}
+
+@keyframes community-marquee-loop {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.community-marquee__group {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(0.85rem, 2vw, 1.15rem);
+  padding-right: clamp(0.85rem, 2vw, 1.15rem);
+  flex-shrink: 0;
+}
+
+.community-marquee__group .note {
+  flex: 0 0 auto;
+  width: clamp(17.5rem, 78vw, 22.5rem);
+  min-width: 17.5rem;
+  max-width: 22.5rem;
+}
+
+/* Reduced motion: static grid */
+.community-marquee-wrap.is-static {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  pointer-events: auto;
+  user-select: text;
+}
+
+.community-marquee-wrap.is-static .community-marquee__viewport {
+  overflow: visible;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.community-marquee-wrap.is-static .community-marquee__track {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.5vw, 1.35rem);
+  animation: none;
+  transform: none;
+}
+
+.community-marquee-wrap.is-static .community-marquee__group--clone {
+  display: none;
+}
+
+.community-marquee-wrap.is-static .community-marquee__group {
+  display: contents;
+}
+
+.community-marquee-wrap.is-static .community-marquee__group .note {
+  width: auto;
+  min-width: 0;
+  max-width: none;
+}
+
+@media (min-width: 700px) {
+  .community-marquee-wrap.is-static .community-marquee__track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .community-marquee-wrap.is-static .community-marquee__track {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .community-marquee__track {
+    animation: none !important;
+  }
+}
+
+.note {
+  background: #fff;
+  border: 1px solid rgba(94, 113, 139, 0.12);
+  padding: clamp(1.15rem, 2.5vw, 1.4rem) clamp(1.2rem, 2.5vw, 1.45rem) clamp(1.2rem, 2.5vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.04);
+  height: 100%;
+}
+
+.note-head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.note-avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.note-meta {
+  min-width: 0;
+}
+
+.note-meta strong {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--text);
+}
+
+.note-meta span {
+  font-size: 0.65rem;
+  color: rgba(44, 44, 42, 0.5);
+  letter-spacing: 0.04em;
+}
+
+.note p {
+  font-size: clamp(0.88rem, 0.35vw + 0.8rem, 0.95rem);
+  line-height: 1.58;
+  color: var(--text);
+}
+
+.note-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 9.5rem;
+  max-height: 14rem;
+  object-fit: cover;
+  border-radius: 2px;
+  background: var(--cream);
+}
+
+.community-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.community-cta .pill {
+  color: var(--primary);
+  border: 1px solid rgba(94, 113, 139, 0.35);
+  background: transparent;
+}
+
+.community-cta .pill.gold {
+  color: #fff;
+}
+
+.community-cta .link-collection {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.community-cta .link-collection:hover {
+  text-decoration: underline;
+}

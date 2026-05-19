@@ -1,0 +1,35 @@
+{
+  "comment": "Drop Wix collection images into assets/wix-import/ using these filenames, then: python scripts/sync_wix_assets.py",
+  "import_dir": "wix-import",
+  "quality": 92,
+  "slots": {
+    "hero.jpg": "hero",
+    "pour.jpg": "pour",
+    "brew.jpg": "brew",
+    "event.jpg": "event",
+    "collection/classic-chhyang.jpg": "classic-chhyang",
+    "collection/herbal-infused-chhyang.jpg": "herbal-infused-chhyang",
+    "collection/spiced-chhyang.jpg": "spiced-chhyang",
+    "collection/citrus-zest-chhyang.jpg": "citrus-zest-chhyang",
+    "collection/berry-fusion-chhyang.jpg": "berry-fusion-chhyang",
+    "collection/ginger-spice-chhyang.jpg": "ginger-spice-chhyang",
+    "collection/aged-heritage-chhyang.jpg": "aged-heritage-chhyang",
+    "collection/limited-edition-chhyang.jpg": "limited-edition-chhyang",
+    "collection/reserve-oak-chhyang.jpg": "reserve-oak-chhyang",
+    "team/awisha-magar.jpg": "awisha-magar",
+    "team/avash-magar.jpg": "avash-magar"
+  },
+  "aliases": {
+    "collection/classic-chhyang.jpg": ["classic_chhyand", "ClassicChhyang", "classic-chhyang"],
+    "collection/herbal-infused-chhyang.jpg": ["HerbalInfusedChhyang", "herbal-infused"],
+    "collection/spiced-chhyang.jpg": ["SpicedChhyang", "spiced-chhyang"],
+    "collection/citrus-zest-chhyang.jpg": ["CitrusZest", "citrus-zest"],
+    "collection/berry-fusion-chhyang.jpg": ["BerryFusion", "berry-fusion"],
+    "collection/ginger-spice-chhyang.jpg": ["GingerSpice", "ginger-spice"],
+    "collection/aged-heritage-chhyang.jpg": ["AgedHeritage", "aged-heritage"],
+    "collection/limited-edition-chhyang.jpg": ["LimitedEdition", "limited-edition"],
+    "collection/reserve-oak-chhyang.jpg": ["ReserveOak", "reserve-oak"],
+    "team/awisha-magar.jpg": ["awisha magar ELEVATE", "ELEVATE", "awisha", "Awisha Magar"],
+    "team/avash-magar.jpg": ["IMG_7096", "avash", "Avash Magar"]
+  }
+}

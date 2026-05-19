@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Import @koshichhyang photos</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 44rem; margin: 2rem auto; padding: 0 1.25rem; line-height: 1.6; color: #2a2a28; }
+    h1 { font-size: 1.35rem; }
+    h2 { font-size: 1.05rem; margin-top: 1.5rem; }
+    code, pre { background: #f0ede5; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85rem; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; word-break: break-all; }
+    ol { padding-left: 1.25rem; }
+    li { margin-bottom: 0.75rem; }
+    .note { background: #fff8e6; border: 1px solid #c78f57; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.9rem; }
+    .ok { background: #eef6f0; border: 1px solid #55737a; }
+  </style>
+</head>
+<body>
+  <h1>Import Instagram photos for Koshi Chhyang</h1>
+
+  <p class="note ok"><strong>Console showed <code>undefined</code>?</strong> That is normal. <code>copy()</code> does not return a value — check your clipboard (paste into Notepad). The script below also <strong>prints</strong> how many URLs it found.</p>
+
+  <ol>
+    <li>Log into <a href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener">instagram.com/koshichhyang</a>.</li>
+    <li><strong>Scroll down</strong> the profile grid so several rows of posts load.</li>
+    <li><strong>F12</strong> → <strong>Console</strong> → paste <strong>Snippet A</strong> → Enter.</li>
+  </ol>
+
+  <h2>Snippet A (copy + print)</h2>
+  <pre id="snippet-a">(() => {
+  const pick = (img) => {
+    const src = img.currentSrc || img.src || "";
+    if (src && /cdninstagram|fbcdn\.net/.test(src)) return src;
+    const best = (img.srcset || "").split(",").map((s) => s.trim().split(" ")[0]).filter(Boolean).pop();
+    return best || "";
+  };
+  const urls = [...document.querySelectorAll("img")]
+    .map(pick)
+    .filter((u) => u && /cdninstagram|fbcdn\.net/.test(u))
+    .filter((u) => !/150x150|s150x150|profile_pic|emoji/.test(u))
+    .filter((u, i, a) => a.indexOf(u) === i)
+    .slice(0, 8);
+  console.log("Found " + urls.length + " image URL(s):");
+  urls.forEach((u, i) => console.log((i + 1) + ". " + u));
+  if (!urls.length) {
+    console.warn("No URLs — scroll the profile grid or use Snippet B on one open post.");
+    return urls;
+  }
+  copy(urls.join("\n"));
+  console.log("Copied to clipboard. Paste into assets/image-urls.txt");
+  return urls;
+})()</pre>
+
+  <h2>If Snippet A says “Found 0” — Snippet B (one post)</h2>
+  <ol>
+    <li>Click any post on the profile so it opens full-screen.</li>
+    <li>Run this in the console:</li>
+  </ol>
+  <pre id="snippet-b">(() => {
+  const urls = [...document.querySelectorAll('img, [style*="background-image"]')]
+    .flatMap((el) => {
+      if (el.tagName === "IMG") {
+        const u = el.currentSrc || el.src;
+        return u ? [u] : [];
+      }
+      const m = (el.style.backgroundImage || "").match(/url\("(.+?)"\)/);
+      return m ? [m[1]] : [];
+    })
+    .filter((u) => /cdninstagram|fbcdn\.net/.test(u))
+    .filter((u, i, a) => a.indexOf(u) === i);
+  console.log(urls);
+  copy(urls.slice(0, 3).join("\n"));
+  return urls;
+})()</pre>
+  <p>Repeat for 2–3 posts if you need more than three URLs; paste all lines into <code>image-urls.txt</code>.</p>
+
+  <h2>Then import</h2>
+  <ol>
+    <li>Paste URLs into <code>assets/image-urls.txt</code> (one per line), save.</li>
+    <li>Normal PowerShell (not Admin):</li>
+  </ol>
+  <pre>cd C:\Users\ranne\.cursor\projects\empty-window\koshi-chhyang
+.\scripts\Import-InstagramUrls.ps1</pre>
+  <p>Refresh <code>index.html</code> (Ctrl+F5).</p>
+
+  <h2>Slot order</h2>
+  <p>hero → brew → product-1 → product-2 → product-3 → event. Best pour/hero first, bowl or bottle next, community last.</p>
+</body>
+</html>

@@ -1,0 +1,112 @@
+/**
+ * Koshi Chhyang — Wix-aligned brand tokens
+ * Display: Lucy Rose Personal (Wix) → Cormorant Garamond fallback
+ * Body: Arial, Helvetica, sans-serif (Wix)
+ */
+
+/* Self-host: drop LucyRosePersonal-Regular.woff2 into assets/fonts/ */
+@font-face {
+  font-family: "Lucy Rose Personal";
+  src: url("fonts/LucyRosePersonal-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --primary: #5e718b;
+  --primary-b: #55737a;
+  --cream: #f0ede5;
+  --accent: #c78f57;
+  --text: #2c2c2a;
+  --white: #faf9f6;
+
+  --font-display: "Lucy Rose Personal", "Cormorant Garamond", Georgia, serif;
+  --font-body: Arial, Helvetica, sans-serif;
+  --font-label: var(--font-body);
+
+  --site-nav-bg: var(--primary);
+  --site-nav-active: var(--cream);
+
+  /* Layout & fluid type (see layout.css) */
+  --max-content: 1100px;
+  --max-content-editorial: 920px;
+  --max-content-form: 720px;
+  --page-gutter: clamp(1.25rem, 4vw, 2rem);
+  --space-section: clamp(2.75rem, 6vh, 4.5rem);
+  --space-block: clamp(1rem, 2.5vw, 1.75rem);
+  --text-display: clamp(2.25rem, 4.5vw + 0.75rem, 3.5rem);
+  --text-title: clamp(1.75rem, 2.5vw + 0.75rem, 2.75rem);
+  --text-section: clamp(1.5rem, 1.5vw + 1rem, 2.125rem);
+  --text-lead: clamp(1.0625rem, 0.6vw + 0.95rem, 1.25rem);
+  --text-body: clamp(0.9375rem, 0.35vw + 0.875rem, 1.0625rem);
+  --text-small: clamp(0.72rem, 0.25vw + 0.65rem, 0.8125rem);
+  --text-label: 0.65rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-body);
+  color: var(--text);
+  background: var(--cream);
+  line-height: 1.55;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  image-rendering: auto;
+}
+
+h1,
+h2,
+h3,
+.logo,
+.display {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.15;
+}
+
+.eyebrow,
+.section-label,
+.sub,
+.countdown-label,
+.countdown-sub {
+  font-family: var(--font-label);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.btn,
+.pill {
+  font-family: var(--font-body);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Heritage page uses palette B on nav */
+body.theme-heritage {
+  --primary: #55737a;
+  --cream: #f2f0e9;
+  --site-nav-bg: #55737a;
+}

@@ -1,0 +1,31 @@
+{
+  "comment": "Wix CDN team portraits. src = default display (800px crop). srcset 1x/2x optional in HTML.",
+  "crop": "x_153,y_219,w_764,h_764",
+  "members": [
+    {
+      "name": "Awisha Magar",
+      "role": "Founder",
+      "file": "awisha-magar.jpg",
+      "media": "aa35dc_abfdf3f53bc64f3d86b6a0721ca38e9c~mv2.jpg",
+      "filename": "awisha%20magar%20ELEVATE.jpg",
+      "src": "https://static.wixstatic.com/media/aa35dc_abfdf3f53bc64f3d86b6a0721ca38e9c~mv2.jpg/v1/crop/x_153,y_219,w_764,h_764/fill/w_800,h_800,al_c,q_92,usm_0.66_1.00_0.01/awisha%20magar%20ELEVATE.jpg",
+      "srcset": [
+        "https://static.wixstatic.com/media/aa35dc_abfdf3f53bc64f3d86b6a0721ca38e9c~mv2.jpg/v1/crop/x_153,y_219,w_764,h_764/fill/w_150,h_150,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/awisha%20magar%20ELEVATE.jpg",
+        "https://static.wixstatic.com/media/aa35dc_abfdf3f53bc64f3d86b6a0721ca38e9c~mv2.jpg/v1/crop/x_153,y_219,w_764,h_764/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/awisha%20magar%20ELEVATE.jpg"
+      ]
+    },
+    {
+      "name": "Avash Magar",
+      "role": "Co-founder",
+      "file": "avash-magar.jpg",
+      "media": "aa35dc_1be0590f072642f4979aad44e6f94dfc~mv2.jpg",
+      "filename": "IMG_7096.jpg",
+      "crop": "x_709,y_815,w_1597,h_1596",
+      "src": "https://static.wixstatic.com/media/aa35dc_1be0590f072642f4979aad44e6f94dfc~mv2.jpg/v1/crop/x_709,y_815,w_1597,h_1596/fill/w_800,h_800,al_c,q_92,usm_0.66_1.00_0.01/IMG_7096.jpg",
+      "srcset": [
+        "https://static.wixstatic.com/media/aa35dc_1be0590f072642f4979aad44e6f94dfc~mv2.jpg/v1/crop/x_709,y_815,w_1597,h_1596/fill/w_150,h_150,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_7096.jpg",
+        "https://static.wixstatic.com/media/aa35dc_1be0590f072642f4979aad44e6f94dfc~mv2.jpg/v1/crop/x_709,y_815,w_1597,h_1596/fill/w_300,h_300,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/IMG_7096.jpg"
+      ]
+    }
+  ]
+}

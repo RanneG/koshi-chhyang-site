@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Import @koshichhyang comments</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 46rem; margin: 2rem auto; padding: 0 1.25rem; line-height: 1.6; color: #2a2a28; }
+    h1 { font-size: 1.35rem; }
+    h2 { font-size: 1.05rem; margin-top: 1.5rem; }
+    code, pre { background: #f0ede5; padding: 0.15rem 0.4rem; border-radius: 4px; font-size: 0.85rem; }
+    pre { padding: 1rem; overflow-x: auto; white-space: pre-wrap; word-break: break-word; }
+    ol { padding-left: 1.25rem; }
+    li { margin-bottom: 0.75rem; }
+    .note { background: #fff8e6; border: 1px solid #c78f57; padding: 0.75rem 1rem; border-radius: 6px; font-size: 0.9rem; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 1rem 0; }
+    th, td { border: 1px solid #ddd; padding: 0.4rem 0.55rem; text-align: left; }
+    th { background: #f0ede5; }
+  </style>
+</head>
+<body>
+  <h1>Import Instagram comments for Community notes</h1>
+  <p class="note">Instagram blocks automated scraping. Use this while logged in on <a href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener">@koshichhyang</a> to copy <strong>real @handles</strong>, comment text, and the <strong>post image</strong> each comment belongs to.</p>
+
+  <h2>Post keys (set in export JSON)</h2>
+  <table>
+    <tr><th>post</th><th>Local image</th><th>Use for</th></tr>
+    <tr><td><code>hero</code></td><td>hero.jpg</td><td>Launch / UK intro posts</td></tr>
+    <tr><td><code>pour</code></td><td>pour.jpg</td><td>Pour reel / golden chhyang</td></tr>
+    <tr><td><code>brew</code></td><td>brew.jpg</td><td>Fermentation / brew reel</td></tr>
+    <tr><td><code>product-1</code></td><td>product-1.jpg</td><td>Heritage / Gurkha story</td></tr>
+    <tr><td><code>product-2</code></td><td>product-2.jpg</td><td>Bottle / branding</td></tr>
+    <tr><td><code>product-3</code></td><td>product-3.jpg</td><td>Landscape / terroir</td></tr>
+    <tr><td><code>event</code></td><td>event.jpg</td><td>Launch tasting / event</td></tr>
+  </table>
+
+  <ol>
+    <li>Open one post on @koshichhyang (comments visible).</li>
+    <li>F12 → Console → paste <strong>Snippet C</strong> → Enter.</li>
+    <li>Set the <code>post</code> key in the printed JSON (see table above).</li>
+    <li>Paste the object into <code>assets/community-comments-export.json</code> (array of exports).</li>
+    <li>Run: <code>python scripts/merge_community_comments.py</code></li>
+    <li>Refresh the landing page (Ctrl+F5).</li>
+  </ol>
+
+  <h2>Snippet C — one open post</h2>
+  <pre id="snippet-c">(() => {
+  const POST_HINTS = [
+    ["hero", "509109336"],
+    ["pour", "514470029"],
+    ["product-1", "561102938"],
+    ["product-2", "655996050"],
+    ["product-3", "564908787"],
+    ["brew", "688430214"],
+    ["event", "505407617"],
+  ];
+  let POST_KEY = "pour"; // fallback if auto-detect misses
+  const imgs = [...document.querySelectorAll("article img, main img, div[role=presentation] img")]
+    .map((i) => i.currentSrc || i.src || "")
+    .filter((u) => /cdninstagram|fbcdn\\.net/.test(u) && !/150x150|s150x150|profile_pic|emoji/.test(u))
+    .sort((a, b) => b.length - a.length);
+  const postImage = imgs[0] || "";
+  for (const [key, id] of POST_HINTS) {
+    if (postImage.includes(id)) { POST_KEY = key; break; }
+  }
+  const comments = [];
+  const seen = new Set();
+  document.querySelectorAll('a[href^="/"]').forEach((a) => {
+    const m = (a.getAttribute("href") || "").match(/^\\/([A-Za-z0-9._]+)\\/?$/);
+    if (!m) return;
+    const handle = m[1];
+    if (handle === "koshichhyang" || handle === "explore" || handle === "p" || handle === "reels") return;
+    const row = a.closest("li") || a.closest('div[class*="Comment"]') || a.closest("div");
+    if (!row || seen.has(handle + row.innerText.slice(0, 40))) return;
+    const textEl = row.querySelector("span[dir=auto]") || row.querySelector("span");
+    const text = textEl ? textEl.innerText.trim() : "";
+    if (!text || text.length <= 2) return;
+    seen.add(handle + text.slice(0, 40));
+    const nameEl = row.querySelector("span:not([dir=auto])") || a;
+    const name = (nameEl && nameEl !== textEl ? nameEl.innerText.trim().split("\\n")[0] : "") || handle;
+    comments.push({ handle, name, text });
+  });
+  const out = { post: POST_KEY, postImage, comments: comments.slice(0, 12) };
+  console.log(JSON.stringify(out, null, 2));
+  copy(JSON.stringify(out, null, 2));
+  console.log("Copied " + out.comments.length + " comment(s) for post \"" + POST_KEY + "\"");
+  return out;
+})()</pre>
+
+  <p>Repeat for each post you want in the carousel. Append each exported object to the array in <code>community-comments-export.json</code>.</p>
+</body>
+</html>

@@ -1,0 +1,23 @@
+# Build output
+dist/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Local scrape / reference dumps (not for deploy)
+ig_profile.html
+ig_imginn.html
+assets/_shop.html
+
+# Wix source drops (sync into assets/images/ first)
+assets/wix-import/*
+!assets/wix-import/README.txt
+
+# Dev export scratch
+assets/community-comments-export.json
+
+# OS
+.DS_Store
+Thumbs.db

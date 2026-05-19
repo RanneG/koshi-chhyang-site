@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Koshi Chhyang — Design Concepts</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary: #5e718b;
+      --cream: #f0ede5;
+      --accent: #c78f57;
+      --text: #2a2a28;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: "Source Sans 3", system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+    .wrap { max-width: 960px; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+    header { text-align: center; margin-bottom: 3rem; }
+    .eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2rem, 5vw, 2.75rem);
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 0.5rem;
+    }
+    .sub { max-width: 36rem; margin: 0 auto; opacity: 0.85; font-size: 1.05rem; }
+    .grid {
+      display: grid;
+      gap: 1.25rem;
+    }
+    @media (min-width: 700px) { .grid { grid-template-columns: repeat(3, 1fr); } }
+    .card {
+      background: #fff;
+      border: 1px solid rgba(94, 113, 139, 0.15);
+      border-radius: 4px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      box-shadow: 0 12px 40px rgba(47, 65, 86, 0.12);
+      transform: translateY(-2px);
+    }
+    .swatch {
+      height: 5rem;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--card-primary) 60%, var(--cream) 60%);
+    }
+    .swatch img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.85;
+    }
+    .card-body { padding: 1.25rem 1.35rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+    .card h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.35rem;
+      color: var(--primary);
+      margin-bottom: 0.35rem;
+    }
+    .tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+    .card p { font-size: 0.9rem; flex: 1; margin-bottom: 1rem; opacity: 0.9; }
+    .card a {
+      display: inline-block;
+      text-align: center;
+      padding: 0.65rem 1rem;
+      background: var(--card-primary);
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      border-radius: 999px;
+    }
+    .card a:hover { filter: brightness(1.05); }
+    footer {
+      margin-top: 3rem;
+      text-align: center;
+      font-size: 0.8rem;
+      opacity: 0.65;
+    }
+    footer a { color: var(--primary); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <p class="eyebrow">Pre-launch concepts</p>
+      <h1>Koshi Chhyang</h1>
+      <p class="sub">Three layout directions for comparison. The live pre-launch site is <a href="../index.html">index.html</a> (Heritage Launch landing).</p>
+    </header>
+    <div class="grid">
+      <article class="card" style="--card-primary: #5e718b;">
+        <div class="swatch" style="--card-primary: #5e718b;">
+          <img src="../assets/images/product-1.jpg" alt="" />
+        </div>
+        <div class="card-body">
+          <p class="tag">Palette A · Launch-first</p>
+          <h2>Heritage Launch</h2>
+          <p>Split hero, countdown, event strip, product cards. Now the main landing page.</p>
+          <a href="../index.html">View landing</a>
+        </div>
+      </article>
+      <article class="card" style="--card-primary: #55737a;">
+        <div class="swatch" style="--card-primary: #55737a;">
+          <img src="../assets/images/product-1.jpg" alt="" />
+        </div>
+        <div class="card-body">
+          <p class="tag">Palette B · Story-first</p>
+          <h2>Editorial Journey</h2>
+          <p>Chapters, heritage narrative, community imagery. Linked from bottom nav as Heritage.</p>
+          <a href="../heritage.html">View concept</a>
+        </div>
+      </article>
+      <article class="card" style="--card-primary: #5e718b;">
+        <div class="swatch" style="background: linear-gradient(135deg, #5e718b 50%, #55737a 50%);">
+          <img src="../assets/images/pour.jpg" alt="" />
+        </div>
+        <div class="card-body">
+          <p class="tag">Hybrid · Shop-ready</p>
+          <h2>Terroir Collection</h2>
+          <p>Catalog grid, collection filters. Linked from bottom nav as Collection.</p>
+          <a href="../collection.html">View concept</a>
+        </div>
+      </article>
+    </div>
+    <footer>
+      <p>Instagram: <a href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener">@koshichhyang</a> · Internal design review</p>
+    </footer>
+  </div>
+  <script src="../assets/load-photos.js"></script>
+</body>
+</html>

@@ -1,0 +1,112 @@
+/**
+ * Meet our family — profile cards (Uiverse.io by bociKond, adapted for Koshi Chhyang)
+ * https://uiverse.io/bociKond/ — circular portrait, centered name + role; no social/country
+ */
+
+.page-heritage .family .lead {
+  margin-bottom: clamp(1.75rem, 4vh, 2.5rem);
+}
+
+.page-heritage .family-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1.25rem, 3vw, 2rem);
+}
+
+.page-heritage .family-card {
+  --family-bg: var(--primary-b, #55737a);
+  --family-bg-hover: #4a656b;
+  --family-clr: var(--cream, #f0ede5);
+  --family-glow: rgba(85, 115, 122, 0.35);
+
+  box-sizing: border-box;
+  background-color: var(--family-bg);
+  color: var(--family-clr);
+  padding: clamp(1.75rem, 4vw, 2rem) clamp(1.5rem, 3vw, 2.5rem);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 40px -1px var(--family-glow);
+  outline: 2px solid var(--family-bg);
+  outline-offset: 4px;
+  width: 100%;
+  max-width: 17.5rem;
+  transition: background-color 0.3s ease-in-out, outline-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(1.25rem, 3vw, 1.75rem);
+  line-height: 1.3;
+  text-align: center;
+}
+
+.page-heritage .family-card:hover {
+  --family-bg: var(--family-bg-hover);
+  --family-glow: rgba(74, 101, 107, 0.4);
+}
+
+.page-heritage .family-card__avatar {
+  position: relative;
+  width: clamp(5.5rem, 18vw, 6.5rem);
+  aspect-ratio: 1;
+  flex-shrink: 0;
+}
+
+.page-heritage .family-card__initial {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 5vw, 2.25rem);
+  font-weight: 600;
+  color: var(--family-clr);
+  opacity: 0.45;
+  border-radius: 50%;
+  outline: 2px solid var(--family-clr);
+  outline-offset: 4px;
+  user-select: none;
+}
+
+.page-heritage .family-card__img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  outline: 2px solid var(--family-clr);
+  outline-offset: 4px;
+  object-fit: cover;
+  display: block;
+}
+
+.page-heritage .family-card__img.is-missing {
+  display: none;
+}
+
+.page-heritage .family-card__text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.page-heritage .family-card__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2vw + 0.75rem, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin: 0;
+}
+
+.page-heritage .family-card__role {
+  font-family: var(--font-body);
+  font-size: clamp(0.85rem, 1vw + 0.7rem, 0.95rem);
+  font-weight: 500;
+  opacity: 0.75;
+  margin: 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
