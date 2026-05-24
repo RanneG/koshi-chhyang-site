@@ -83,10 +83,72 @@
     if (link) link.remove();
   }
 
+  function shouldSkipSocialLink(anchor, url) {
+    if (anchor.hasAttribute("data-design-switch-target")) {
+      return true;
+    }
+    if (url.pathname.replace(/\\/g, "/").indexOf("/legacy/") !== -1) {
+      return true;
+    }
+    return false;
+  }
+
+  /** Keep ?palette=social on same-site navigation while viewing the social demo. */
+  function syncSocialLinks(root) {
+    var scope = root || document;
+    var origin = window.location.origin;
+
+    scope.querySelectorAll("a[href]").forEach(function (anchor) {
+      var raw = anchor.getAttribute("href");
+      if (!raw || raw.charAt(0) === "#") {
+        return;
+      }
+      if (/^(mailto:|tel:|javascript:)/i.test(raw)) {
+        return;
+      }
+
+      try {
+        var url = new URL(raw, window.location.href);
+        if (url.origin !== origin) {
+          return;
+        }
+        if (shouldSkipSocialLink(anchor, url)) {
+          return;
+        }
+        if (url.searchParams.get("palette") === "social") {
+          return;
+        }
+        url.searchParams.set("palette", "social");
+        anchor.setAttribute("href", url.pathname + url.search + url.hash);
+      } catch (err) {
+        /* ignore bad href */
+      }
+    });
+  }
+
+  function initSocialLinkSync() {
+    if (resolvePalette() !== "social") {
+      return;
+    }
+
+    function run() {
+      syncSocialLinks(document);
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", run);
+    } else {
+      run();
+    }
+
+    window.addEventListener("load", run);
+  }
+
   clearLegacyStorage();
 
   if (resolvePalette() === "social") {
     applyExperimental();
+    initSocialLinkSync();
   } else {
     clearExperimental();
   }
@@ -108,10 +170,13 @@
     }
     if (next === "social") {
       applyExperimental();
+      initSocialLinkSync();
     } else {
       clearExperimental();
     }
   };
+
+  window.kcSyncSocialLinks = syncSocialLinks;
 
   window.kcGetPalette = function () {
     return resolvePalette();
