@@ -34,6 +34,7 @@
 
   var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   var narrowQuery = window.matchMedia("(max-width: 47.99rem)");
+  var touchQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
   var timeline = null;
   var resizeObserver = null;
 
@@ -52,6 +53,14 @@
 
   function isNarrowViewport() {
     return narrowQuery.matches;
+  }
+
+  /** Sticky scrub overlap is unreliable on phones; use stacked sections instead. */
+  function shouldAnimateOverlap() {
+    if (prefersReduced()) return false;
+    if (isNarrowViewport()) return false;
+    if (touchQuery.matches) return false;
+    return true;
   }
 
   function measurePrefixTravel() {
@@ -129,7 +138,7 @@
     root.classList.remove("preview-overlap--static", "preview-overlap--released");
     stack.classList.remove("preview-promise--static");
 
-    if (prefersReduced()) {
+    if (!shouldAnimateOverlap()) {
       showStatic();
       return;
     }
@@ -292,6 +301,12 @@
     narrowQuery.addListener(onModeChange);
   }
 
+  if (touchQuery.addEventListener) {
+    touchQuery.addEventListener("change", onModeChange);
+  } else if (touchQuery.addListener) {
+    touchQuery.addListener(onModeChange);
+  }
+
   function init() {
     build();
     if (typeof ScrollTrigger !== "undefined") {
@@ -325,6 +340,12 @@
   }
 
   window.addEventListener("load", function () {
+    if (
+      root.classList.contains("preview-overlap--animated") &&
+      (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined")
+    ) {
+      showStatic();
+    }
     if (typeof ScrollTrigger !== "undefined") {
       ScrollTrigger.refresh();
       requestAnimationFrame(function () {

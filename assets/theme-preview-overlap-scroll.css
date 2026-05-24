@@ -3,6 +3,56 @@
  * Inspired by https://skiper-ui.com/v1/skiper44 and https://vercel.com
  */
 
+/**
+ * Mobile / touch: document-flow stack before JS (html.kc-overlap-simple from index head).
+ * Avoids hidden panels + empty scroll track on iOS Safari.
+ */
+html.kc-overlap-simple .page-theme-preview .preview-overlap .preview-overlap__pin {
+  position: relative;
+  min-height: 0;
+  height: auto;
+  max-height: none;
+  overflow: visible;
+}
+
+html.kc-overlap-simple .page-theme-preview .preview-overlap .preview-overlap__hero.preview-hero {
+  position: relative;
+  inset: auto;
+  min-height: min(88vh, 820px);
+  height: auto;
+  overflow: visible;
+}
+
+html.kc-overlap-simple .page-theme-preview .preview-overlap .preview-overlap__hero .preview-hero__photo {
+  min-height: min(42vh, 360px);
+  height: auto;
+}
+
+html.kc-overlap-simple .page-theme-preview .preview-overlap .preview-overlap__panel--light,
+html.kc-overlap-simple .page-theme-preview .preview-overlap .preview-overlap__panel--dark {
+  position: relative;
+  left: auto;
+  right: auto;
+  bottom: auto;
+  top: auto;
+  opacity: 1;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  overflow: visible;
+  pointer-events: auto;
+  transform: none;
+}
+
+html.kc-overlap-simple
+  .page-theme-preview
+  .preview-overlap
+  [data-promise-stack]
+  .preview-promise__line {
+  opacity: 1;
+  transform: none;
+}
+
 .page-theme-preview .preview-overlap {
   position: relative;
   isolation: isolate;
@@ -125,18 +175,6 @@
   will-change: transform;
 }
 
-@media (max-width: 47.99rem) {
-  .page-theme-preview .preview-overlap--animated .preview-overlap__panel--light {
-    padding-top: clamp(1.75rem, 5vh, 2.5rem);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .page-theme-preview .preview-overlap--animated .preview-promise__heading {
-    margin-bottom: clamp(1rem, 3vh, 1.5rem);
-  }
-}
-
 /* Off-screen before GSAP sets yPercent; removed once JS adds --scrub-ready */
 .page-theme-preview
   .preview-overlap--animated:not(.preview-overlap--scrub-ready)
@@ -204,6 +242,20 @@
   height: auto;
   min-height: min(92vh, 780px);
   overflow: visible;
+}
+
+@media (max-width: 47.99rem) {
+  .page-theme-preview .preview-overlap--static .preview-overlap__hero.preview-hero {
+    min-height: 0;
+  }
+
+  .page-theme-preview .preview-overlap--static .preview-hero__photo {
+    min-height: min(42vh, 360px);
+  }
+
+  .page-theme-preview .preview-overlap--static .preview-overlap__track {
+    min-height: 0;
+  }
 }
 
 .page-theme-preview .preview-overlap--static .preview-overlap__panel--light {

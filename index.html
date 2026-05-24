@@ -17,6 +17,19 @@
   <link rel="stylesheet" href="assets/theme-preview-community.css" />
   <link rel="stylesheet" href="assets/age-gate.css" />
   <link rel="stylesheet" href="assets/design-switcher.css" />
+  <script>
+    (function () {
+      var simple = window.matchMedia(
+        "(max-width: 47.99rem), (hover: none) and (pointer: coarse)"
+      );
+      function apply() {
+        document.documentElement.classList.toggle("kc-overlap-simple", simple.matches);
+      }
+      apply();
+      if (simple.addEventListener) simple.addEventListener("change", apply);
+      else if (simple.addListener) simple.addListener(apply);
+    })();
+  </script>
 </head>
 <body class="page-theme-preview page-theme-preview--home">
   <script src="assets/age-gate.js"></script>
