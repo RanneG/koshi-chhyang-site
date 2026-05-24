@@ -1,13 +1,12 @@
 /**
- * Local-only palette toggle.
- * ?palette=social | warm | crimson  →  mood-board experiment
- * ?palette=red | default            →  red room (production look)
- * localStorage key: kc_palette (social | red)
+ * Optional social palette (?palette=social). Production default is always red room.
+ * Persists only when the visitor uses the footer "Social palette" toggle (sessionStorage).
  */
 (function () {
   "use strict";
 
   var STORAGE_KEY = "kc_palette";
+  var PIN_KEY = "kc_palette_pinned";
   var EXPERIMENTAL = { social: 1, warm: 1, crimson: 1, apricot: 1 };
 
   function paletteFromQuery() {
@@ -19,25 +18,42 @@
     return null;
   }
 
-  function readPalette() {
+  function clearLegacyStorage() {
+    try {
+      localStorage.removeItem(STORAGE_KEY);
+      localStorage.removeItem(PIN_KEY);
+    } catch (err) {
+      /* ignore */
+    }
+  }
+
+  function resolvePalette() {
     var fromQuery = paletteFromQuery();
-    if (fromQuery) {
+    if (fromQuery === "social") {
+      return "social";
+    }
+    if (fromQuery === "red") {
       try {
-        localStorage.setItem(STORAGE_KEY, fromQuery);
+        sessionStorage.removeItem(STORAGE_KEY);
+        sessionStorage.removeItem(PIN_KEY);
       } catch (err) {
         /* ignore */
       }
-      return fromQuery;
-    }
-    try {
-      var stored = localStorage.getItem(STORAGE_KEY);
-      if (stored === "warm" || stored === "apricot" || stored === "crimson") {
-        return "social";
-      }
-      return stored || "red";
-    } catch (err2) {
       return "red";
     }
+
+    try {
+      if (
+        sessionStorage.getItem(PIN_KEY) === "1" &&
+        sessionStorage.getItem(STORAGE_KEY) === "social"
+      ) {
+        return "social";
+      }
+    } catch (err2) {
+      /* ignore */
+    }
+
+    return "red";
   }
 
   function cssHref() {
@@ -67,16 +83,26 @@
     if (link) link.remove();
   }
 
-  if (readPalette() === "social") {
+  clearLegacyStorage();
+
+  if (resolvePalette() === "social") {
     applyExperimental();
   } else {
     clearExperimental();
   }
 
-  window.kcSetPalette = function (mode) {
-    var next = mode === "social" || mode === "warm" || mode === "crimson" ? "social" : "red";
+  window.kcSetPalette = function (mode, options) {
+    var pin = !options || options.pin !== false;
+    var next =
+      mode === "social" || mode === "warm" || mode === "crimson" ? "social" : "red";
     try {
-      localStorage.setItem(STORAGE_KEY, next);
+      if (next === "social" && pin) {
+        sessionStorage.setItem(STORAGE_KEY, "social");
+        sessionStorage.setItem(PIN_KEY, "1");
+      } else {
+        sessionStorage.removeItem(STORAGE_KEY);
+        sessionStorage.removeItem(PIN_KEY);
+      }
     } catch (err) {
       /* ignore */
     }
@@ -88,6 +114,6 @@
   };
 
   window.kcGetPalette = function () {
-    return readPalette();
+    return resolvePalette();
   };
 })();

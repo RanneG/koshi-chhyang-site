@@ -92,10 +92,8 @@
 
   function switchPalette(mode) {
     var next = mode === "social" || mode === "warm" ? "social" : "red";
-    try {
-      localStorage.setItem("kc_palette", next);
-    } catch (err) {
-      /* ignore */
+    if (window.kcSetPalette) {
+      window.kcSetPalette(next, { pin: true });
     }
     var url = new URL(window.location.href);
     if (next === "social") {
