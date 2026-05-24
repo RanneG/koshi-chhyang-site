@@ -665,6 +665,15 @@
   font-size: 0.95em;
 }
 
+/* Heritage band — neutral labels (not chapter strawberry-red) */
+.page-theme-preview .preview-heritage-band .preview-chapter--band .eyebrow {
+  color: var(--silver);
+}
+
+.page-theme-preview .preview-heritage-band .preview-chapter--band .eyebrow__num {
+  color: var(--white);
+}
+
 .page-theme-preview .preview-heritage-sheet {
   max-width: min(44rem, 100%);
   margin-inline: auto;
@@ -694,7 +703,7 @@
 .page-theme-preview .preview-heritage-head {
   margin-bottom: 1.35rem;
   padding-bottom: 1.15rem;
-  border-bottom: 1px solid rgb(164 22 26 / 0.55);
+  border-bottom: 1px solid rgb(255 255 255 / 0.22);
 }
 
 .page-theme-preview .preview-heritage-head h2 {
@@ -729,7 +738,7 @@
   font-family: var(--font-poster);
   font-size: 2.5rem;
   line-height: 0;
-  color: var(--mahogany-red);
+  color: var(--silver);
   vertical-align: -0.35em;
   margin-right: 0.15rem;
 }
@@ -796,11 +805,11 @@
   background: rgb(245 243 244 / 0.1);
   border: 1px solid rgb(255 255 255 / 0.2);
   border-radius: 2px;
-  box-shadow: inset 0 2px 0 var(--mahogany-red);
+  box-shadow: inset 0 2px 0 rgb(255 255 255 / 0.22);
 }
 
 .page-theme-preview .preview-heritage-stats__pill--accent {
-  border-color: rgb(164 22 26 / 0.45);
+  border-color: rgb(255 255 255 / 0.28);
   background: rgb(245 243 244 / 0.1);
 }
 

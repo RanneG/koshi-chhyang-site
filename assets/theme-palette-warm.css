@@ -1,0 +1,540 @@
+/**
+ * Local experiment — social / dinner mood board palette.
+ * Cherry · burgundy · ash · baltic blue. Flat fills only (no gradients).
+ * Enable: ?palette=social | ?palette=warm | localStorage kc_palette=social
+ */
+
+html.page-theme-preview--warm .page-theme-preview {
+  /* Raw swatches */
+  --intense-cherry: #c52233;
+  --ruby-red: #a51c30;
+  --brown-red: #a22c29;
+  --burgundy: #74121d;
+  --night-bordeaux: #580c1f;
+  --chestnut: #902923;
+  --classic-crimson: #d62839;
+  --rosewood: #ba324f;
+  --baltic-blue: #175676;
+  --turquoise-surf: #4ba3c3;
+  --pale-sky: #cce6f4;
+  --ash-grey: #b9baa3;
+  --dust-grey: #d6d5c9;
+
+  /* Semantic remap */
+  --onyx: #0a100d;
+  --carbon-black: #121816;
+  --dark-garnet: var(--night-bordeaux);
+  --mahogany-red: var(--burgundy);
+  --mahogany-red-2: var(--chestnut);
+  --strawberry-red: var(--classic-crimson);
+  --silver: var(--ash-grey);
+  --dust-grey: #d6d5c9;
+  --white-smoke: #ebeae4;
+  --white: #f7f6f2;
+
+  --cream: var(--dust-grey);
+  --ink: var(--onyx);
+  --red: var(--burgundy);
+  --red-bright: var(--intense-cherry);
+  --red-dark: var(--night-bordeaux);
+  --band-dark: var(--onyx);
+  --muted: var(--ash-grey);
+  --primary: var(--burgundy);
+  --accent: var(--baltic-blue);
+  --accent-surf: var(--turquoise-surf);
+  --text: var(--onyx);
+  --site-nav-bg: var(--onyx);
+
+  background: var(--cream);
+  color: var(--text);
+}
+
+/* —— Flat surfaces (kill gradients) —— */
+
+html.page-theme-preview--warm .page-theme-preview .preview-hero__poster {
+  background: var(--burgundy);
+  background-image: none;
+  color: var(--white);
+}
+
+/* Inner page heroes — dark flat (visit keeps cream hero below) */
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero:not(.preview-page-hero--visit) {
+  background: var(--burgundy);
+  background-image: none;
+  color: var(--white-smoke);
+  border-bottom-color: var(--night-bordeaux);
+  box-shadow: none;
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero:not(.preview-page-hero--visit)::before {
+  background: var(--night-bordeaux);
+  background-image: none;
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero:not(.preview-page-hero--visit) h1,
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero:not(.preview-page-hero--visit) .badge,
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero:not(.preview-page-hero--visit) .lead,
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero:not(.preview-page-hero--visit) .sub {
+  color: var(--white-smoke);
+  opacity: 1;
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero:not(.preview-page-hero--visit) .script {
+  color: var(--pale-sky);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--shop .btn-preview--white {
+  background: var(--white-smoke);
+  color: var(--night-bordeaux);
+  border-color: var(--white-smoke);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--shop .btn-preview--white:hover,
+html.page-theme-preview--warm
+  .page-theme-preview
+  .preview-page-hero--shop
+  .btn-preview--white:focus-visible {
+  background: var(--dust-grey);
+  color: var(--night-bordeaux);
+  border-color: var(--dust-grey);
+}
+
+/* Visit — cream hero, dark type (do not inherit night-bordeaux slab) */
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--visit {
+  background: var(--dust-grey);
+  background-image: none;
+  color: var(--onyx);
+  border-bottom: 4px solid var(--burgundy);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.55);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--visit::before {
+  background: var(--burgundy);
+  background-image: none;
+  height: 5px;
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--visit .badge {
+  color: var(--burgundy);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--visit h1 {
+  color: var(--onyx);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--visit .script {
+  color: var(--baltic-blue);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--visit .lead {
+  color: var(--onyx);
+  opacity: 1;
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--visit .btn-preview--white {
+  background: var(--classic-crimson);
+  color: var(--white);
+  border-color: var(--classic-crimson);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--visit .btn-preview--white:hover,
+html.page-theme-preview--warm
+  .page-theme-preview
+  .preview-page-hero--visit
+  .btn-preview--white:focus-visible {
+  background: var(--intense-cherry);
+  border-color: var(--intense-cherry);
+  color: var(--white);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--visit .btn-preview--outline {
+  border-color: var(--burgundy);
+  color: var(--burgundy);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero--visit .btn-preview--outline:hover,
+html.page-theme-preview--warm
+  .page-theme-preview
+  .preview-page-hero--visit
+  .btn-preview--outline:focus-visible {
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: var(--white-smoke);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-chapter--red {
+  background: var(--burgundy);
+  background-image: none;
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-chapter--cream {
+  background: var(--dust-grey);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-chapter--smoke {
+  background: var(--white-smoke);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-promise {
+  background: var(--dust-grey);
+  background-image: none;
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-overlap__panel--dark.launch-countdown,
+html.page-theme-preview--warm .page-theme-preview .launch-countdown {
+  background: var(--night-bordeaux);
+  background-image: none;
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-range-hero::before {
+  background: rgb(88 12 31 / 0.78);
+  background-image: none;
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-hub,
+html.page-theme-preview--warm .page-theme-preview .preview-hub--compact {
+  background: var(--dust-grey);
+  background-image: none;
+  border-top-color: var(--burgundy);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer {
+  background: var(--dust-grey);
+  color: var(--onyx);
+  border-top: 3px solid var(--burgundy);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer__brand-name {
+  color: var(--burgundy);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer__mark {
+  color: var(--burgundy);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer__col h3 {
+  color: var(--onyx);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer__col p,
+html.page-theme-preview--warm .page-theme-preview .site-footer__col address {
+  color: var(--carbon-black);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer__col a {
+  color: var(--onyx);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer__col a:hover,
+html.page-theme-preview--warm .page-theme-preview .site-footer__col a:focus-visible {
+  color: var(--baltic-blue);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer__newsletter p {
+  color: var(--carbon-black);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer__legal {
+  border-top-color: rgb(10 16 13 / 0.12);
+  color: var(--carbon-black);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer__legal a {
+  color: var(--onyx);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-footer__legal a:hover {
+  color: var(--baltic-blue);
+}
+
+/* Compact bottom hub chips — readable on dust-grey band */
+html.page-theme-preview--warm .page-theme-preview .preview-hub--compact {
+  background: var(--white-smoke);
+  border-top-color: var(--burgundy);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-hub__primary a {
+  background: var(--white);
+  border-color: rgb(10 16 13 / 0.15);
+  color: var(--onyx);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-hub__primary a:hover,
+html.page-theme-preview--warm .page-theme-preview .preview-hub__primary a:focus-visible {
+  background: var(--burgundy);
+  border-color: var(--burgundy);
+  color: var(--white-smoke);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-hub__secondary a {
+  color: var(--baltic-blue);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-hub__also {
+  color: var(--burgundy);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-heritage-band__overlay {
+  background: linear-gradient(
+    165deg,
+    rgb(255 246 220 / 0.58) 0%,
+    rgb(214 213 201 / 0.45) 32%,
+    rgb(185 186 163 / 0.38) 58%,
+    rgb(10 16 13 / 0.22) 100%
+  );
+  background-image: none;
+  mix-blend-mode: soft-light;
+}
+
+/* Visit atmosphere — event.jpg band (restore photo; blend cream hero → cream body) */
+html.page-theme-preview--warm .page-theme-preview .preview-visit-atmosphere {
+  min-height: clamp(7rem, 12vw, 10rem);
+  background-color: var(--dust-grey);
+  background-image:
+    linear-gradient(
+      180deg,
+      var(--dust-grey) 0%,
+      rgb(10 16 13 / 0.18) 38%,
+      rgb(10 16 13 / 0.32) 62%,
+      var(--dust-grey) 100%
+    ),
+    url("images/event.jpg");
+  background-repeat: no-repeat;
+  background-position: center 42%;
+  background-size: cover;
+  filter: none;
+}
+
+/* Nav + marquee */
+html.page-theme-preview--warm .page-theme-preview .site-header .site-nav--primary {
+  background: var(--onyx);
+  border-bottom-color: rgb(185 186 163 / 0.25);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-nav__cta {
+  background: var(--classic-crimson);
+  border-color: var(--classic-crimson);
+}
+
+html.page-theme-preview--warm .page-theme-preview .site-nav__cta:hover {
+  background: var(--intense-cherry);
+  border-color: var(--intense-cherry);
+}
+
+html.page-theme-preview--warm .page-theme-preview .promo-marquee {
+  background: var(--white-smoke);
+  color: var(--onyx);
+}
+
+html.page-theme-preview--warm .page-theme-preview .promo-marquee__segment--accent {
+  color: var(--ruby-red);
+}
+
+html.page-theme-preview--warm .page-theme-preview .promo-marquee__segment::after {
+  color: var(--rosewood);
+}
+
+/* Buttons — flat crimson + baltic outline variant */
+html.page-theme-preview--warm .page-theme-preview .btn-preview--red {
+  background: var(--classic-crimson);
+  border-color: var(--classic-crimson);
+}
+
+html.page-theme-preview--warm .page-theme-preview .btn-preview--red:hover {
+  background: var(--intense-cherry);
+  border-color: var(--intense-cherry);
+}
+
+html.page-theme-preview--warm .page-theme-preview .btn-preview--outline {
+  border-color: var(--baltic-blue);
+  color: var(--baltic-blue);
+  background: transparent;
+}
+
+html.page-theme-preview--warm .page-theme-preview .btn-preview--outline:hover,
+html.page-theme-preview--warm .page-theme-preview .btn-preview--outline:focus-visible {
+  background: var(--baltic-blue);
+  border-color: var(--baltic-blue);
+  color: var(--white);
+}
+
+/* Dark heroes & bands — cream outline (baltic fails on burgundy) */
+html.page-theme-preview--warm .page-theme-preview .preview-hero__poster .btn-preview--outline,
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero .btn-preview--outline,
+html.page-theme-preview--warm .page-theme-preview .preview-chapter--red .btn-preview--outline,
+html.page-theme-preview--warm .page-theme-preview .preview-shop-cta .btn-preview--outline,
+html.page-theme-preview--warm
+  .page-theme-preview
+  .preview-overlap__panel--dark
+  .btn-preview--outline {
+  border-color: var(--dust-grey);
+  color: var(--white-smoke);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-hero__poster .btn-preview--outline:hover,
+html.page-theme-preview--warm
+  .page-theme-preview
+  .preview-hero__poster
+  .btn-preview--outline:focus-visible,
+html.page-theme-preview--warm .page-theme-preview .preview-page-hero .btn-preview--outline:hover,
+html.page-theme-preview--warm
+  .page-theme-preview
+  .preview-page-hero
+  .btn-preview--outline:focus-visible,
+html.page-theme-preview--warm .page-theme-preview .preview-chapter--red .btn-preview--outline:hover,
+html.page-theme-preview--warm
+  .page-theme-preview
+  .preview-chapter--red
+  .btn-preview--outline:focus-visible,
+html.page-theme-preview--warm .page-theme-preview .preview-shop-cta .btn-preview--outline:hover,
+html.page-theme-preview--warm
+  .page-theme-preview
+  .preview-shop-cta
+  .btn-preview--outline:focus-visible {
+  background: var(--dust-grey);
+  border-color: var(--dust-grey);
+  color: var(--night-bordeaux);
+}
+
+/* Cream sections — baltic accent links */
+html.page-theme-preview--warm .page-theme-preview .preview-chapter--cream a,
+html.page-theme-preview--warm .page-theme-preview .preview-chapter--smoke a {
+  color: var(--baltic-blue);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-chapter--cream a:hover,
+html.page-theme-preview--warm .page-theme-preview .preview-chapter--smoke a:hover {
+  color: var(--turquoise-surf);
+}
+
+/* Heritage band — ash labels, camel/chestnut accents */
+html.page-theme-preview--warm .page-theme-preview .preview-heritage-band .preview-chapter--band .eyebrow {
+  color: var(--ash-grey);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-heritage-band .eyebrow--band .eyebrow__num {
+  border-color: rgb(185 186 163 / 0.45);
+  color: var(--dust-grey);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-heritage-pull p::before {
+  color: var(--turquoise-surf);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-heritage-stats__pill {
+  box-shadow: inset 0 2px 0 rgb(185 186 163 / 0.35);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-heritage-stats__pill--accent {
+  border-color: rgb(75 163 195 / 0.45);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-heritage-sheet {
+  background: rgb(10 16 13 / 0.88);
+}
+
+/* Promise / craft lines on home */
+html.page-theme-preview--warm .page-theme-preview .preview-promise__eyebrow {
+  color: var(--ruby-red);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-promise__line {
+  color: var(--burgundy);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-promise__line.is-latest {
+  color: var(--classic-crimson);
+}
+
+/* Countdown accent */
+html.page-theme-preview--warm .page-theme-preview .countdown-label {
+  color: var(--pale-sky);
+}
+
+html.page-theme-preview--warm .page-theme-preview .countdown-unit strong {
+  color: var(--white);
+}
+
+/* Shop collection — pale sky content band */
+html.page-theme-preview--warm .page-theme-preview.page-theme-preview--collection .preview-chapter--cream {
+  background: var(--pale-sky);
+}
+
+html.page-theme-preview--warm .page-theme-preview .section-label {
+  color: var(--baltic-blue);
+}
+
+/* Visit page — baltic hero accent on cream */
+html.page-theme-preview--warm .page-theme-preview.page-theme-preview--visit .preview-chapter--opener .script {
+  color: var(--baltic-blue);
+}
+
+html.page-theme-preview--warm .page-theme-preview.page-theme-preview--visit .preview-event__note {
+  border-left-color: var(--baltic-blue);
+}
+
+/* Footer switcher on light footer */
+html.page-theme-preview--warm .page-theme-preview .design-switcher {
+  background: var(--dust-grey);
+  color: var(--carbon-black);
+}
+
+html.page-theme-preview--warm .page-theme-preview .design-switcher a {
+  color: var(--burgundy);
+}
+
+html.page-theme-preview--warm .page-theme-preview .design-switcher a:hover {
+  color: var(--baltic-blue);
+}
+
+/* —— Tonal photography (B&W + wine / ash likeness) —— */
+
+html.page-theme-preview--warm {
+  --kc-tonal-filter: grayscale(1) contrast(1.14) brightness(0.92) sepia(0.22)
+    hue-rotate(342deg) saturate(0.48);
+  --kc-tonal-filter-soft: grayscale(1) contrast(1.08) brightness(0.95);
+  --kc-tonal-filter-heritage: grayscale(1) contrast(1.05) brightness(1.14) sepia(0.16)
+    hue-rotate(342deg) saturate(0.4);
+  --kc-tonal-tint: var(--burgundy);
+  --kc-tonal-tint-opacity: 0.3;
+}
+
+/* Shop range — full-colour product photos (no tonal filter) */
+html.page-theme-preview--warm .page-theme-preview .preview-shop-range-card {
+  border-color: rgb(185 186 163 / 0.55);
+  border-top-color: var(--onyx);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-shop-range-card__img {
+  background: var(--dust-grey);
+}
+
+/* Home hero photo; heritage uses lighter dedicated filter below */
+html.page-theme-preview--warm .page-theme-preview .preview-hero__photo {
+  filter: var(--kc-tonal-filter);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-heritage-band__bg {
+  filter: var(--kc-tonal-filter-heritage);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-heritage-band__grain {
+  opacity: 0.1;
+  mix-blend-mode: soft-light;
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-range-hero::before {
+  background: rgb(88 12 31 / 0.55);
+  mix-blend-mode: multiply;
+}
+
+/* Community carousel — keep full-colour Instagram thumbs (no tonal filter) */
+
+/* Team portraits — soft tonal (slightly lighter) */
+html.page-theme-preview--warm .page-theme-preview .preview-family-card__avatar img:not(.is-missing) {
+  filter: var(--kc-tonal-filter-soft) sepia(0.15) hue-rotate(342deg) saturate(0.4);
+}
+
+html.page-theme-preview--warm .page-theme-preview .preview-family-card__avatar {
+  background: var(--dust-grey);
+}

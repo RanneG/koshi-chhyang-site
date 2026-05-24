@@ -67,6 +67,43 @@
       }
       window.location.href = link.getAttribute("href");
     });
+
+    if (!classic) {
+      initPaletteToggle(el);
+    }
+  }
+
+  function initPaletteToggle(el) {
+    var social =
+      document.documentElement.classList.contains("page-theme-preview--warm");
+    var sep = document.createElement("span");
+    sep.textContent = " · ";
+    sep.setAttribute("aria-hidden", "true");
+    var pal = document.createElement("a");
+    pal.href = "#";
+    pal.textContent = social ? "Red room palette" : "Social palette";
+    pal.addEventListener("click", function (e) {
+      e.preventDefault();
+      switchPalette(social ? "red" : "social");
+    });
+    el.appendChild(sep);
+    el.appendChild(pal);
+  }
+
+  function switchPalette(mode) {
+    var next = mode === "social" || mode === "warm" ? "social" : "red";
+    try {
+      localStorage.setItem("kc_palette", next);
+    } catch (err) {
+      /* ignore */
+    }
+    var url = new URL(window.location.href);
+    if (next === "social") {
+      url.searchParams.set("palette", "social");
+    } else {
+      url.searchParams.delete("palette");
+    }
+    window.location.href = url.pathname + url.search + url.hash;
   }
 
   if (document.readyState === "loading") {

@@ -7,6 +7,7 @@ for /f "tokens=5" %%P in ('netstat -ano ^| findstr ":8767" ^| findstr "LISTENING
   exit /b 1
 )
 echo Production site:  http://localhost:8767/
+echo Warm experiment:  double-click Preview-Warm.bat  ^(social palette: ?palette=social^)
 echo Classic backup: http://localhost:8767/legacy/index.html
 echo Shop:           http://localhost:8767/collection.html
 echo Visit:          http://localhost:8767/visit.html
