@@ -1,0 +1,181 @@
+/**
+ * Age verification gate — UK 18+ (alcohol brand).
+ * Production: brand.css tokens. Preview: red-room vars on .page-theme-preview.
+ * See age-gate.js and docs/THEME-REDESIGN-DRAFT.md § Age gate.
+ */
+
+.kc-age-gate {
+  --kc-gate-bg: var(--onyx, var(--primary));
+  --kc-gate-panel: var(--cream);
+  --kc-gate-text: var(--text, var(--onyx, #2c2c2a));
+  --kc-gate-muted: var(--silver, var(--primary-b, #55737a));
+  --kc-gate-accent: var(--strawberry-red, var(--accent));
+  --kc-gate-accent-hover: var(--mahogany-red-2, var(--primary));
+  --kc-gate-error: var(--mahogany-red, #a4161a);
+  --kc-gate-on-accent: var(--white, var(--cream));
+
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--page-gutter, clamp(1.25rem, 4vw, 2rem));
+  background: color-mix(in srgb, var(--kc-gate-bg) 92%, transparent);
+  color: var(--kc-gate-on-accent);
+}
+
+.kc-age-gate[hidden] {
+  display: none;
+}
+
+.kc-age-gate__panel {
+  width: min(100%, 26rem);
+  padding: clamp(1.75rem, 5vw, 2.25rem);
+  background: var(--kc-gate-panel);
+  color: var(--kc-gate-text);
+  border: 1px solid color-mix(in srgb, var(--kc-gate-text) 12%, transparent);
+  box-shadow: 0 1rem 3rem color-mix(in srgb, var(--kc-gate-bg) 35%, transparent);
+}
+
+.kc-age-gate__title {
+  font-family: var(--font-display, Georgia, serif);
+  font-size: var(--text-title, clamp(1.5rem, 4vw, 2rem));
+  font-weight: 600;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+}
+
+.kc-age-gate__legal {
+  font-size: var(--text-body, 1rem);
+  line-height: 1.5;
+  margin-bottom: 0.35rem;
+}
+
+.kc-age-gate__note {
+  font-size: var(--text-small, 0.8125rem);
+  color: var(--kc-gate-muted);
+  margin-bottom: 1.5rem;
+}
+
+.kc-age-gate__fieldset {
+  border: 0;
+  margin: 0 0 1rem;
+  padding: 0;
+}
+
+.kc-age-gate__legend {
+  font-size: var(--text-small, 0.8125rem);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.65rem;
+}
+
+.kc-age-gate__dob {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.65rem;
+}
+
+.kc-age-gate__field label {
+  display: block;
+  font-size: var(--text-small, 0.75rem);
+  margin-bottom: 0.25rem;
+  color: var(--kc-gate-muted);
+}
+
+.kc-age-gate__field input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.65rem;
+  font: inherit;
+  font-size: 1rem;
+  color: var(--kc-gate-text);
+  background: var(--white, #fff);
+  border: 1px solid color-mix(in srgb, var(--kc-gate-text) 22%, transparent);
+  border-radius: 2px;
+}
+
+.kc-age-gate__field input:focus {
+  outline: 2px solid var(--kc-gate-accent);
+  outline-offset: 1px;
+}
+
+.kc-age-gate__field input:invalid {
+  box-shadow: none;
+}
+
+.kc-age-gate__error {
+  min-height: 1.25rem;
+  margin: 0 0 0.75rem;
+  font-size: var(--text-small, 0.8125rem);
+  color: var(--kc-gate-error);
+}
+
+.kc-age-gate__error:empty {
+  margin-bottom: 0.25rem;
+}
+
+.kc-age-gate__submit {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.65rem 1rem;
+  font: inherit;
+  font-size: var(--text-body, 1rem);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--kc-gate-on-accent);
+  background: var(--kc-gate-accent);
+  border: 1px solid var(--kc-gate-accent);
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+.kc-age-gate__submit:hover:not(:disabled) {
+  background: var(--kc-gate-accent-hover);
+  border-color: var(--kc-gate-accent-hover);
+}
+
+.kc-age-gate__submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.kc-age-gate__denied {
+  margin: 0;
+  font-size: var(--text-body, 1rem);
+  line-height: 1.5;
+}
+
+.kc-age-gate--denied .kc-age-gate__form {
+  display: none;
+}
+
+html.kc-age-gate-active {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .kc-age-gate__panel {
+    animation: kc-age-gate-in 0.2s ease-out;
+  }
+}
+
+@keyframes kc-age-gate-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kc-age-gate__panel {
+    animation: none;
+  }
+}

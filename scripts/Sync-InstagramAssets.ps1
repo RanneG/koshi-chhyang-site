@@ -46,3 +46,5 @@ if (-not $ok) {
 Write-Host "Mapping to assets/images slots..."
 python "$root\scripts\download_assets.py" --from-instaloader
 Write-Host "Done. Refresh http://localhost:8766/ in your browser."
+Write-Host ""
+Write-Host "For reel loops (theme preview), export MP4s to assets/videos/ — see assets/videos/README.md" -ForegroundColor DarkGray

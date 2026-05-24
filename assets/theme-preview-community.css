@@ -1,0 +1,266 @@
+/* Community notes — production carousel, redroom theme (theme preview) */
+/* Match production index.html spacing (community-notes.css) */
+.page-theme-preview .community.preview-section {
+  margin-top: clamp(2rem, 5vh, 3rem);
+  padding-top: clamp(0.75rem, 2vh, 1.25rem);
+  padding-bottom: clamp(2.5rem, 5vh, 3.5rem);
+  border-top: 1px solid rgba(11, 9, 10, 0.08);
+}
+
+.page-theme-preview .community .landing-section__label {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--mahogany-red);
+  margin-bottom: 0.75rem;
+}
+
+.page-theme-preview .community h2 {
+  margin-bottom: 0.35rem;
+}
+
+.page-theme-preview .community .sub {
+  margin-bottom: 0;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--onyx);
+}
+
+.page-theme-preview .community .sub a {
+  color: var(--mahogany-red);
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.page-theme-preview .community .sub a:hover {
+  text-decoration: underline;
+}
+
+.page-theme-preview .community-marquee-wrap {
+  width: 100vw;
+  max-width: 100vw;
+  margin: clamp(1.35rem, 3vh, 2rem) 0 clamp(1.25rem, 2.5vh, 1.75rem);
+  margin-left: calc(50% - 50vw);
+  pointer-events: none;
+  user-select: none;
+}
+
+.page-theme-preview .community-marquee-wrap.is-interactive .community-marquee__viewport {
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.page-theme-preview .community-marquee-wrap.is-dragging .community-marquee__viewport {
+  cursor: grabbing;
+  user-select: none;
+  touch-action: none;
+}
+
+.page-theme-preview .community-marquee__viewport {
+  overflow: hidden;
+  width: 100%;
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    #000 4%,
+    #000 96%,
+    transparent 100%
+  );
+}
+
+.page-theme-preview .community-marquee__track {
+  display: flex;
+  width: max-content;
+  align-items: stretch;
+  will-change: transform;
+}
+
+.page-theme-preview .community-marquee.is-running .community-marquee__track {
+  animation: community-marquee-loop var(--marquee-duration, 48s) linear infinite;
+}
+
+@keyframes community-marquee-loop {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.page-theme-preview .community-marquee__group {
+  display: flex;
+  align-items: stretch;
+  gap: clamp(0.85rem, 2vw, 1.15rem);
+  padding-right: clamp(0.85rem, 2vw, 1.15rem);
+  flex-shrink: 0;
+}
+
+.page-theme-preview .community-marquee__group .note {
+  flex: 0 0 auto;
+  width: clamp(17.5rem, 78vw, 22.5rem);
+  min-width: 17.5rem;
+  max-width: 22.5rem;
+}
+
+.page-theme-preview .community-marquee-wrap.is-static {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  pointer-events: auto;
+  user-select: text;
+}
+
+.page-theme-preview .community-marquee-wrap.is-static .community-marquee__viewport {
+  overflow: visible;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+.page-theme-preview .community-marquee-wrap.is-static .community-marquee__track {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  gap: clamp(1rem, 2.5vw, 1.35rem);
+  animation: none;
+  transform: none;
+}
+
+.page-theme-preview .community-marquee-wrap.is-static .community-marquee__group--clone {
+  display: none;
+}
+
+.page-theme-preview .community-marquee-wrap.is-static .community-marquee__group {
+  display: contents;
+}
+
+.page-theme-preview .community-marquee-wrap.is-static .community-marquee__group .note {
+  width: auto;
+  min-width: 0;
+  max-width: none;
+}
+
+@media (min-width: 700px) {
+  .page-theme-preview .community-marquee-wrap.is-static .community-marquee__track {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .page-theme-preview .community-marquee-wrap.is-static .community-marquee__track {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-theme-preview .community-marquee__track {
+    animation: none !important;
+  }
+}
+
+.page-theme-preview .note {
+  background: var(--white);
+  border: 1px solid rgba(11, 9, 10, 0.1);
+  padding: clamp(1.15rem, 2.5vw, 1.4rem) clamp(1.2rem, 2.5vw, 1.45rem)
+    clamp(1.2rem, 2.5vw, 1.5rem);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  box-shadow: 0 4px 18px rgba(11, 9, 10, 0.06);
+  height: 100%;
+}
+
+.page-theme-preview .note-head {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.page-theme-preview .note-avatar {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: var(--mahogany-red);
+  color: var(--white-smoke);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.page-theme-preview .note-meta {
+  min-width: 0;
+}
+
+.page-theme-preview .note-meta strong {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  color: var(--onyx);
+}
+
+.page-theme-preview .note-meta span {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  color: rgba(11, 9, 10, 0.5);
+  letter-spacing: 0.04em;
+}
+
+.page-theme-preview .note p {
+  font-family: var(--font-body);
+  font-size: clamp(0.88rem, 0.35vw + 0.8rem, 0.95rem);
+  line-height: 1.58;
+  color: var(--onyx);
+}
+
+.page-theme-preview .note-thumb {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  min-height: 9.5rem;
+  max-height: 14rem;
+  object-fit: cover;
+  border-radius: 2px;
+  background: var(--cream);
+}
+
+.page-theme-preview .community-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  align-items: center;
+}
+
+.page-theme-preview .community-cta .link-collection {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--mahogany-red);
+  text-decoration: none;
+}
+
+.page-theme-preview .community-cta .link-collection:hover {
+  text-decoration: underline;
+  color: var(--mahogany-red-2);
+}

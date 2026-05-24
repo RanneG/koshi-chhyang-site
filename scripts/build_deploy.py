@@ -12,11 +12,23 @@ PAGES = [
     "heritage.html",
     "collection.html",
     "business.html",
+    "visit.html",
+    "events.html",
+    "guide.html",
+    "stockists.html",
+]
+
+LEGACY_PAGES = [
+    "legacy/index.html",
+    "legacy/heritage.html",
+    "legacy/collection.html",
+    "legacy/business.html",
 ]
 
 ASSET_SKIP = {
     "import-photos.html",
     "import-comments.html",
+    "btn-playful-icons.html",
     "_shop.html",
     "wix-image-manifest.json",
     "team-wix-urls.json",
@@ -24,17 +36,31 @@ ASSET_SKIP = {
     "community-comments-export.json",
     "load-photos.js",
     "hero-splash.jpg",
+    "theme-preview-feed-sticky.js",
+    "theme-preview-promise-swiper.js",
+    "theme-preview-promise-swiper.css",
+    "theme-preview-promise-stack.js",
 }
 
 ASSET_SKIP_DIRS = {"wix-import"}
-ASSET_SKIP_SUFFIXES = {".svg", ".webp"}
 
-REDIRECTS = """# Legacy concept paths (Netlify / Cloudflare Pages)
+REDIRECTS = """# Legacy concept paths
 /concepts/index.html / 301
 /concepts/direction-2-editorial-journey.html /heritage.html 301
 /concepts/direction-3-terroir-collection.html /collection.html 301
 /concepts/business.html /business.html 301
 /concepts/direction-1-heritage-launch.html / 301
+
+# Old theme-preview dev URLs
+/dev/theme-preview.html / 301
+/dev/theme-preview-collection.html /collection.html 301
+/dev/theme-preview-heritage.html /heritage.html 301
+/dev/theme-preview-business.html /business.html 301
+/dev/theme-preview-visit.html /visit.html 301
+/dev/theme-preview-events.html /events.html 301
+/dev/theme-preview-guide.html /guide.html 301
+/dev/theme-preview-stockists.html /stockists.html 301
+/dev/theme-preview-index.html / 301
 """
 
 
@@ -48,10 +74,19 @@ def copy_tree(src: Path, dest: Path) -> None:
         return
     if src.name in ASSET_SKIP:
         return
-    if src.suffix.lower() in ASSET_SKIP_SUFFIXES:
-        return
     dest.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src, dest)
+
+
+def copy_page(rel: str) -> None:
+    src = ROOT / rel
+    if not src.is_file():
+        print(f"  skip missing page: {rel}")
+        return
+    dest = DIST / rel
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(src, dest)
+    print(f"  page {rel}")
 
 
 def main() -> None:
@@ -60,23 +95,29 @@ def main() -> None:
     DIST.mkdir()
 
     for rel in PAGES:
-        src = ROOT / rel
-        if not src.is_file():
-            print(f"  skip missing page: {rel}")
-            continue
-        shutil.copy2(src, DIST / rel)
-        print(f"  page {rel}")
+        copy_page(rel)
+
+    for rel in LEGACY_PAGES:
+        copy_page(rel)
 
     assets_src = ROOT / "assets"
     assets_dest = DIST / "assets"
     for child in assets_src.iterdir():
         copy_tree(child, assets_dest / child.name)
 
+    legacy_assets_src = ROOT / "legacy" / "assets"
+    legacy_assets_dest = DIST / "legacy" / "assets"
+    if legacy_assets_src.is_dir():
+        for child in legacy_assets_src.iterdir():
+            copy_tree(child, legacy_assets_dest / child.name)
+        print("  legacy/assets/")
+
     (DIST / "_redirects").write_text(REDIRECTS, encoding="utf-8")
-    print("  _redirects (legacy /concepts/* paths)")
+    print("  _redirects")
 
     print(f"\nDone — deploy contents of: {DIST}")
     print("Entry URL: /")
+    print("Classic backup: /legacy/")
 
 
 if __name__ == "__main__":

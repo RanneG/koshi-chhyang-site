@@ -1,7 +1,9 @@
-# Dev-only (not deployed)
+# Dev folder (local only)
 
-| File | Purpose |
-|------|---------|
-| `concepts-hub.html` | Internal 3-direction comparison — links to root pages (`../index.html`, etc.) |
+Production pages live at the **repo root** (`index.html`, `collection.html`, etc.). This folder keeps the original preview filenames for reference; **Netlify does not deploy `dev/`**.
 
-Build scripts, import tools, and Wix sync live in `../scripts/` and `../assets/import-*.html`.
+- Local preview: run **`Preview-Theme.bat`** from the repo root (serves `http://localhost:8767/`).
+- Classic backup site: **`/legacy/`** (e.g. `http://localhost:8767/legacy/index.html`).
+- Switch designs via the footer link on any page.
+
+Old `/dev/theme-preview*.html` URLs redirect to root in production (`_redirects`).

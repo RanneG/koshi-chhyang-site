@@ -1,6 +1,9 @@
 # Build output
 dist/
 
+# Node (local tooling only)
+node_modules/
+
 # Python
 __pycache__/
 *.pyc
@@ -14,6 +17,13 @@ assets/_shop.html
 # Wix source drops (sync into assets/images/ first)
 assets/wix-import/*
 !assets/wix-import/README.txt
+
+# Instagram reel exports (local only — see assets/videos/README.md)
+assets/videos/*.mp4
+assets/videos/*.webm
+assets/videos/*.mov
+!assets/videos/README.md
+!assets/videos/.gitkeep
 
 # Dev export scratch
 assets/community-comments-export.json

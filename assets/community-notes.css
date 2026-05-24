@@ -19,7 +19,7 @@
   text-decoration: underline;
 }
 
-/* —— Infinite marquee (full bleed, no end visible, non-interactive) —— */
+/* —— Infinite marquee (full bleed; pause + drag on viewport when .is-interactive) —— */
 .community-marquee-wrap {
   width: 100vw;
   max-width: 100vw;
@@ -27,6 +27,18 @@
   margin-left: calc(50% - 50vw);
   pointer-events: none;
   user-select: none;
+}
+
+.community-marquee-wrap.is-interactive .community-marquee__viewport {
+  pointer-events: auto;
+  cursor: grab;
+  touch-action: pan-y;
+}
+
+.community-marquee-wrap.is-dragging .community-marquee__viewport {
+  cursor: grabbing;
+  user-select: none;
+  touch-action: none;
 }
 
 .community-marquee__viewport {

@@ -2,6 +2,15 @@
 
 Short brand and UX notes for the static pre-release site (root HTML). Not a full style guide.
 
+## Production vs classic
+
+| Tree | URL (local / Netlify) | Role |
+|------|------------------------|------|
+| **Root** | `/` | Current red-room design (8 pages: home, shop, visit, events, trade, our story, guide, stockists) |
+| **`legacy/`** | `/legacy/` | Previous four-page site (home, heritage, collection, business) as backup |
+
+Footer on every page: **View classic site** / **View new site**. Deploy output is built with `python scripts/build_deploy.py` → `dist/`.
+
 ## Wix source of truth
 
 Reference site: [jingyikongwork.wixsite.com/koshi-chhyang](https://jingyikongwork.wixsite.com/koshi-chhyang)
@@ -22,9 +31,13 @@ Reference site: [jingyikongwork.wixsite.com/koshi-chhyang](https://jingyikongwor
 
 Shared styles: `assets/brand.css` (all concept pages).
 
+## Theme redesign (draft)
+
+Owner mood board + [Hana Makgeolli](https://www.hanamakgeolli.com/) review → **`docs/THEME-REDESIGN-DRAFT.md`** (colours, fonts, content gaps, phased IA). Optional CSS preview: `assets/brand-poster-draft.css` + `body.theme-poster` (not wired to production pages yet).
+
 ## Open question (TBD with brand owner)
 
-**Tone:** casual community vibe vs firm professional — decide before final copy pass and social voice. Current pages lean warm heritage with concise product facts; either pole can work if applied consistently.
+**Tone:** casual community vibe vs firm professional — decide before final copy pass and social voice. Current pages lean warm heritage with concise product facts; either pole can work if applied consistently. See **Direction A / B / C** in `THEME-REDESIGN-DRAFT.md`.
 
 ## What’s working (keep)
 

@@ -1,0 +1,74 @@
+/**
+ * Koshi Chhyang — POSTER / MOOD-BOARD PALETTE (DRAFT)
+ * Not linked in production HTML. Preview by adding to a page:
+ *   <link rel="stylesheet" href="assets/brand-poster-draft.css" />
+ *   <body class="theme-poster page-home">
+ * See docs/THEME-REDESIGN-DRAFT.md
+ */
+
+body.theme-poster {
+  --cream: #f4f0e6;
+  --ink: #1a1a1a;
+  --red: #c41e2a;
+  --red-dark: #9e1822;
+  --cobalt: #1e3a5f;
+  --white: #faf9f6;
+  --muted: #5c5c58;
+
+  --primary: var(--cobalt);
+  --primary-b: #17304f;
+  --accent: var(--red);
+  --text: var(--ink);
+  --white: var(--white);
+
+  --site-nav-bg: var(--ink);
+  --site-nav-active: var(--cream);
+
+  --font-display: "Bebas Neue", "Cormorant Garamond", Georgia, serif;
+  --font-body: "DM Sans", Arial, Helvetica, sans-serif;
+  --font-script: "Caveat", cursive;
+}
+
+body.theme-poster .landing-btn--primary {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+body.theme-poster .landing-btn--primary:hover {
+  background: var(--red-dark);
+  border-color: var(--red-dark);
+}
+
+body.theme-poster .landing-section--cream {
+  background: var(--cream);
+}
+
+body.theme-poster .landing-cta {
+  background: var(--cobalt);
+  color: var(--white);
+}
+
+body.theme-poster .landing-cta h2,
+body.theme-poster .landing-cta p {
+  color: var(--white);
+}
+
+body.theme-poster .site-nav__cta {
+  background: var(--red);
+  border-color: var(--red);
+  color: var(--white);
+}
+
+body.theme-poster .site-nav__cta:hover {
+  background: var(--red-dark);
+  border-color: var(--red-dark);
+}
+
+body.theme-poster .countdown-unit strong {
+  color: var(--red);
+}
+
+body.theme-poster .link-collection {
+  color: var(--red);
+}

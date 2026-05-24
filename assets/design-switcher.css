@@ -1,0 +1,31 @@
+.design-switcher {
+  margin: 0;
+  padding: 0.75rem 1rem 1.25rem;
+  text-align: center;
+  font-family: var(--font-sans, system-ui, sans-serif);
+  font-size: 0.8125rem;
+  letter-spacing: 0.02em;
+}
+
+.design-switcher a {
+  color: inherit;
+  opacity: 0.72;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.design-switcher a:hover,
+.design-switcher a:focus-visible {
+  opacity: 1;
+}
+
+.page-theme-preview .design-switcher a {
+  color: var(--white-smoke, #f5f5f5);
+}
+
+.page-home .design-switcher,
+.page-heritage .design-switcher,
+.page-collection .design-switcher,
+.page-business .design-switcher {
+  color: var(--ink-muted, #5c5348);
+}

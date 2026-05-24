@@ -1,0 +1,15 @@
+{
+  "name": "koshi-chhyang",
+  "version": "1.0.0",
+  "description": "Static HTML pre-launch site. Open in a browser:",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

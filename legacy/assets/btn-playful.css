@@ -1,0 +1,275 @@
+/**
+ * Playful CTA buttons (Uiverse / MuhammadHasann) — page content only, not header nav.
+ * Requires .btn-playful markup from btn-playful.js.
+ */
+
+:root {
+  --btn-playful-bg: #e8c4a0;
+  --btn-playful-bg-mid: #e4bc94;
+  --btn-playful-border: #e0b88c;
+  --btn-playful-border-hover: #d4a574;
+  --btn-playful-text: var(--text);
+}
+
+/* Base — overrides .btn / .landing-btn pill styles */
+a.btn-playful,
+button.btn-playful {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  min-height: 3rem;
+  padding: 0.9rem 2.85rem 0.9rem 1.75rem;
+  border-radius: 8px !important;
+  border: 1px solid var(--btn-playful-border);
+  background: var(--btn-playful-bg);
+  color: var(--btn-playful-text);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.12));
+  transition: border-color 0.25s ease, color 0.25s ease;
+  background-size: 200% 200%;
+}
+
+.btn-playful__label {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.btn-playful__icon {
+  position: absolute;
+  top: 0;
+  pointer-events: none;
+  line-height: 0;
+}
+
+.btn-playful__icon svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.btn-playful__icon path {
+  fill: var(--btn-playful-text);
+}
+
+.btn-playful__icon--1 {
+  right: 0;
+  width: 25px;
+  transform-origin: 0 0;
+  transform: rotate(10deg);
+  transition: transform 0.5s ease-in-out;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.25));
+}
+
+.btn-playful__icon--2 {
+  left: 25px;
+  width: 12px;
+  transform-origin: 50% 0;
+  transform: rotate(10deg);
+  transition: transform 1s ease-in-out;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.35));
+}
+
+.btn-playful__icon--3 {
+  left: 0;
+  width: 18px;
+  transform-origin: 50% 0;
+  transform: rotate(-5deg);
+  transition: transform 1s ease-in-out;
+  filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.35));
+}
+
+a.btn-playful:hover,
+button.btn-playful:hover {
+  border-color: var(--btn-playful-border-hover);
+  background: linear-gradient(
+    85deg,
+    var(--btn-playful-bg),
+    #e6c19a,
+    #e2b890,
+    #deba96,
+    #dab89c
+  );
+  animation: btn-playful-wind 2s ease-in-out infinite;
+}
+
+@keyframes btn-playful-wind {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.btn-playful:hover .btn-playful__icon--1 {
+  animation: btn-playful-slay-1 3s cubic-bezier(0.52, 0, 0.58, 1) infinite;
+  transform: rotate(10deg);
+}
+
+@keyframes btn-playful-slay-1 {
+  0%,
+  100% {
+    transform: rotate(10deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+
+.btn-playful:hover .btn-playful__icon--2 {
+  animation: btn-playful-slay-2 3s cubic-bezier(0.52, 0, 0.58, 1) 1s infinite;
+  transform: rotate(0);
+}
+
+@keyframes btn-playful-slay-2 {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(15deg);
+  }
+}
+
+.btn-playful:hover .btn-playful__icon--3 {
+  animation: btn-playful-slay-3 2s cubic-bezier(0.52, 0, 0.58, 1) 1s infinite;
+  transform: rotate(0);
+}
+
+@keyframes btn-playful-slay-3 {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-5deg);
+  }
+}
+
+/* Paired row: right-hand button has no leaf decoration */
+a.btn-playful.btn-playful--no-leaves,
+button.btn-playful.btn-playful--no-leaves {
+  padding-left: 1.85rem;
+  padding-right: 1.85rem;
+}
+
+.btn-playful--no-leaves .btn-playful__icon {
+  display: none;
+}
+
+/* Hero: white primary on dark imagery */
+.btn-playful.btn-playful--light {
+  --btn-playful-bg: #fff;
+  --btn-playful-border: #fff;
+  --btn-playful-text: var(--primary);
+}
+
+.btn-playful.btn-playful--light:hover {
+  --btn-playful-text: var(--text);
+}
+
+/* Accent-filled CTAs (RSVP blocks, Instagram) */
+.btn-playful.btn-playful--accent {
+  --btn-playful-bg: var(--accent);
+  --btn-playful-border: var(--accent);
+  --btn-playful-text: #fff;
+  --btn-playful-border-hover: #b57d45;
+}
+
+.btn-playful.btn-playful--accent .btn-playful__icon path {
+  fill: rgba(255, 255, 255, 0.92);
+}
+
+.btn-playful.btn-playful--accent:hover {
+  --btn-playful-text: var(--text);
+  background: linear-gradient(85deg, #e8c4a0, #e6c19a, #e2b890, #deba96, #dab89c);
+}
+
+.btn-playful.btn-playful--accent:hover .btn-playful__icon path {
+  fill: var(--text);
+}
+
+/* Outline on dark sections */
+.btn-playful.btn-playful--outline {
+  --btn-playful-bg: transparent;
+  --btn-playful-border: rgba(255, 255, 255, 0.38);
+  --btn-playful-text: #fff;
+  background: transparent;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.btn-playful.btn-playful--outline .btn-playful__icon path {
+  fill: rgba(255, 255, 255, 0.85);
+}
+
+.btn-playful.btn-playful--outline:hover {
+  --btn-playful-text: var(--text);
+  border-color: var(--btn-playful-border-hover);
+}
+
+.btn-playful.btn-playful--outline:hover .btn-playful__icon path {
+  fill: var(--text);
+}
+
+/* Ghost on light pages */
+.btn-playful.btn-playful--ghost {
+  --btn-playful-bg: transparent;
+  --btn-playful-border: var(--primary);
+  --btn-playful-text: var(--primary);
+  background: transparent;
+  filter: none;
+}
+
+.btn-playful.btn-playful--ghost:hover {
+  --btn-playful-text: var(--text);
+}
+
+/* Dark primary pill → playful peach */
+.btn-playful.btn-playful--solid {
+  --btn-playful-bg: var(--primary);
+  --btn-playful-border: var(--primary);
+  --btn-playful-text: #fff;
+}
+
+.btn-playful.btn-playful--solid .btn-playful__icon path {
+  fill: rgba(255, 255, 255, 0.9);
+}
+
+.btn-playful.btn-playful--solid:hover {
+  --btn-playful-text: var(--text);
+}
+
+.btn-playful.btn-playful--solid:hover .btn-playful__icon path {
+  fill: var(--text);
+}
+
+/* Cancel legacy hovers when playful is active */
+a.btn-playful.landing-btn--primary:hover,
+a.btn-playful.landing-btn--outline:hover,
+a.btn-playful.btn.primary:hover,
+a.btn-playful.btn.ghost:hover {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  a.btn-playful:hover,
+  button.btn-playful:hover {
+    animation: none;
+  }
+
+  .btn-playful:hover .btn-playful__icon--1,
+  .btn-playful:hover .btn-playful__icon--2,
+  .btn-playful:hover .btn-playful__icon--3 {
+    animation: none;
+  }
+}

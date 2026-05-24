@@ -38,7 +38,7 @@
 .landing-hero__backdrop {
   position: absolute;
   inset: 0;
-  background-image: url("images/heritage-band.jpg");
+  background-image: url("../../assets/images/heritage-band.jpg");
   background-size: cover;
   background-position: center 35%;
   background-repeat: no-repeat;
@@ -390,7 +390,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url("images/heritage-band.jpg");
+  background-image: url("../../assets/images/heritage-band.jpg");
   background-size: cover;
   background-position: center 22%;
   background-repeat: no-repeat;
