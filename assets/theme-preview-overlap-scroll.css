@@ -125,6 +125,18 @@
   will-change: transform;
 }
 
+@media (max-width: 47.99rem) {
+  .page-theme-preview .preview-overlap--animated .preview-overlap__panel--light {
+    padding-top: clamp(1.75rem, 5vh, 2.5rem);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .page-theme-preview .preview-overlap--animated .preview-promise__heading {
+    margin-bottom: clamp(1rem, 3vh, 1.5rem);
+  }
+}
+
 /* Off-screen before GSAP sets yPercent; removed once JS adds --scrub-ready */
 .page-theme-preview
   .preview-overlap--animated:not(.preview-overlap--scrub-ready)

@@ -33,6 +33,7 @@
   }
 
   var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+  var narrowQuery = window.matchMedia("(max-width: 47.99rem)");
   var timeline = null;
   var resizeObserver = null;
 
@@ -47,6 +48,10 @@
 
   function prefersReduced() {
     return motionQuery.matches;
+  }
+
+  function isNarrowViewport() {
+    return narrowQuery.matches;
   }
 
   function measurePrefixTravel() {
@@ -140,7 +145,7 @@
     var lineCount = lines.length;
     var totalUnits =
       HERO_SEGMENT + LINE_PHASE_DELAY + lineCount * LINE_SEGMENT + OVERLAP_SEGMENT;
-    var prefixTravel = measurePrefixTravel();
+    var prefixTravel = isNarrowViewport() ? 0 : measurePrefixTravel();
     var linePhaseDuration = Math.max(0.01, (lineCount - 0.15) * LINE_SEGMENT);
     var linePhaseStart = HERO_SEGMENT + LINE_PHASE_DELAY;
     var darkOverlapStart = linePhaseStart + (lineCount - 0.35) * LINE_SEGMENT;
@@ -219,15 +224,17 @@
       darkOverlapStart
     );
 
-    timeline.to(
-      prefix,
-      {
-        y: prefixTravel,
-        duration: linePhaseDuration,
-        ease: "none",
-      },
-      linePhaseStart
-    );
+    if (prefixTravel > 0) {
+      timeline.to(
+        prefix,
+        {
+          y: prefixTravel,
+          duration: linePhaseDuration,
+          ease: "none",
+        },
+        linePhaseStart
+      );
+    }
 
     for (var i = 0; i < lineCount; i += 1) {
       var line = lines[i];
@@ -277,6 +284,12 @@
     motionQuery.addEventListener("change", onModeChange);
   } else if (motionQuery.addListener) {
     motionQuery.addListener(onModeChange);
+  }
+
+  if (narrowQuery.addEventListener) {
+    narrowQuery.addEventListener("change", onModeChange);
+  } else if (narrowQuery.addListener) {
+    narrowQuery.addListener(onModeChange);
   }
 
   function init() {

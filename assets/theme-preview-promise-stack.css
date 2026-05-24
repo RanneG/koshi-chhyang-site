@@ -116,4 +116,18 @@
     align-items: center;
     min-height: 0;
   }
+
+  /* Eyebrow already says “Behind every pour”; prefix travel overlaps lines in one column */
+  .page-theme-preview
+    .preview-overlap--animated
+    [data-promise-stack]:not(.preview-promise--static)
+    .preview-promise__prefix {
+    display: none;
+  }
+
+  .page-theme-preview
+    .preview-overlap--animated
+    [data-promise-stack]:not(.preview-promise--static) {
+    overflow: visible;
+  }
 }
