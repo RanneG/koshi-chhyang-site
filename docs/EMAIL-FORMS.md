@@ -25,6 +25,15 @@ window.KC_FORMSPREE = {
 
 Commit, push, and redeploy (or refresh locally).
 
+**Every page with a form** must load both scripts **in this order** (config before `kc-forms.js`):
+
+```html
+<script src="assets/kc-forms-config.js"></script>
+<script src="assets/kc-forms.js"></script>
+```
+
+Without `kc-forms-config.js`, submits fall back to opening the visitor’s email app (`mailto:`).
+
 ## 3. What each form does
 
 | Config key | Where it appears | Purpose |
