@@ -193,22 +193,11 @@
  <div class="site-footer__col site-footer__newsletter" id="footer-newsletter">
  <h3>Keep in touch</h3>
  <p>Launch updates, tasting invites, and new bottles.</p>
- <form
-          class="preview-newsletter kc-form"
-          name="customer-waitlist"
-          method="POST"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          action="thank-you.html"
-        >
-          <input type="hidden" name="form-name" value="customer-waitlist" />
-          <input type="hidden" name="list" value="customer" />
-          <p class="kc-form__hp" aria-hidden="true">
-            <label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
-          </p>
- <input type="email" name="email" placeholder="Email address" required aria-label="Email" />
- <button type="submit" class="btn-preview btn-preview--red" style="width:100%">Sign up</button>
- </form>
+ <form class="preview-newsletter kc-form" data-kc-form="customer" name="customer-waitlist" method="POST">
+          <input type="text" name="_gotcha" class="kc-form__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="email" name="email" placeholder="Email address" aria-label="Email" required />
+          <button type="submit" class="btn-preview btn-preview--red" style="width:100%">Join waiting list</button>
+        </form>
  </div>
  </div>
  <div class="site-footer__legal">

@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="assets/brand.css" />
   <link rel="stylesheet" href="assets/site-nav.css" />
   <link rel="stylesheet" href="assets/theme-preview.css" />
+  <link rel="stylesheet" href="assets/kc-forms.css" />
   <link rel="stylesheet" href="assets/theme-preview-pages.css" />
   <link rel="stylesheet" href="assets/theme-preview-promise-stack.css" />
   <link rel="stylesheet" href="assets/theme-preview-overlap-scroll.css" />
@@ -243,12 +244,13 @@
     <div class="preview-section__inner preview-cta-combined__inner preview-cta-combined__inner--solo">
       <div class="preview-cta-combined__newsletter" aria-labelledby="newsletter-heading">
         <p class="preview-cta-combined__eyebrow">Stay in the loop</p>
-        <h2 id="newsletter-heading">Get launch updates by email</h2>
+        <h2 id="newsletter-heading">Join the customer waiting list</h2>
         <p class="preview-cta-combined__lead">Tasting invites, new bottles, and a heads-up when the shop opens. Suppliers — <a href="business.html#enquire">enquire on the trade page</a>.</p>
-        <form class="preview-newsletter preview-newsletter--inline preview-newsletter--light" action="#" method="get" onsubmit="alert('Preview only — wire to newsletter provider'); return false;">
+        <form class="preview-newsletter preview-newsletter--inline preview-newsletter--light kc-form" data-kc-form="customer" name="customer-waitlist" method="POST">
+          <input type="text" name="_gotcha" class="kc-form__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <label class="visually-hidden" for="newsletter-email">Email</label>
-          <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
-          <button type="submit" class="btn-preview btn-preview--red">Sign up</button>
+          <input id="newsletter-email" type="email"           <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+          <button type="submit" class="btn-preview btn-preview--red">Join waiting list</button>
         </form>
       </div>
     </div>
@@ -327,9 +329,10 @@
       <div class="site-footer__col site-footer__newsletter" id="footer-newsletter">
         <h3>Keep in touch</h3>
         <p>Launch updates, tasting invites, and new bottles.</p>
-        <form class="preview-newsletter" action="#" method="get" onsubmit="alert('Preview only — wire to newsletter provider'); return false;">
-          <input type="email" name="email" placeholder="Email address" required aria-label="Email" />
-          <button type="submit" class="btn-preview btn-preview--red" style="width:100%">Sign up</button>
+        <form class="preview-newsletter kc-form" data-kc-form="customer" name="customer-waitlist" method="POST">
+          <input type="text" name="_gotcha" class="kc-form__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="email" name="email" placeholder="Email address" aria-label="Email" required />
+          <button type="submit" class="btn-preview btn-preview--red" style="width:100%">Join waiting list</button>
         </form>
       </div>
     </div>
@@ -351,6 +354,8 @@
 <p class="design-switcher" data-design-switcher>
     <a href="#" data-design-switch-target>View classic site</a>
   </p>
+  <script src="assets/kc-forms-config.js"></script>
+  <script src="assets/kc-forms.js"></script>
   <script src="assets/design-switcher.js"></script>
 </body>
 </html>

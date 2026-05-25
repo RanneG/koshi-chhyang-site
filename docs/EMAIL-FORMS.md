@@ -1,25 +1,52 @@
-# Email & forms — info@koshichhyang.com
+# Email & forms — Formspree → info@koshichhyang.com
 
-Static site forms use **Netlify Forms** (see `netlify.toml`). Submissions are stored in the Netlify dashboard and should be emailed to **info@koshichhyang.com**.
+The site uses **[Formspree](https://formspree.io)** (free tier: 50 submissions/month per form). Works on any static host, including Netlify — no Netlify Forms required.
 
-## Form names
+## 1. Create two forms on Formspree
 
-| Form | Page(s) | Purpose |
-|------|---------|---------|
-| `customer-waitlist` | Home, footer, stockists | Customers waiting for shop / launch news |
-| `business-enquiry` | Trade (`business.html#enquire`) | Trade, hospitality, suppliers, and partners — one combined enquiry / waiting-list form |
+1. Sign up at [formspree.io](https://formspree.io).
+2. **+ New form** → name it **Customer waiting list**.
+   - **Settings → Email** → `info@koshichhyang.com`
+   - Copy the form ID from the URL: `https://formspree.io/f/`**`abcxyz`** → `abcxyz`
+3. Create a second form → **Business enquiry** (trade / suppliers).
+   - Same notification email: `info@koshichhyang.com`
+   - Copy its form ID.
 
-## Netlify setup (one-time)
+## 2. Add IDs to the site
 
-1. Deploy the site from this repo (build → `dist/`).
-2. Netlify → **Site configuration** → **Forms** — confirm `customer-waitlist` and `business-enquiry` appear after deploy.
-3. **Form notifications** → Add notification → Email **info@koshichhyang.com** for each form (or one rule covering both).
-4. Optional: enable spam filtering (honeypot field `bot-field` is already in each form).
+Edit **`assets/kc-forms-config.js`**:
 
-## Local preview
+```javascript
+window.KC_FORMSPREE = {
+  customerWaitlist: "YOUR_CUSTOMER_FORM_ID",
+  businessEnquiry: "YOUR_BUSINESS_FORM_ID",
+};
+```
 
-On `localhost` or when opening HTML files directly, submit uses a **mailto:** fallback to `info@koshichhyang.com` via `assets/kc-forms.js`.
+Commit, push, and redeploy (or refresh locally).
 
-## Contact links
+## 3. What each form does
 
-All visible contact addresses on production pages should use **info@koshichhyang.com**.
+| Config key | Where it appears | Purpose |
+|------------|------------------|---------|
+| `customerWaitlist` | Home `#newsletter`, footer, stockists | Email signup for shop / launch |
+| `businessEnquiry` | `business.html#enquire` | Trade, hospitality, supplier enquiries |
+
+After submit, visitors are redirected to **`thank-you.html`**.
+
+## 4. Test
+
+1. Open the live site → **Trade** → fill **Enquire** → submit.
+2. Check Formspree **Submissions** and **info@koshichhyang.com**.
+
+If IDs in `kc-forms-config.js` are still empty, submit opens a **mailto:** fallback to info@ (for local preview only).
+
+## 5. Optional Formspree settings
+
+- **Redirect** — handled by hidden `_next` (set automatically by `kc-forms.js`).
+- **reCAPTCHA** — enable in Formspree dashboard if you get spam.
+- **Custom subject** — already sent as `_subject` per form type.
+
+## Hosting
+
+Deploy as usual (`python scripts/build_deploy.py` → `dist/`). Formspree does not need Netlify Forms enabled.

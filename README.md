@@ -34,7 +34,7 @@ Upload **`dist/`** to your static host. Entry URL: **`/`**
 
 **Netlify (recommended):** Connect this repo at [app.netlify.com](https://app.netlify.com) → Import from GitHub → `RanneG/koshi-chhyang-site`. Build settings come from **`netlify.toml`** (`python scripts/build_deploy.py` → `dist/`). Or drag **`dist/`** onto Deploy manually after running the build locally.
 
-**Forms:** Customer waiting list (home) and one combined trade/supplier enquiry form (`business.html`) submit via Netlify Forms to **info@koshichhyang.com** — see **`docs/EMAIL-FORMS.md`** for notification setup after deploy.
+**Forms:** [Formspree](https://formspree.io) — customer waiting list + trade enquiry (`business.html`). Set form IDs in **`assets/kc-forms-config.js`**; notifications to **info@koshichhyang.com**. See **`docs/EMAIL-FORMS.md`**.
 
 **What ships:** `index.html`, `heritage.html`, `collection.html`, `business.html`, `assets/`, `_redirects`.
 

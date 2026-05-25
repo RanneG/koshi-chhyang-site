@@ -1,20 +1,26 @@
 /**
- * Koshi Chhyang forms — Netlify on deploy; mailto fallback for local preview.
- * Notifications: set Form notifications → info@koshichhyang.com in Netlify UI.
+ * Koshi Chhyang forms — Formspree (see kc-forms-config.js).
+ * If IDs are empty, submit falls back to mailto: info@koshichhyang.com
  */
 (function () {
   "use strict";
 
   var TO_EMAIL = "info@koshichhyang.com";
-  var THANK_YOU = "thank-you.html";
+  var cfg = window.KC_FORMSPREE || {};
 
-  function isLiveFormHost() {
-    var h = window.location.hostname;
-    return (
-      h === "koshichhyang.com" ||
-      h === "www.koshichhyang.com" ||
-      /\.netlify\.app$/i.test(h)
-    );
+  function formId(key) {
+    var id = (cfg[key] || "").trim();
+    return id.replace(/^https?:\/\/formspree\.io\/f\//i, "").replace(/\/$/, "");
+  }
+
+  function thankYouUrl() {
+    var path = "thank-you.html";
+    if (window.location.protocol === "file:") return path;
+    return window.location.origin + window.location.pathname.replace(/[^/]*$/, "") + path;
+  }
+
+  function formspreeAction(id) {
+    return "https://formspree.io/f/" + id;
   }
 
   function statusEl(form) {
@@ -40,22 +46,13 @@
   function formFields(form) {
     var data = {};
     Array.prototype.forEach.call(form.elements, function (node) {
-      if (!node.name || node.name === "bot-field" || node.type === "submit") return;
+      if (!node.name || node.name.charAt(0) === "_" || node.type === "submit") return;
+      if (node.name === "_gotcha") return;
       if (node.type === "radio" && !node.checked) return;
       if (node.type === "checkbox" && !node.checked) return;
       data[node.name] = (node.value || "").trim();
     });
     return data;
-  }
-
-  function mailtoBody(formName, fields) {
-    var lines = ["Form: " + formName, "—", ""];
-    Object.keys(fields).forEach(function (key) {
-      if (key === "form-name") return;
-      lines.push(key + ": " + fields[key]);
-    });
-    lines.push("", "Sent from: " + window.location.href);
-    return lines.join("\n");
   }
 
   function mailtoSubject(formName) {
@@ -64,43 +61,78 @@
     return "Website form — Koshi Chhyang";
   }
 
+  function mailtoBody(formName, fields) {
+    var lines = ["Form: " + formName, "—", ""];
+    Object.keys(fields).forEach(function (key) {
+      lines.push(key + ": " + fields[key]);
+    });
+    lines.push("", "Sent from: " + window.location.href);
+    return lines.join("\n");
+  }
+
   function openMailto(form) {
     var name = form.getAttribute("name") || "website-form";
     var fields = formFields(form);
-    var subject = encodeURIComponent(mailtoSubject(name));
-    var body = encodeURIComponent(mailtoBody(name, fields));
     window.location.href =
-      "mailto:" + TO_EMAIL + "?subject=" + subject + "&body=" + body;
+      "mailto:" +
+      TO_EMAIL +
+      "?subject=" +
+      encodeURIComponent(mailtoSubject(name)) +
+      "&body=" +
+      encodeURIComponent(mailtoBody(name, fields));
     showStatus(
       form,
-      "Opening your email app to send to " + TO_EMAIL + ". If nothing opens, email us directly.",
+      "Formspree is not configured yet — opening your email app. Or email " + TO_EMAIL + " directly.",
       true
     );
+  }
+
+  function ensureHidden(form, name, value) {
+    var el = form.querySelector('input[name="' + name + '"]');
+    if (!el) {
+      el = document.createElement("input");
+      el.type = "hidden";
+      el.name = name;
+      form.insertBefore(el, form.firstChild);
+    }
+    el.value = value;
+  }
+
+  function wireFormspree(form, id, subject) {
+    form.method = "POST";
+    form.removeAttribute("data-netlify");
+    form.removeAttribute("data-netlify-honeypot");
+    form.action = formspreeAction(id);
+    ensureHidden(form, "_next", thankYouUrl());
+    if (subject) ensureHidden(form, "_subject", subject);
   }
 
   function wireForm(form) {
     if (!form || form.dataset.kcWired === "1") return;
     form.dataset.kcWired = "1";
 
-    if (!form.querySelector('input[name="form-name"]') && form.getAttribute("name")) {
-      var hidden = document.createElement("input");
-      hidden.type = "hidden";
-      hidden.name = "form-name";
-      hidden.value = form.getAttribute("name");
-      form.insertBefore(hidden, form.firstChild);
+    var kind = form.getAttribute("data-kc-form");
+    var fsId = kind === "business" ? formId("businessEnquiry") : kind === "customer" ? formId("customerWaitlist") : "";
+
+    if (fsId) {
+      var subject =
+        kind === "business"
+          ? "Koshi Chhyang — trade enquiry"
+          : kind === "customer"
+            ? "Koshi Chhyang — customer waiting list"
+            : "";
+      wireFormspree(form, fsId, subject);
+      return;
     }
 
     form.addEventListener("submit", function (e) {
-      if (isLiveFormHost()) return;
       e.preventDefault();
       openMailto(form);
     });
   }
 
   function init() {
-    document
-      .querySelectorAll("form[data-netlify='true'], form[data-netlify]")
-      .forEach(wireForm);
+    document.querySelectorAll("form[data-kc-form]").forEach(wireForm);
   }
 
   if (document.readyState === "loading") {
