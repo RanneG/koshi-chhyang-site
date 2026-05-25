@@ -1,7 +1,7 @@
-"""Copy Ranne's Koshi brand mockup images into assets/images/*.jpg."""
+"""Install brand photography from assets/brand-photos/ into assets/images/."""
 from __future__ import annotations
 
-import shutil
+import json
 from pathlib import Path
 
 try:
@@ -14,59 +14,70 @@ except ImportError:
     from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[1]
-ASSETS = ROOT / "assets" / "images"
-SRC = Path(
-    r"C:\Users\ranne\AppData\Roaming\Cursor\User\workspaceStorage\empty-window\images"
-)
-
-# hero.jpg = Wix UK-origin infographic; home hero uses hero-splash.jpg (from pour).
-SOURCES = {
-    "hero.jpg": "image-0fb40b06-7f3f-4c33-8e92-7936ffca057a.png",
-    "brew.jpg": "image-0fb40b06-7f3f-4c33-8e92-7936ffca057a.png",
-    "event.jpg": "image-9feff1de-8239-42fa-871a-78e71455a4dc.png",
-    "product-1.jpg": "image-ac83c999-d9c6-4cad-a4ed-8cf9f23d7a98.png",
-    "product-2.jpg": "image-0fb40b06-7f3f-4c33-8e92-7936ffca057a.png",
-    "product-3.jpg": "image-3bd6ca8d-1a45-4891-9c05-f7c0a493e842.png",
-}
-
-# Crop: brass bowl + milky chhyang from preferred Canva card (middle-left, palette A)
-BOWL_CROP = (0.28, 0.41, 0.46, 0.56)  # brass bowl + milky chhyang only
+MANIFEST = ROOT / "assets" / "brand-photos-manifest.json"
+OUT = ROOT / "assets" / "images"
 
 
-def save_jpg(src: Path, dest: Path, crop: tuple[float, float, float, float] | None = None) -> None:
+def parse_aspect(value: str) -> float:
+    a, b = value.split(":")
+    return int(a) / int(b)
+
+
+def center_crop(img: Image.Image, target_ratio: float) -> Image.Image:
+    w, h = img.size
+    current = w / h
+    if abs(current - target_ratio) < 0.02:
+        return img
+    if current > target_ratio:
+        new_w = int(h * target_ratio)
+        left = (w - new_w) // 2
+        return img.crop((left, 0, left + new_w, h))
+    new_h = int(w / target_ratio)
+    top = (h - new_h) // 2
+    return img.crop((0, top, w, top + new_h))
+
+
+def fit_width(img: Image.Image, max_width: int) -> Image.Image:
+    if img.width <= max_width:
+        return img
+    ratio = max_width / img.width
+    size = (max_width, max(1, int(img.height * ratio)))
+    return img.resize(size, Image.Resampling.LANCZOS)
+
+
+def process_slot(src: Path, dest: Path, aspect: str, quality: int, max_width: int) -> None:
     img = Image.open(src).convert("RGB")
-    if crop:
-        w, h = img.size
-        box = (int(crop[0] * w), int(crop[1] * h), int(crop[2] * w), int(crop[3] * h))
-        img = img.crop(box)
+    img = center_crop(img, parse_aspect(aspect))
+    img = fit_width(img, max_width)
     dest.parent.mkdir(parents=True, exist_ok=True)
-    img.save(dest, "JPEG", quality=92, optimize=True)
-    print(f"  {dest.name} <- {src.name}" + (" (cropped)" if crop else ""))
+    img.save(dest, "JPEG", quality=quality, optimize=True)
+    print(f"  {dest.relative_to(ROOT)} <- {src.name} ({img.width}x{img.height})")
 
 
 def main() -> None:
-    if not SRC.exists():
-        raise SystemExit(f"Source folder missing: {SRC}")
+    data = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    src_dir = ROOT / "assets" / data.get("sources_dir", "brand-photos")
+    quality = int(data.get("quality", 88))
+    max_width = int(data.get("max_width", 1920))
+    slots: dict = data["slots"]
 
-    ASSETS.mkdir(parents=True, exist_ok=True)
-    canva = SRC / SOURCES["product-1.jpg"]
+    if not src_dir.is_dir():
+        raise SystemExit(f"Missing {src_dir} — copy brand photos there first.")
 
-    for slot, filename in SOURCES.items():
-        path = SRC / filename
-        if not path.exists():
-            raise SystemExit(f"Missing: {path}")
-        dest = ASSETS / slot
-        if slot == "product-1.jpg" and canva.exists():
-            save_jpg(canva, dest, BOWL_CROP)
-        else:
-            save_jpg(path, dest)
+    count = 0
+    for dest_name, spec in slots.items():
+        filename = spec["file"]
+        src = src_dir / filename
+        if not src.is_file():
+            print(f"  skip {dest_name} (missing {filename})")
+            continue
+        dest = OUT / dest_name
+        process_slot(src, dest, spec.get("aspect", "4:3"), quality, max_width)
+        count += 1
 
-    # Dedicated product hero: full lifestyle pour
-    save_jpg(SRC / SOURCES["product-2.jpg"], ASSETS / "pour.jpg")
-    shutil.copy2(ASSETS / "pour.jpg", ASSETS / "hero-splash.jpg")
-    print("  hero-splash.jpg <- pour.jpg (home landing; not hero.jpg)")
-
-    print("Done. Refresh concepts in browser (Ctrl+F5).")
+    if count == 0:
+        raise SystemExit("No images installed.")
+    print(f"Done — {count} slot(s) in assets/images/. Hard-refresh the site (Cmd+Shift+R).")
 
 
 if __name__ == "__main__":

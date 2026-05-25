@@ -11,11 +11,15 @@ PAGES = [
     "index.html",
     "heritage.html",
     "collection.html",
+    "how-to-order.html",
+    "how-to-drink.html",
+    "how-to-store.html",
     "business.html",
     "visit.html",
     "events.html",
     "guide.html",
     "stockists.html",
+    "thank-you.html",
 ]
 
 LEGACY_PAGES = [

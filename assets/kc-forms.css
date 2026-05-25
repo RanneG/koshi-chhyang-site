@@ -1,0 +1,26 @@
+.kc-form__hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.kc-form__status {
+  margin-top: 0.75rem;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.kc-form__status[data-state="ok"] {
+  color: var(--deep-teal, #5f7470);
+}
+
+.kc-form__status[data-state="err"] {
+  color: var(--crimson-carrot, var(--strawberry-red));
+}
+
+.kc-form--supplier .preview-form {
+  margin-top: 0;
+}

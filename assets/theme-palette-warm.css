@@ -324,6 +324,8 @@ html.page-theme-preview--warm .page-theme-preview .site-nav__cta:hover {
 html.page-theme-preview--warm .page-theme-preview .promo-marquee {
   background: var(--white-smoke);
   color: var(--onyx);
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  font-weight: 400;
 }
 
 html.page-theme-preview--warm .page-theme-preview .promo-marquee__segment--accent {
@@ -509,8 +511,10 @@ html.page-theme-preview--warm .page-theme-preview .preview-shop-range-card__img 
   background: var(--dust-grey);
 }
 
-/* Home hero photo; heritage uses lighter dedicated filter below */
-html.page-theme-preview--warm .page-theme-preview .preview-hero__photo {
+/* Home hero photo — full colour on home only; heritage uses lighter filter below */
+html.page-theme-preview--warm
+  .page-theme-preview:not(.page-theme-preview--home)
+  .preview-hero__photo {
   filter: var(--kc-tonal-filter);
 }
 

@@ -69,37 +69,69 @@
     });
 
     if (!classic) {
-      initPaletteToggle(el);
+      initPaletteToggles(el);
     }
   }
 
-  function initPaletteToggle(el) {
-    var social =
-      document.documentElement.classList.contains("page-theme-preview--warm");
+  function currentPalette() {
+    if (window.kcGetPalette) {
+      return window.kcGetPalette();
+    }
+    if (document.documentElement.classList.contains("page-theme-preview--earth")) {
+      return "earth";
+    }
+    if (document.documentElement.classList.contains("page-theme-preview--warm")) {
+      return "social";
+    }
+    return "red";
+  }
+
+  function addPaletteLink(el, label, mode) {
     var sep = document.createElement("span");
     sep.textContent = " · ";
     sep.setAttribute("aria-hidden", "true");
-    var pal = document.createElement("a");
-    pal.href = "#";
-    pal.textContent = social ? "Red room palette" : "Social palette";
-    pal.addEventListener("click", function (e) {
+    var link = document.createElement("a");
+    link.href = "#";
+    link.textContent = label;
+    link.addEventListener("click", function (e) {
       e.preventDefault();
-      switchPalette(social ? "red" : "social");
+      switchPalette(mode);
     });
     el.appendChild(sep);
-    el.appendChild(pal);
+    el.appendChild(link);
+  }
+
+  function initPaletteToggles(el) {
+    var active = currentPalette();
+
+    if (active !== "red") {
+      addPaletteLink(el, "Red room palette", "red");
+    }
+    if (active !== "social") {
+      addPaletteLink(el, "Social palette", "social");
+    }
+    if (active !== "earth") {
+      addPaletteLink(el, "Earth palette", "earth");
+    }
   }
 
   function switchPalette(mode) {
-    var next = mode === "social" || mode === "warm" ? "social" : "red";
+    var next = "red";
+    if (mode === "earth") {
+      next = "earth";
+    } else if (mode === "social" || mode === "warm") {
+      next = "social";
+    }
+
     if (window.kcSetPalette) {
       window.kcSetPalette(next, { pin: true });
     }
+
     var url = new URL(window.location.href);
-    if (next === "social") {
-      url.searchParams.set("palette", "social");
-    } else {
+    if (next === "red") {
       url.searchParams.delete("palette");
+    } else {
+      url.searchParams.set("palette", next);
     }
     window.location.href = url.pathname + url.search + url.hash;
   }

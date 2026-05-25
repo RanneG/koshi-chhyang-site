@@ -86,6 +86,11 @@ h3,
   line-height: 1.15;
 }
 
+/* Theme preview — hero brand title stays regular, not global h1 bold */
+.page-theme-preview .preview-hero__poster h1 {
+  font-weight: 400;
+}
+
 .eyebrow,
 .section-label,
 .sub,

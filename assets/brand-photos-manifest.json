@@ -1,0 +1,95 @@
+{
+  "comment": "Ranne brand photography — sources in assets/brand-photos/. Run: python3 scripts/install_brand_photos.py",
+  "sources_dir": "brand-photos",
+  "quality": 88,
+  "max_width": 1920,
+  "slots": {
+    "heritage-band.jpg": {
+      "file": "fermented-rice-container.png",
+      "aspect": "4:3",
+      "note": "Home hero — fermented rice in container (still from reel)"
+    },
+    "hero-splash.jpg": {
+      "file": "101_0803-e2a39c0c-1455-43ab-a70e-910b78be6444.png",
+      "aspect": "16:9"
+    },
+    "pour.jpg": {
+      "file": "101_0805-9aedc313-9602-4cff-893e-ac915c050a23.png",
+      "aspect": "3:4"
+    },
+    "hero.jpg": {
+      "file": "101_0803-e2a39c0c-1455-43ab-a70e-910b78be6444.png",
+      "aspect": "1:1"
+    },
+    "brew.jpg": {
+      "file": "101_0785-304c7865-f5d8-4d41-b101-f648875cf3df.png",
+      "aspect": "4:3"
+    },
+    "event.jpg": {
+      "file": "101_0812-8fcfb714-4f72-46c0-894f-e66d9cd3099a.png",
+      "aspect": "21:9"
+    },
+    "product-1.jpg": {
+      "file": "101_0792-c0cf62ce-8be5-44ea-ad32-43d4efbca6f6.png",
+      "aspect": "4:3"
+    },
+    "product-2.jpg": {
+      "file": "IMG_7868-ddefe985-659d-4f53-810c-0d6204d51350.png",
+      "aspect": "4:3"
+    },
+    "product-3.jpg": {
+      "file": "101_0798-4845294d-81ca-4cdf-a841-8daa3042dab9.png",
+      "aspect": "4:3"
+    },
+    "collection/classic-chhyang.jpg": {
+      "file": "101_0786-3536f3c2-f11b-47cb-9b18-dbb170968579.png",
+      "aspect": "4:3"
+    },
+    "collection/herbal-infused-chhyang.jpg": {
+      "file": "101_0791-98c2c868-ac66-48e3-aaea-52c98d26bc3d.png",
+      "aspect": "4:3"
+    },
+    "collection/spiced-chhyang.jpg": {
+      "file": "101_0802-1b17259f-bb81-4d54-ab74-6532c3c1cc16.png",
+      "aspect": "4:3"
+    },
+    "collection/citrus-zest-chhyang.jpg": {
+      "file": "101_0804-4b0ed2e4-2857-4afa-9e90-0ebd3e2d1e72.png",
+      "aspect": "4:3"
+    },
+    "collection/berry-fusion-chhyang.jpg": {
+      "file": "IMG_7864-bcfaa287-32b3-4331-80da-5cc7a77244dd.png",
+      "aspect": "4:3"
+    },
+    "collection/ginger-spice-chhyang.jpg": {
+      "file": "101_0813-179c31fa-1b88-492c-8e34-2e457906e4a1.png",
+      "aspect": "4:3"
+    },
+    "collection/aged-heritage-chhyang.jpg": {
+      "file": "101_0801-9f6c808e-7dac-44a3-a166-52be89ae1724.png",
+      "aspect": "4:3"
+    },
+    "collection/limited-edition-chhyang.jpg": {
+      "file": "IMG_7869-940b3f96-7ba8-4add-ab64-522fcfe102e3.png",
+      "aspect": "4:3"
+    },
+    "collection/reserve-oak-chhyang.jpg": {
+      "file": "101_0779-2bd8d7d3-4b25-4476-b269-bf3ca0aa47cf.png",
+      "aspect": "4:3"
+    },
+    "team/awisha-magar.jpg": {
+      "file": "101_0819-f435cd8a-c1dd-4e0d-905b-837b36b29e34.png",
+      "aspect": "1:1"
+    },
+    "team/avash-magar.jpg": {
+      "file": "5E55AF5B-24EC-42EC-8813-269E548AE701-4cf66a21-8063-4bcf-81c9-d042bcfac88c.png",
+      "aspect": "1:1"
+    }
+  },
+  "archive_in_sources": [
+    "101_0778-a91ae5f9-d82a-4d23-8ffb-7d92caca7b12.png",
+    "101_0800-0ed428ff-2258-408b-9c6d-1bf709349371.png",
+    "IMG_7865-9b52f864-c45d-4ad1-a9ef-c4d51df48c25.png",
+    "IMG_7888-70f79cb1-926a-4724-a775-b9dd674d670b.png"
+  ]
+}

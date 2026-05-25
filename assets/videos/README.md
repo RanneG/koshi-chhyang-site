@@ -1,6 +1,6 @@
 # Instagram reel videos (static site)
 
-> **Deferred:** Theme preview uses **static images only** for the “From the feed” band and visit hero (`dev/theme-preview.html`, `dev/theme-preview-visit.html`). Keep this folder for when you are ready to export MP4s; wiring will return in a later pass.
+> **Home hero** uses **`hero-splash.webp`** (static). Ferment clips (`fermented-rice.mov` / `.mp4`) stay in this folder for feed slots or a later pass. “From the feed” band remains image-only for now.
 
 Short **muted loop** clips for production home / visit pages (after sign-off). No Instagram API or server-side scraping at deploy time.
 
@@ -27,6 +27,8 @@ Copy exports into this folder with **fixed names** (theme preview expects these)
 | `feed-01.mp4` | Home “From the feed” slot 1 | Pour / serve / glass |
 | `feed-02.mp4` | Home slot 2 | Launch / table / event energy |
 | `feed-03.mp4` | Home slot 3 | Product / bottle / batch |
+| `fermented-rice.mov` | Home hero loop (beside title) | Ferment batch / rice in container — source: `IMG_6895.MOV` |
+| `fermented-rice.mp4` | Same slot (preferred for Chrome) | Encode from `.mov` with ffmpeg (see §3) |
 
 Optional visit-page accent:
 

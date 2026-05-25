@@ -34,6 +34,8 @@ Upload **`dist/`** to your static host. Entry URL: **`/`**
 
 **Netlify (recommended):** Connect this repo at [app.netlify.com](https://app.netlify.com) → Import from GitHub → `RanneG/koshi-chhyang-site`. Build settings come from **`netlify.toml`** (`python scripts/build_deploy.py` → `dist/`). Or drag **`dist/`** onto Deploy manually after running the build locally.
 
+**Forms:** Customer waiting list (home) and one combined trade/supplier enquiry form (`business.html`) submit via Netlify Forms to **info@koshichhyang.com** — see **`docs/EMAIL-FORMS.md`** for notification setup after deploy.
+
 **What ships:** `index.html`, `heritage.html`, `collection.html`, `business.html`, `assets/`, `_redirects`.
 
 Edit production HTML at the **repo root** (`index.html`, etc.). The `concepts/` folder holds redirects only for old bookmarks.

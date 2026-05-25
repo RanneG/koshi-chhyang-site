@@ -1,0 +1,66 @@
+/**
+ * Home page only — hero poster, nav, promo ticker
+ */
+
+.page-theme-preview--home .site-header .site-nav--primary {
+  background: #824532;
+  border-bottom-color: rgb(0 0 0 / 0.15);
+}
+
+.page-theme-preview--home .preview-hero__poster {
+  background: #55737d;
+  background-image: none;
+  color: var(--eggshell, #f4f2e1);
+}
+
+.page-theme-preview--home .preview-hero__poster .eyebrow {
+  color: var(--golden-apricot, #cc9648);
+}
+
+.page-theme-preview--home .preview-hero__poster h1,
+.page-theme-preview--home .preview-hero__poster .script,
+.page-theme-preview--home .preview-hero__poster .lead,
+.page-theme-preview--home .preview-hero__poster .preview-hero__note {
+  color: var(--eggshell, #f4f2e1);
+}
+
+.page-theme-preview--home .preview-hero__poster .btn-preview--white {
+  background: #824532;
+  border-color: #824532;
+  color: var(--eggshell, #f4f2e1);
+}
+
+.page-theme-preview--home .preview-hero__poster .btn-preview--white:hover,
+.page-theme-preview--home .preview-hero__poster .btn-preview--white:focus-visible {
+  background: var(--dark-slate-grey, #183a37);
+  border-color: var(--dark-slate-grey, #183a37);
+  color: var(--eggshell, #f4f2e1);
+}
+
+.page-theme-preview--home .preview-hero__poster .btn-preview--outline {
+  border-color: var(--eggshell, #f4f2e1);
+  color: var(--eggshell, #f4f2e1);
+}
+
+.page-theme-preview--home .preview-hero__poster .btn-preview--outline:hover,
+.page-theme-preview--home .preview-hero__poster .btn-preview--outline:focus-visible {
+  background: var(--eggshell, #f4f2e1);
+  color: #55737d;
+  border-color: var(--eggshell, #f4f2e1);
+}
+
+/* Promo ticker — off-white cream (not dark navy) */
+.page-theme-preview--home .promo-marquee {
+  background: var(--eggshell, #f4f2e1);
+  color: var(--dark-slate-grey, #183a37);
+  border-bottom-color: rgb(24 58 55 / 0.1);
+}
+
+.page-theme-preview--home .promo-marquee__segment--accent {
+  color: var(--clay-soil, #824532);
+}
+
+.page-theme-preview--home .promo-marquee__segment::after {
+  color: var(--golden-apricot, #cc9648);
+  opacity: 0.75;
+}

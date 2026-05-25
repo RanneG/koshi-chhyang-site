@@ -36,7 +36,7 @@
 .page-theme-preview .site-nav__brand-text {
   font-family: var(--font-display);
   font-size: clamp(0.8rem, 1vw + 0.45rem, 1rem);
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--white-smoke);
@@ -119,6 +119,7 @@
   --site-nav-active: var(--white-smoke);
   --font-poster: "Bebas Neue", "Oswald", sans-serif;
   --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-hero-title: "Lucy Rose Personal", "Cormorant Garamond", Georgia, serif;
   --font-body: "DM Sans", Arial, Helvetica, sans-serif;
   --font-script: "Caveat", cursive;
 
@@ -155,17 +156,26 @@
   --promo-segment-gap: 1.5rem;
   background: var(--white-smoke);
   color: var(--onyx);
-  font-family: var(--font-poster);
-  font-size: clamp(1rem, 2.8vw, 1.2rem);
-  font-weight: 600;
-  letter-spacing: 0.1em;
+  font-family: "DM Sans", Arial, Helvetica, sans-serif;
+  font-size: clamp(0.8125rem, 2vw, 0.9375rem);
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   padding: 0.72rem 0;
   border-bottom: 1px solid rgba(11, 9, 10, 0.08);
 }
 
+.page-theme-preview .promo-marquee__group,
+.page-theme-preview .promo-marquee__segment {
+  font-family: inherit;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .page-theme-preview .promo-marquee__segment--accent {
   color: var(--mahogany-red);
+  font-weight: 400;
 }
 
 .page-theme-preview .promo-marquee__viewport {
@@ -281,13 +291,25 @@
 }
 
 .page-theme-preview .preview-hero__poster h1 {
-  font-family: var(--font-poster);
+  font-family: var(--font-display);
   font-size: clamp(3.5rem, 10vw, 6.5rem);
   font-weight: 400;
+  font-synthesis: none;
   line-height: 0.92;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
+}
+
+/* Home only — Lucy Rose on the brand title (regular weight, not Bebas/bold) */
+.page-theme-preview--home .preview-hero__poster h1 {
+  font-family: var(--font-hero-title);
+  font-size: clamp(3.25rem, 11vw, 6.75rem);
+  font-weight: 400;
+  font-style: normal;
+  font-synthesis: none;
+  line-height: 0.95;
+  letter-spacing: 0.04em;
 }
 
 .page-theme-preview .preview-hero__poster .script {
@@ -309,10 +331,35 @@
   opacity: 0.92;
 }
 
+/* Home hero — use more of the red panel horizontally */
+@media (min-width: 900px) {
+  .page-theme-preview--home .preview-overlap__hero.preview-hero {
+    grid-template-columns: 1.2fr 0.8fr;
+  }
+}
+
+.page-theme-preview--home .preview-hero__poster .lead {
+  max-width: min(44rem, 95%);
+}
+
+.page-theme-preview--home .preview-hero__poster h1 {
+  max-width: none;
+}
+
+.page-theme-preview--home .preview-hero__note {
+  max-width: min(40rem, 95%);
+}
+
 .page-theme-preview .preview-hero__photo {
   position: relative;
   min-height: 280px;
-  background: url("images/heritage-band.jpg") center / cover no-repeat;
+  background-image: image-set(
+    url("images/hero-splash.webp") type("image/webp"),
+    url("images/hero-splash.jpg") type("image/jpeg")
+  );
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .page-theme-preview .preview-hero__photo::after {
@@ -325,6 +372,30 @@
     rgba(102, 7, 8, 0.45) 55%,
     rgba(164, 22, 26, 0.35) 100%
   );
+}
+
+/* Home hero — full-colour brand photo (no palette filter or red wash yet) */
+.page-theme-preview--home .preview-hero__photo {
+  filter: none;
+}
+
+.page-theme-preview--home .preview-hero__photo::after {
+  display: none;
+}
+
+.page-theme-preview .preview-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-theme-preview--home .preview-hero__video {
+    display: none;
+  }
 }
 
 .page-theme-preview .preview-hero__cta {
@@ -1129,6 +1200,16 @@
   display: grid;
   gap: 2.25rem;
   align-items: start;
+}
+
+.page-theme-preview .preview-cta-combined__inner--solo {
+  max-width: 40rem;
+  margin-inline: auto;
+}
+
+.page-theme-preview .preview-shop-range-grid--single {
+  grid-template-columns: minmax(0, 28rem);
+  justify-content: center;
 }
 
 .page-theme-preview .preview-cta-combined__eyebrow {

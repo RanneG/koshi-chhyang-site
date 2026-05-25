@@ -1,12 +1,18 @@
 ﻿# Image slots (theme preview)
 
+**Brand photography:** originals live in [`../brand-photos/`](../brand-photos/). Re-install after changes:
+
+```bash
+python3 scripts/install_brand_photos.py
+```
+
 **Logo:** see [README-logo.md](README-logo.md). Placeholder SVG wordmarks (`koshi-logo.svg`, `koshi-logo-light.svg`) ship for theme preview until final brand files replace them at the same paths.
 
 ## Home (`dev/theme-preview.html`) — one file per major block
 
 | Section | File |
 |---------|------|
-| Hero photo | `heritage-band.jpg` (CSS on `.preview-hero__photo`; no inline override) |
+| Hero photo | `hero-splash.webp` (CSS on `.preview-hero__photo`; JPEG fallback `hero-splash.jpg`) |
 | Range / Book tour band | `event.jpg` (CSS on `.preview-range-hero`) |
 | Community notes carousel | `hero.jpg`, `pour.jpg`, `brew.jpg`, `product-1.jpg`, `product-2.jpg`, `product-3.jpg`, `event.jpg` (via `assets/community-notes.json` → `posts.*.thumb`) |
 
@@ -14,7 +20,7 @@ Home **Community notes** band: horizontal infinite carousel (production `index.h
 
 | Visit page atmosphere (below hero) | `event.jpg` (CSS on `.preview-visit-atmosphere`; short decorative band, not `<img>`) |
 
-Home **Visit** band is text-only (no image). **heritage-band.jpg** (`product-3`, grain-field) is the **home hero** only — not the Our story band.
+Home **Visit** band is text-only (no image). **hero-splash.webp** is the **home hero** (full colour, no palette filter). **heritage-band.jpg** is a separate slot — not the Our story band.
 
 **Our story preview** (`dev/theme-preview-heritage.html`): red-room band uses **`product-1.jpg`** (Heritage / Gurkha story, IG `561102938`) on `.preview-heritage-band__bg`. A dedicated soldier portrait export can replace it in `theme-preview-pages.css` when available.
 

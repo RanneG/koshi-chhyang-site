@@ -245,7 +245,7 @@
   opacity: 0.85;
 }
 
-/* Shop — cream hero, shade accents (no red family) */
+/* Shop — calm cream hero, brand-warm neutrals (not pure B&W) */
 .page-theme-preview .preview-page-hero--shop {
   position: relative;
   overflow: hidden;
@@ -256,7 +256,7 @@
     var(--white-smoke) 100%
   );
   color: var(--onyx);
-  border-bottom: 4px solid var(--carbon-black);
+  border-bottom: 4px solid var(--mahogany-red);
   box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.65);
 }
 
@@ -267,29 +267,32 @@
   height: 5px;
   background: linear-gradient(
     90deg,
-    var(--carbon-black) 0%,
-    var(--silver) 50%,
-    var(--carbon-black) 100%
+    var(--dark-garnet) 0%,
+    var(--mahogany-red) 50%,
+    var(--dark-garnet) 100%
   );
   pointer-events: none;
 }
 
 .page-theme-preview .preview-page-hero--shop .badge {
   font-family: var(--font-poster);
-  color: var(--carbon-black);
+  color: var(--mahogany-red);
   opacity: 1;
   letter-spacing: 0.22em;
 }
 
 .page-theme-preview .preview-page-hero--shop h1 {
-  color: var(--carbon-black);
+  font-size: clamp(3.75rem, 12vw, 7rem);
+  letter-spacing: 0.08em;
+  line-height: 0.92;
+  color: var(--dark-garnet);
 }
 
 .page-theme-preview .preview-page-hero--shop .lead,
 .page-theme-preview .preview-page-hero--shop .sub {
   font-family: var(--font-display);
   font-style: italic;
-  color: var(--carbon-black);
+  color: var(--onyx);
   opacity: 1;
 }
 
@@ -374,28 +377,28 @@
 }
 
 .page-theme-preview .preview-page-hero--shop .btn-preview--white {
-  background: var(--carbon-black);
-  color: var(--white-smoke);
-  border-color: var(--carbon-black);
+  background: var(--mahogany-red);
+  color: var(--white);
+  border-color: var(--mahogany-red);
 }
 
 .page-theme-preview .preview-page-hero--shop .btn-preview--white:hover,
 .page-theme-preview .preview-page-hero--shop .btn-preview--white:focus-visible {
-  background: var(--onyx);
-  border-color: var(--onyx);
-  color: var(--white-smoke);
+  background: var(--dark-garnet);
+  border-color: var(--dark-garnet);
+  color: var(--white);
 }
 
 .page-theme-preview .preview-page-hero--shop .btn-preview--outline {
-  color: var(--carbon-black);
-  border-color: var(--carbon-black);
+  color: var(--mahogany-red);
+  border-color: var(--mahogany-red);
 }
 
 .page-theme-preview .preview-page-hero--shop .btn-preview--outline:hover,
 .page-theme-preview .preview-page-hero--shop .btn-preview--outline:focus-visible {
-  background: var(--carbon-black);
-  color: var(--white-smoke);
-  border-color: var(--carbon-black);
+  background: var(--mahogany-red);
+  color: var(--white);
+  border-color: var(--mahogany-red);
 }
 
 .page-theme-preview .preview-page-hero--visit .btn-preview--white {
@@ -445,7 +448,7 @@
 }
 
 .page-theme-preview .preview-page-hero--shop .preview-stats-bar .stat strong {
-  color: var(--carbon-black);
+  color: var(--dark-garnet);
   font-family: var(--font-poster);
   font-size: clamp(1.5rem, 4vw, 1.75rem);
 }
@@ -453,8 +456,8 @@
 .page-theme-preview .preview-page-hero--shop .preview-stats-bar .stat span {
   font-family: var(--font-body);
   font-weight: 500;
-  color: var(--carbon-black);
-  opacity: 1;
+  color: var(--mahogany-red);
+  opacity: 0.9;
   letter-spacing: 0.08em;
 }
 
@@ -940,7 +943,7 @@
   font-size: var(--text-small);
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--carbon-black);
+  color: var(--mahogany-red);
   margin-bottom: 0.5rem;
 }
 
@@ -980,9 +983,9 @@
   display: flex;
   flex-direction: column;
   background: var(--white);
-  border: 1px solid var(--silver);
-  border-top: 1px solid var(--onyx);
-  box-shadow: 0 12px 32px rgb(11 9 10 / 0.06);
+  border: 1px solid rgb(177 167 166 / 0.45);
+  border-top: 3px solid var(--mahogany-red);
+  box-shadow: 0 12px 32px rgb(102 7 8 / 0.06);
 }
 
 .page-theme-preview .preview-shop-range-card__img {
@@ -1010,7 +1013,7 @@
   letter-spacing: 0.07em;
   text-transform: uppercase;
   margin-bottom: 0.5rem;
-  color: var(--carbon-black);
+  color: var(--dark-garnet);
 }
 
 .page-theme-preview .preview-shop-range-card p {
@@ -1025,8 +1028,8 @@
   font-size: 0.78rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--carbon-black);
-  opacity: 0.78;
+  color: var(--mahogany-red);
+  opacity: 0.85;
 }
 
 .page-theme-preview .preview-shop-about__guide {
@@ -1041,14 +1044,14 @@
 }
 
 .page-theme-preview .preview-shop-about__guide .btn-preview--outline {
-  color: var(--carbon-black);
-  border-color: var(--carbon-black);
+  color: var(--mahogany-red);
+  border-color: var(--mahogany-red);
 }
 
 .page-theme-preview .preview-shop-about__guide .btn-preview--outline:hover,
 .page-theme-preview .preview-shop-about__guide .btn-preview--outline:focus-visible {
-  background: var(--carbon-black);
-  color: var(--white-smoke);
+  background: var(--mahogany-red);
+  color: var(--white);
 }
 
 .page-theme-preview .preview-shop-order-steps {
@@ -1086,8 +1089,8 @@
   font-family: var(--font-poster);
   font-size: 1.35rem;
   letter-spacing: 0.04em;
-  color: var(--white-smoke);
-  background: var(--carbon-black);
+  color: var(--white);
+  background: var(--mahogany-red);
   border-radius: 2px;
 }
 
@@ -1122,8 +1125,8 @@
 
 .page-theme-preview .preview-shop-order-step__links a:hover,
 .page-theme-preview .preview-shop-order-step__links a:focus-visible {
-  color: var(--carbon-black);
-  text-decoration-color: var(--carbon-black);
+  color: var(--mahogany-red);
+  text-decoration-color: var(--mahogany-red);
 }
 
 .page-theme-preview .preview-shop-order__note {
@@ -1240,9 +1243,9 @@
 .page-theme-preview .preview-shop-cta {
   text-align: center;
   padding: clamp(2.25rem, 5vw, 2.75rem) var(--page-gutter);
-  background: var(--carbon-black);
+  background: var(--dark-garnet);
   color: var(--white-smoke);
-  border-block: 4px solid var(--silver);
+  border-block: 4px solid var(--mahogany-red);
 }
 
 .page-theme-preview .preview-shop-cta p {
@@ -1268,40 +1271,40 @@
 
 .page-theme-preview .preview-shop-cta .btn-preview--white {
   background: var(--white-smoke);
-  color: var(--carbon-black);
+  color: var(--dark-garnet);
   border-color: var(--white-smoke);
 }
 
 .page-theme-preview .preview-shop-cta .btn-preview--white:hover,
 .page-theme-preview .preview-shop-cta .btn-preview--white:focus-visible {
   background: var(--white);
-  color: var(--onyx);
+  color: var(--mahogany-red);
   border-color: var(--white);
 }
 
 .page-theme-preview .preview-shop-cta .btn-preview--outline:hover,
 .page-theme-preview .preview-shop-cta .btn-preview--outline:focus-visible {
   background: var(--white-smoke);
-  color: var(--carbon-black);
+  color: var(--dark-garnet);
   border-color: var(--white-smoke);
 }
 
-/* Shop collection page — shade CTAs & marquee (no red family) */
+/* Shop collection page — brand accents on calm cream base */
 .page-theme-preview--collection .btn-preview--red {
-  background: var(--carbon-black);
-  color: var(--white-smoke);
-  border-color: var(--carbon-black);
+  background: var(--mahogany-red);
+  color: var(--white);
+  border-color: var(--mahogany-red);
 }
 
 .page-theme-preview--collection .btn-preview--red:hover,
 .page-theme-preview--collection .btn-preview--red:focus-visible {
-  background: var(--onyx);
-  border-color: var(--onyx);
-  color: var(--white-smoke);
+  background: var(--dark-garnet);
+  border-color: var(--dark-garnet);
+  color: var(--white);
 }
 
 .page-theme-preview--collection .promo-marquee__segment--accent {
-  color: var(--carbon-black);
+  color: var(--mahogany-red);
 }
 
 .page-theme-preview .preview-path-grid {

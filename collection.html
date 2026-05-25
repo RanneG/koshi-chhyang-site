@@ -12,7 +12,10 @@
   <link rel="stylesheet" href="assets/brand.css" />
   <link rel="stylesheet" href="assets/site-nav.css" />
   <link rel="stylesheet" href="assets/theme-preview.css" />
+  <link rel="stylesheet" href="assets/kc-forms.css" />
+
   <link rel="stylesheet" href="assets/theme-preview-pages.css" />
+  <link rel="stylesheet" href="assets/theme-preview-shop.css" />
   <link rel="stylesheet" href="assets/age-gate.css" />
   <link rel="stylesheet" href="assets/design-switcher.css" />
 </head>
@@ -41,7 +44,7 @@
         <a href="business.html">Trade</a>
         <a href="heritage.html">Our story</a>
       </div>
-      <a href="#rsvp" class="site-nav__cta">RSVP</a>
+      <a href="index.html#newsletter" class="site-nav__cta">Notify</a>
     </nav>
     <div class="site-nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
     <nav id="site-nav-drawer" class="site-nav__drawer" aria-label="Menu" aria-hidden="true">
@@ -67,8 +70,8 @@
           <span class="promo-marquee__segment">LIMITED TASTING</span>
           <span class="promo-marquee__segment">TRADITION IN EVERY GLASS</span>
           <span class="promo-marquee__segment promo-marquee__segment--accent">KOSHI CHHYANG</span>
-          <span class="promo-marquee__segment">RSVP NOW</span>
-          <span class="promo-marquee__segment">JOIN THE LAUNCH</span>
+          <span class="promo-marquee__segment">ONE BLEND</span>
+          <span class="promo-marquee__segment">SHOP OPENING SOON</span>
         </p>
       </div>
     </div>
@@ -77,107 +80,116 @@
   <header class="preview-page-hero preview-page-hero--shop" aria-label="Shop introduction">
     <p class="badge">Heritage rice wine · Pre-launch</p>
     <h1>Shop</h1>
-    <p class="lead">Nine bottles across three families — from everyday pours to small-batch reserves. No online checkout yet; here’s what we make and how to order before and after launch.</p>
+    <p class="lead">One handmade blend and table merch — small-batch chhyang from Folkestone, tended by hand. No checkout yet; explore how to order, pour, and keep it fresh.</p>
     <div class="preview-hero__cta preview-hero__cta--shop">
-      <a class="btn-preview btn-preview--white" href="#how-to-order">How to order</a>
-      <a class="btn-preview btn-preview--outline" href="guide.html">Guide to chhyang</a>
-      <a class="btn-preview btn-preview--red" href="visit.html#rsvp">RSVP for launch</a>
-      <a class="btn-preview btn-preview--outline" href="#rsvp">Notify me at launch</a>
-      <a class="btn-preview btn-preview--outline" href="index.html#rsvp">Join the list</a>
+      <a class="btn-preview btn-preview--white" href="#the-blend">Our blend</a>
+      <a class="btn-preview btn-preview--outline" href="how-to-order.html">How to order</a>
+      <a class="btn-preview btn-preview--outline" href="how-to-drink.html">How to drink</a>
+      <a class="btn-preview btn-preview--outline" href="how-to-store.html">How to store</a>
     </div>
   </header>
 
-  <section class="preview-section preview-section--cream preview-shop-about" id="about-range" aria-labelledby="about-range-heading">
+  <nav class="preview-shop-subnav" aria-label="Shop sections">
+    <div class="preview-shop-subnav__inner">
+      <a href="collection.html" aria-current="page">Shop home</a>
+      <a href="#the-blend">The blend</a>
+      <a href="how-to-order.html">How to order</a>
+      <a href="how-to-drink.html">How to drink</a>
+      <a href="how-to-store.html">How to store</a>
+      <a href="#merch">Merch</a>
+    </div>
+  </nav>
+
+  <section class="preview-shop-spotlight" id="the-blend" aria-labelledby="spotlight-title">
+    <div class="preview-shop-spotlight__inner">
+      <div class="preview-shop-spotlight__visual">
+        <img
+          src="assets/images/brew.jpg"
+          alt="Koshi Chhyang bottles lined up on the bar — small-batch chhyang"
+          loading="eager"
+          width="800"
+          height="1000"
+        />
+        <span class="preview-shop-spotlight__tag">Handmade · one blend</span>
+      </div>
+      <div class="preview-shop-spotlight__copy">
+        <p class="section-label">The only pour we make</p>
+        <p class="preview-shop-spotlight__script">Patiently fermented.</p>
+        <h2 id="spotlight-title" class="preview-shop-spotlight__title">Koshi Chhyang</h2>
+        <p class="preview-shop-spotlight__lede">Not a factory line — heritage rice, family marcha, and weeks of quiet ferment in small batches until the pour tastes right.</p>
+        <ul class="preview-shop-spotlight__facts">
+          <li>Small-batch</li>
+          <li>Hand-tended ferment</li>
+          <li>14+ day minimum</li>
+          <li>Zero added sugar</li>
+          <li>5–7% ABV</li>
+        </ul>
+        <p class="preview-shop-spotlight__body">
+          Milky, gently sweet, and built for the shared table — the homemade character you taste is the living ferment, not added flavouring. One profile, one bottle, poured the Nepalese way: unhurried, generous, and meant to be passed around.
+        </p>
+        <p class="preview-shop-spotlight__price">700ml · guide from £15 when the shop opens</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-shop-guides" aria-labelledby="guides-heading">
+    <div class="preview-shop-guides__inner">
+      <header class="preview-shop-guides__head">
+        <p class="section-label">Before you buy</p>
+        <h2 id="guides-heading" class="page-title">How it works</h2>
+        <p class="preview-shop-about__lede">Three short guides — order paths, how to pour, and how to keep your bottle (and merch) at its best.</p>
+      </header>
+      <div class="preview-shop-guides__grid">
+        <a class="preview-shop-guide-card" href="how-to-order.html">
+          <span class="preview-shop-guide-card__kicker">Pre-launch</span>
+          <h3>How to order</h3>
+          <p>Launch tasting in Folkestone, the notify list, and what happens when the online shop opens — including trade.</p>
+          <span class="preview-shop-guide-card__cta">Read the guide →</span>
+        </a>
+        <a class="preview-shop-guide-card" href="how-to-drink.html">
+          <span class="preview-shop-guide-card__kicker">At the table</span>
+          <h3>How to drink</h3>
+          <p>Temperature, pour, and pairings — chilled or gently warmed, in small cups, with food that loves a gentle ferment.</p>
+          <span class="preview-shop-guide-card__cta">Read the guide →</span>
+        </a>
+        <a class="preview-shop-guide-card" href="how-to-store.html">
+          <span class="preview-shop-guide-card__kicker">Keep it fresh</span>
+          <h3>How to store</h3>
+          <p>Fridge, upright, opened bottles, and caring for cups and rice bowls — treat chhyang like a living ferment.</p>
+          <span class="preview-shop-guide-card__cta">Read the guide →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="preview-section preview-shop-merch preview-shop-about" id="merch" aria-labelledby="merch-heading">
     <div class="preview-section__inner preview-shop-about__inner">
-      <p class="section-label">The range</p>
-      <h2 id="about-range-heading" class="page-title">Three ways to pour</h2>
-      <p class="preview-shop-about__lede">Each family has three bottles. Guide prices are for reference until the shop opens — taste everything at the launch night first.</p>
+      <p class="section-label">Merch</p>
+      <h2 id="merch-heading" class="page-title">For the table</h2>
+      <p class="preview-shop-about__lede">Cups and rice bowls sized for chhyang — the slow pour, the shared plate, the homemade ritual.</p>
 
       <div class="preview-shop-range-grid">
         <article class="preview-shop-range-card">
-          <div class="preview-shop-range-card__img">
-            <img src="assets/images/collection/classic-chhyang.jpg" alt="Traditional chhyang bottles" loading="lazy" onerror="this.onerror=null;this.src='assets/images/brew.jpg';" />
-          </div>
           <div class="preview-shop-range-card__body">
-            <h3>Traditional</h3>
-            <p>Core rice wines brewed the classic way — earthy, gently sweet, made for sharing at the table. Three bottles from £15.</p>
-            <p class="preview-shop-range-card__meta">Classic · herbal · spiced base blends</p>
+            <h3>Cups</h3>
+            <p>Small pour cups for chilled or gently warmed chhyang — the right size for aroma and a generous sip.</p>
           </div>
         </article>
         <article class="preview-shop-range-card">
-          <div class="preview-shop-range-card__img">
-            <img src="assets/images/collection/citrus-zest-chhyang.jpg" alt="Spiced and seasonal chhyang bottles" loading="lazy" onerror="this.onerror=null;this.src='assets/images/pour.jpg';" />
-          </div>
           <div class="preview-shop-range-card__body">
-            <h3>Spiced &amp; seasonal</h3>
-            <p>Herbs, citrus, berries and ginger lift the base — brighter pours for warmer days and gatherings. Three bottles from £22.</p>
-            <p class="preview-shop-range-card__meta">Citrus · berry · ginger infusions</p>
-          </div>
-        </article>
-        <article class="preview-shop-range-card">
-          <div class="preview-shop-range-card__img">
-            <img src="assets/images/collection/aged-heritage-chhyang.jpg" alt="Reserve chhyang bottles" loading="lazy" onerror="this.onerror=null;this.src='assets/images/product-2.jpg';" />
-          </div>
-          <div class="preview-shop-range-card__body">
-            <h3>Reserve</h3>
-            <p>Longer ferments and small batches — deeper flavour, oak-aged options, and limited runs when we have them. Three bottles from £35.</p>
-            <p class="preview-shop-range-card__meta">Aged heritage · limited edition · oak reserve</p>
+            <h3>Rice bowls</h3>
+            <p>Traditional bowls for serving alongside shared plates — built for the slow pour and the long table.</p>
           </div>
         </article>
       </div>
-
-      <p class="preview-shop-about__guide">
-        <a class="btn-preview btn-preview--outline" href="guide.html">Guide to chhyang — serve, pair &amp; craft</a>
-      </p>
     </div>
   </section>
 
-  <section class="preview-section preview-section--smoke preview-shop-order" id="how-to-order" aria-labelledby="how-to-order-heading">
-    <div class="preview-section__inner preview-shop-order__inner">
-      <p class="section-label">Before you buy</p>
-      <h2 id="how-to-order-heading" class="page-title">How to order</h2>
-      <p class="preview-shop-order__lede">We’re pre-launch — no cart yet. Pick the path that fits where you are today.</p>
-
-      <ol class="preview-shop-order-steps">
-        <li class="preview-shop-order-step">
-          <span class="preview-shop-order-step__num" aria-hidden="true">1</span>
-          <div class="preview-shop-order-step__content">
-            <h3>Launch tasting · 18 July · Folkestone</h3>
-            <p>RSVP for a limited seat, taste the full range on the bar, and place first-access pre-orders on the night — before the online shop opens.</p>
-            <a class="btn-preview btn-preview--red" href="visit.html">RSVP · Visit page</a>
-          </div>
-        </li>
-        <li class="preview-shop-order-step">
-          <span class="preview-shop-order-step__num" aria-hidden="true">2</span>
-          <div class="preview-shop-order-step__content">
-            <h3>Notify at launch</h3>
-            <p>Can’t make Folkestone? Join the email list on home — we’ll ping you when bottles go on sale and share stockist news.</p>
-            <a class="btn-preview btn-preview--red" href="index.html#rsvp">Join the list</a>
-          </div>
-        </li>
-        <li class="preview-shop-order-step">
-          <span class="preview-shop-order-step__num" aria-hidden="true">3</span>
-          <div class="preview-shop-order-step__content">
-            <h3>After launch</h3>
-            <p>The shop opens online for bottle orders. Pubs, restaurants and retailers — head to trade for wholesale and by-the-glass programs.</p>
-            <p class="preview-shop-order-step__links">
-              <a href="stockists.html">Where to buy</a>
-              <span aria-hidden="true">·</span>
-              <a href="business.html">Trade &amp; wholesale</a>
-            </p>
-          </div>
-        </li>
-      </ol>
-
-      <p class="preview-shop-order__note">No fake checkout on this preview — honest pre-launch only. Prices on this page are guide references until we go live.</p>
-    </div>
-  </section>
-
-  <section class="preview-shop-cta" id="rsvp" aria-label="Launch notify">
-    <p>9 bottles · Launch 18 July 2026 · Folkestone</p>
+  <section class="preview-shop-cta" id="notify" aria-label="Shop notify">
+    <p>One blend · merch coming · launch 18 July 2026</p>
     <div class="preview-shop-cta__actions">
-      <a class="btn-preview btn-preview--white" href="visit.html#rsvp">RSVP for launch</a>
-      <a class="btn-preview btn-preview--outline" href="index.html#rsvp">Join the list</a>
+      <a class="btn-preview btn-preview--white" href="index.html#newsletter">Join the notify list</a>
+      <a class="btn-preview btn-preview--outline" href="visit.html">Launch tasting</a>
     </div>
   </section>
 
@@ -223,7 +235,7 @@
         <address>
           Folkestone, Kent<br />
           United Kingdom<br />
-          <a href="mailto:hello@koshichhyang.com">hello@koshichhyang.com</a> (TBC)
+          <a href="mailto:info@koshichhyang.com">info@koshichhyang.com</a> 
         </address>
       </div>
       <div class="site-footer__col">
@@ -252,7 +264,19 @@
       <div class="site-footer__col site-footer__newsletter" id="footer-newsletter">
         <h3>Keep in touch</h3>
         <p>Launch updates, tasting invites, and new bottles.</p>
-        <form class="preview-newsletter" action="#" method="get" onsubmit="alert('Preview only — wire to newsletter provider'); return false;">
+        <form
+          class="preview-newsletter kc-form"
+          name="customer-waitlist"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          action="thank-you.html"
+        >
+          <input type="hidden" name="form-name" value="customer-waitlist" />
+          <input type="hidden" name="list" value="customer" />
+          <p class="kc-form__hp" aria-hidden="true">
+            <label>Don't fill this out: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
           <input type="email" name="email" placeholder="Email address" required aria-label="Email" />
           <button type="submit" class="btn-preview btn-preview--red" style="width:100%">Sign up</button>
         </form>
@@ -260,8 +284,8 @@
     </div>
     <div class="site-footer__legal">
       <span>&copy; Koshi Chhyang</span>
-      <a href="#">Privacy policy (TBC)</a>
-      <a href="#">Terms &amp; conditions (TBC)</a>
+      <a href="#">Privacy policy </a>
+      <a href="#">Terms &amp; conditions </a>
       <a href="business.html">Trade enquiries</a>
     </div>
   </footer>
@@ -270,6 +294,7 @@
 <p class="design-switcher" data-design-switcher>
     <a href="#" data-design-switch-target>View classic site</a>
   </p>
+  <script src="assets/kc-forms.js"></script>
   <script src="assets/design-switcher.js"></script>
 </body>
 </html>
