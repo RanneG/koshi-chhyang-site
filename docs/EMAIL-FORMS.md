@@ -1,6 +1,6 @@
 # Email & forms — Formspree → info@koshichhyang.com
 
-The site uses **[Formspree](https://formspree.io)** (free tier: 50 submissions/month per form). Works on any static host, including Netlify — no Netlify Forms required.
+The site uses **[Formspree](https://formspree.io)** (free tier: 50 submissions/month per form). Works on any static host (GitHub Pages, Netlify, etc.) — no host-specific form backend required.
 
 ## 1. Create two forms on Formspree
 

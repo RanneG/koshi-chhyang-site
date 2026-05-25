@@ -4,7 +4,7 @@ Short brand and UX notes for the static pre-release site (root HTML). Not a full
 
 ## Production vs classic
 
-| Tree | URL (local / Netlify) | Role |
+| Tree | URL (local / GitHub Pages) | Role |
 |------|------------------------|------|
 | **Root** | `/` | Current red-room design (8 pages: home, shop, visit, events, trade, our story, guide, stockists) |
 | **`legacy/`** | `/legacy/` | Previous four-page site (home, heritage, collection, business) as backup |
@@ -63,7 +63,7 @@ Owner mood board + [Hana Makgeolli](https://www.hanamakgeolli.com/) review → *
 | `heritage.html` | Heritage narrative |
 | `business.html` | Trade enquiries |
 
-**Deploy:** `python scripts/build_deploy.py` → upload **`dist/`** (or Netlify build from `netlify.toml`). Run `scripts/optimize_images.py` after swapping photos. Heritage page skips playful button JS/CSS. Delivery-truck page loader on all pages (`assets/page-loader.*`).
+**Deploy:** push **`main`** (GitHub Actions → **`dist/`**) or `python scripts/build_deploy.py` locally. See **`docs/GITHUB-PAGES.md`**. Run `scripts/optimize_images.py` after swapping photos. Heritage page skips playful button JS/CSS. Delivery-truck page loader on all pages (`assets/page-loader.*`).
 
 ## Post-launch checklist
 

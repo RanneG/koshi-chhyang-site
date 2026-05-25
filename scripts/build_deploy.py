@@ -1,6 +1,7 @@
 """Build a lightweight dist/ folder ready for static hosting."""
 from __future__ import annotations
 
+import os
 import shutil
 from pathlib import Path
 
@@ -48,6 +49,7 @@ ASSET_SKIP = {
 
 ASSET_SKIP_DIRS = {"wix-import"}
 
+# Netlify _redirects format: /from /to 301 (to may be / or /page.html)
 REDIRECTS = """# Legacy concept paths
 /concepts/index.html / 301
 /concepts/direction-2-editorial-journey.html /heritage.html 301
@@ -67,6 +69,20 @@ REDIRECTS = """# Legacy concept paths
 /dev/theme-preview-index.html / 301
 """
 
+REDIRECT_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="refresh" content="0; url={target}" />
+  <link rel="canonical" href="{target}" />
+  <title>Redirecting…</title>
+</head>
+<body>
+  <p>Redirecting… <a href="{target}">Continue</a></p>
+</body>
+</html>
+"""
+
 
 def copy_tree(src: Path, dest: Path) -> None:
     if src.is_dir():
@@ -80,6 +96,48 @@ def copy_tree(src: Path, dest: Path) -> None:
         return
     dest.parent.mkdir(parents=True, exist_ok=True)
     shutil.copy2(src, dest)
+
+
+def parse_redirects() -> list[tuple[str, str]]:
+    rules: list[tuple[str, str]] = []
+    for line in REDIRECTS.splitlines():
+        line = line.strip()
+        if not line or line.startswith("#"):
+            continue
+        parts = line.split()
+        if len(parts) < 2:
+            continue
+        src, dest = parts[0], parts[1]
+        if dest == "/":
+            dest = "index.html"
+        elif dest.startswith("/"):
+            dest = dest.lstrip("/")
+        rules.append((src.lstrip("/"), dest))
+    return rules
+
+
+def relative_href(from_rel: str, to_rel: str) -> str:
+    """Relative URL from one dist HTML path to another."""
+    from_dir = Path(from_rel).parent
+    rel = os.path.relpath(to_rel, from_dir)
+    return rel.replace("\\", "/")
+
+
+def write_redirect_stubs() -> None:
+    import os
+
+    count = 0
+    for src, dest in parse_redirects():
+        target = relative_href(src, dest)
+        out = DIST / src
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(
+            REDIRECT_HTML.format(target=target),
+            encoding="utf-8",
+        )
+        count += 1
+        print(f"  redirect {src} -> {dest}")
+    print(f"  {count} redirect stubs (GitHub Pages)")
 
 
 def copy_page(rel: str) -> None:
@@ -118,6 +176,11 @@ def main() -> None:
 
     (DIST / "_redirects").write_text(REDIRECTS, encoding="utf-8")
     print("  _redirects")
+
+    (DIST / ".nojekyll").touch()
+    print("  .nojekyll")
+
+    write_redirect_stubs()
 
     print(f"\nDone — deploy contents of: {DIST}")
     print("Entry URL: /")

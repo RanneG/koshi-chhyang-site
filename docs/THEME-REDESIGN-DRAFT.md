@@ -1,7 +1,7 @@
 # Koshi Chhyang — theme & content redesign (draft)
 
 **Status:** Draft for review with brand owner (Awisha). Not implemented on the live site yet.  
-**Live site:** https://genuine-sable-35a917.netlify.app/  
+**Live site:** https://ranneg.github.io/koshi-chhyang-site/ (GitHub Pages; Netlify backup may be paused)  
 **References:** Owner mood board (retro hospitality / poster collage) · [Hana Makgeolli](https://www.hanamakgeolli.com/) (craft drinks site structure) · Current Wix-aligned tokens in `assets/brand.css`
 
 ---

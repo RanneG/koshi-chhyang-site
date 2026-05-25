@@ -19,7 +19,7 @@ Production pages at the **site root** (clean URLs):
 | `/collection.html` | Collection preview |
 | `/business.html` | Trade enquiries |
 
-Legacy `/concepts/*` paths redirect via **`dist/_redirects`** (Netlify / Cloudflare Pages).
+Legacy `/concepts/*` and `/dev/theme-preview*` URLs redirect via HTML stubs in **`dist/`** (GitHub Pages) or **`dist/_redirects`** (Netlify).
 
 **Build deploy folder:**
 
@@ -30,13 +30,13 @@ python scripts/build_deploy.py
 
 Deploy excludes dev-only assets (import HTML, SVG placeholders, `load-photos.js`, duplicate `hero-splash.jpg`, local `.webp` copies).
 
-Upload **`dist/`** to your static host. Entry URL: **`/`**
+**GitHub Pages (production):** Push to **`main`** — Actions runs `build_deploy.py` and publishes **`dist/`**. One-time: repo **Settings → Pages → Source: GitHub Actions**. Live URL (typical): **https://ranneg.github.io/koshi-chhyang-site/** — see **`docs/GITHUB-PAGES.md`**.
 
-**Netlify (recommended):** Connect this repo at [app.netlify.com](https://app.netlify.com) → Import from GitHub → `RanneG/koshi-chhyang-site`. Build settings come from **`netlify.toml`** (`python scripts/build_deploy.py` → `dist/`). Or drag **`dist/`** onto Deploy manually after running the build locally.
+**Netlify (optional):** `netlify.toml` still works if you reconnect the repo; the old Netlify site may be paused on the free tier.
 
 **Forms:** [Formspree](https://formspree.io) — customer waiting list + trade enquiry (`business.html`). Set form IDs in **`assets/kc-forms-config.js`**; notifications to **info@koshichhyang.com**. See **`docs/EMAIL-FORMS.md`**.
 
-**What ships:** `index.html`, `heritage.html`, `collection.html`, `business.html`, `assets/`, `_redirects`.
+**What ships:** `index.html`, `heritage.html`, `collection.html`, `business.html`, `assets/`, redirect stubs, `.nojekyll`.
 
 Edit production HTML at the **repo root** (`index.html`, etc.). The `concepts/` folder holds redirects only for old bookmarks.
 
