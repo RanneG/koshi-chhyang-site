@@ -19,7 +19,7 @@ Production pages at the **site root** (clean URLs):
 | `/collection.html` | Collection preview |
 | `/business.html` | Trade enquiries |
 
-Legacy `/concepts/*` and `/dev/theme-preview*` URLs redirect via HTML stubs in **`dist/`** (GitHub Pages) or **`dist/_redirects`** (Netlify).
+**Chosen design:** earth / teal split-screen at the site root (`assets/theme-site.css`). Older formats live under **`archive/`** (classic, concepts, dev previews, social/red palette experiments). Legacy `/concepts/*`, `/dev/*`, and `/legacy/*` URLs redirect via **`dist/_redirects`** (Netlify) or HTML stubs (GitHub Pages).
 
 **Build deploy folder:**
 
@@ -38,13 +38,16 @@ Deploy excludes dev-only assets (import HTML, SVG placeholders, `load-photos.js`
 
 **What ships:** `index.html`, `heritage.html`, `collection.html`, `business.html`, `assets/`, redirect stubs, `.nojekyll`.
 
-Edit production HTML at the **repo root** (`index.html`, etc.). The `concepts/` folder holds redirects only for old bookmarks.
+Edit production HTML at the **repo root** (`index.html`, etc.). See **`archive/README.md`** for retired layouts.
 
-## Pages (development)
+## Archive (not production)
 
-| File | Role |
+| Path | Role |
 |------|------|
-| `dev/concepts-hub.html` | Internal design review (not deployed) |
+| `archive/legacy/` | Classic four-page site |
+| `archive/concepts/` | Early direction HTML |
+| `archive/dev/` | Theme-preview snapshots |
+| `archive/palettes/` | Social / earth palette toggles (`?palette=…`) |
 
 Instagram: https://www.instagram.com/koshichhyang/
 

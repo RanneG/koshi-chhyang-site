@@ -34,7 +34,7 @@ Nine product shots under `collection/*.jpg` — sync from `assets/wix-import/` v
 
 ## Team
 
-`team/avash-magar.jpg`, `team/awisha-magar.jpg` — founder portraits (feed tile F uses Avash).
+`team/avash-magar.jpg`, `team/awisha-magar.jpg` — founder portraits from Wix (**do not** overwrite via `install_brand_photos.py`). Refresh with `python scripts/fetch_wix_team.py`.
 
 ## Captions source
 

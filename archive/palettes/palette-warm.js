@@ -106,7 +106,8 @@
     if (anchor.hasAttribute("data-design-switch-target")) {
       return true;
     }
-    if (url.pathname.replace(/\\/g, "/").indexOf("/legacy/") !== -1) {
+    var path = url.pathname.replace(/\\/g, "/");
+    if (path.indexOf("/legacy/") !== -1 || path.indexOf("/archive/legacy/") !== -1) {
       return true;
     }
     return false;

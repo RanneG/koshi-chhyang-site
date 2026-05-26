@@ -43,14 +43,28 @@ Without `kc-forms-config.js`, submits fall back to opening the visitor’s email
 
 After submit, visitors are redirected to **`thank-you.html`**.
 
-## 4. Test
+## 4. Fix: mail goes to the wrong inbox (e.g. Outlook instead of info@)
+
+The HTML only sends data to Formspree. **Who receives email is chosen in the Formspree dashboard**, not in `kc-forms-config.js`.
+
+1. Log in at [formspree.io](https://formspree.io) → open the form (e.g. **KoshiChhyang** / `xqejdrjv`).
+2. **Settings** → **Email** (or **Notifications**).
+3. Set the notification address to **`info@koshichhyang.com`** and remove or replace `rannegerodias@outlook.com`.
+4. Confirm the verification email Formspree sends to **info@** (inbox must accept it).
+5. Submit a test trade enquiry on the live site.
+
+Until that setting is changed, every submission (waiting list + trade) will keep going to whatever address Formspree has on file.
+
+**Waiting list:** `customerWaitlist` → `mdbzoyw` ([formspree.io/f/mbdbzoyw](https://formspree.io/f/mbdbzoyw)). **Trade:** `businessEnquiry` → `xykvneqj` ([formspree.io/f/xykvneqj](https://formspree.io/f/xykvneqj)). Confirm both have **info@koshichhyang.com** in Formspree **Settings → Email**.
+
+## 5. Test
 
 1. Open the live site → **Trade** → fill **Enquire** → submit.
 2. Check Formspree **Submissions** and **info@koshichhyang.com**.
 
 If IDs in `kc-forms-config.js` are still empty, submit opens a **mailto:** fallback to info@ (for local preview only).
 
-## 5. Optional Formspree settings
+## 6. Optional Formspree settings
 
 - **Redirect** — handled by hidden `_next` (set automatically by `kc-forms.js`).
 - **reCAPTCHA** — enable in Formspree dashboard if you get spam.

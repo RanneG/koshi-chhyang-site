@@ -3,23 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Koshi Chhyang — Heritage</title>
+  <title>Koshi Chhyang — Business enquiries</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="../assets/brand.css" />
-  <link rel="stylesheet" href="../assets/age-gate.css" />
+  <link rel="stylesheet" href="../../assets/brand.css" />
+  <link rel="stylesheet" href="../../assets/age-gate.css" />
   <link rel="stylesheet" href="assets/layout.css" />
-  <link rel="stylesheet" href="assets/images.css" />
-  <link rel="stylesheet" href="../assets/site-nav.css" />
+  <link rel="stylesheet" href="../../assets/site-nav.css" />
   <link rel="stylesheet" href="assets/page-loader.css" />
   <link rel="stylesheet" href="assets/landing.css" />
-  <link rel="stylesheet" href="assets/family-card.css" />
+  <link rel="stylesheet" href="assets/btn-playful.css" />
   <link rel="stylesheet" href="assets/site-footer.css" />
-  <link rel="stylesheet" href="../assets/design-switcher.css" />
+  <link rel="stylesheet" href="../design-switcher.css" />
 </head>
-<body class="theme-heritage page-heritage">
-  <script src="../assets/age-gate.js"></script>
+<body class="page-business">
+  <script src="../../assets/age-gate.js"></script>
   <div id="page-loader" class="page-loader" aria-live="polite" aria-busy="false" aria-label="Loading">
     <div class="loader">
       <div class="truckWrapper">
@@ -69,120 +68,89 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"></path>
       <a href="index.html" class="site-nav__brand">Koshi Chhyang</a>
       <div class="site-nav__links">
         <a href="index.html" data-nav="home">Home</a>
-        <a href="heritage.html" data-nav="heritage" aria-current="page">Heritage</a>
+        <a href="heritage.html" data-nav="heritage">Heritage</a>
         <a href="collection.html" data-nav="collection">Collection</a>
-        <a href="business.html" data-nav="business">Business</a>
+        <a href="business.html" data-nav="business" aria-current="page">Business</a>
         <a href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener" data-nav="instagram">Instagram</a>
       </div>
-      <a href="#rsvp" class="site-nav__cta">RSVP</a>
+      <a href="index.html#rsvp" class="site-nav__cta">RSVP</a>
     </nav>
     <div class="site-nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
     <nav id="site-nav-drawer" class="site-nav__drawer" aria-label="Menu" aria-hidden="true">
       <div class="site-nav__drawer-panel">
         <a href="index.html" data-nav="home">Home</a>
-        <a href="heritage.html" data-nav="heritage" aria-current="page">Heritage</a>
+        <a href="heritage.html" data-nav="heritage">Heritage</a>
         <a href="collection.html" data-nav="collection">Collection</a>
-        <a href="business.html" data-nav="business">Business</a>
+        <a href="business.html" data-nav="business" aria-current="page">Business</a>
         <a href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener" data-nav="instagram">Instagram</a>
       </div>
     </nav>
   </header>
 
-  <section class="chapter dark">
-    <div class="inner" data-reveal>
-      <p class="eyebrow">01 · Koshi basin</p>
-      <h1>Grain, water, <em>time.</em></h1>
-      <p class="lead">Small-batch chhyang from heritage rice and patient fermentation — the slow pour before the celebration.</p>
+  <header class="page-hero" data-reveal>
+    <p class="section-label">Trade &amp; hospitality</p>
+    <h1>Partner with Koshi Chhyang</h1>
+    <p class="lead">Restaurants, retailers, and event hosts — tell us how you’d like to stock or serve our heritage rice wine.</p>
+  </header>
+
+  <main class="wrap">
+    <div data-reveal>
+      <p class="section-label">Ways to work with us</p>
+      <h2>At launch &amp; beyond</h2>
     </div>
-  </section>
+    <div class="paths">
+      <article class="path-card" id="restaurants" data-reveal data-reveal-delay="1">
+        <h3>Restaurants</h3>
+        <p>By-the-glass programs, pairing menus, and staff training for launch week.</p>
+      </article>
+      <article class="path-card" id="retail" data-reveal data-reveal-delay="2">
+        <h3>Retail</h3>
+        <p>Independent shops and stockists — limited batches, story-led POS.</p>
+      </article>
+      <article class="path-card" id="private" data-reveal data-reveal-delay="3">
+        <h3>Private orders</h3>
+        <p>Corporate events, celebrations, and bulk bottle orders after launch.</p>
+      </article>
+    </div>
 
-  <div class="heritage-panel" aria-label="Our story and craft">
-    <div class="heritage-panel__bg" aria-hidden="true"></div>
-    <div class="heritage-panel__overlay" aria-hidden="true"></div>
+    <section class="enquire-box" id="enquire" aria-labelledby="enquire-heading" data-reveal>
+      <h2 id="enquire-heading">Business enquiry</h2>
+      <p>Share a few details and we’ll come back before launch. For a quick reply, message us on Instagram.</p>
+      <form id="business-form" action="#" method="get">
+        <label for="biz-name">Your name</label>
+        <input id="biz-name" name="name" type="text" autocomplete="name" required />
 
-    <section class="chapter">
-      <div class="inner" data-reveal>
-        <p class="eyebrow">02 · Our story</p>
-        <h2>Our story</h2>
-        <p class="story-tagline">Why we brought Koshi Chhyang to the market.</p>
-        <p class="lead">Koshi Chhyang is a prominent UK-based Nepalese rice wine business on a mission to introduce the world to the exquisite flavours of authentic rice wine. Our pre-launch preparations are a testament to our commitment to quality and tradition.</p>
-        <p class="lead lead--tight">Join us in celebrating this unique beverage.</p>
-      </div>
-    </section>
+        <label for="biz-business">Business name</label>
+        <input id="biz-business" name="business" type="text" autocomplete="organization" required />
 
-    <section class="chapter">
-      <div class="inner" data-reveal>
-        <p class="eyebrow">03 · Craft</p>
-        <h2>From slow ferment to first sip</h2>
-        <p class="lead">Small batches, tended by hand. Milky warmth in brass, poured for the table — never rushed, never industrial.</p>
-        <div class="stats-row" data-reveal data-reveal-delay="1">
-          <div class="stat"><strong>5–7%</strong><span>ABV · food-friendly</span></div>
-          <div class="stat"><strong>2</strong><span>Weeks · minimum ferment</span></div>
+        <label for="biz-type">Enquiry type</label>
+        <select id="biz-type" name="type" required>
+          <option value="Restaurant / bar">Restaurant / bar</option>
+          <option value="Retail / stockist">Retail / stockist</option>
+          <option value="Private / corporate event">Private / corporate event</option>
+          <option value="Other">Other</option>
+        </select>
+
+        <label for="biz-email">Email</label>
+        <input id="biz-email" name="email" type="email" autocomplete="email" required />
+
+        <label for="biz-message">Message</label>
+        <textarea id="biz-message" name="message" placeholder="Tell us about your venue, volumes, and timeline…" required></textarea>
+
+        <div class="btn-row">
+          <button class="btn primary" type="submit">Send enquiry</button>
+          <a class="btn ghost" href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener">Message on Instagram</a>
         </div>
-      </div>
+      </form>
+      <p class="note">Pre-launch: enquiries open now; trade orders fulfil after July 2026 launch. We read every message.</p>
     </section>
-  </div>
-
-  <section class="chapter light family" aria-labelledby="family-heading">
-    <div class="inner" data-reveal>
-      <p class="eyebrow">04 · Our family</p>
-      <h2 id="family-heading">Meet our family</h2>
-      <p class="lead">Get to know the family behind Koshi Chhyang. Our team is dedicated to bringing you the finest selection of Nepalese rice wine and providing exceptional customer service.</p>
-      <div class="family-grid">
-        <article class="family-card" data-reveal data-reveal-delay="1">
-          <div class="family-card__avatar">
-            <span class="family-card__initial" aria-hidden="true">AM</span>
-            <img
-              class="family-card__img"
-              src="../assets/images/team/awisha-magar.jpg"
-              alt="Awisha Magar, Founder"
-              loading="lazy"
-              width="208"
-              height="208"
-              onerror="this.classList.add('is-missing')"
-            />
-          </div>
-          <div class="family-card__text">
-            <h3 class="family-card__name">Awisha Magar</h3>
-            <p class="family-card__role">Founder</p>
-          </div>
-        </article>
-        <article class="family-card" data-reveal data-reveal-delay="2">
-          <div class="family-card__avatar">
-            <span class="family-card__initial" aria-hidden="true">AV</span>
-            <img
-              class="family-card__img"
-              src="../assets/images/team/avash-magar.jpg"
-              alt="Avash Magar, Co-founder"
-              loading="lazy"
-              width="208"
-              height="208"
-              onerror="this.classList.add('is-missing')"
-            />
-          </div>
-          <div class="family-card__text">
-            <h3 class="family-card__name">Avash Magar</h3>
-            <p class="family-card__role">Co-founder</p>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="chapter dark" id="rsvp">
-    <div class="inner" data-reveal>
-      <p class="eyebrow">05 · Launch</p>
-      <h2>RSVP for the first pour</h2>
-      <p class="lead">18 July 2026 · 6pm · Folkestone, Kent. Limited seats — tasting, music, first-access pre-orders until 10pm.</p>
-      <p class="rsvp-link"><a href="https://www.instagram.com/koshichhyang/">RSVP via @koshichhyang</a></p>
-    </div>
-  </section>
+  </main>
 
   <footer class="site-footer" aria-label="Site footer">
     <div class="site-footer__inner">
       <div class="site-footer__brand">
         <div class="site-footer__mark" aria-hidden="true">
-          <img src="../assets/images/koshi-logo.svg" alt="" class="site-footer__logo" width="48" height="48" />
+          <img src="../../assets/images/koshi-logo.svg" alt="" class="site-footer__logo" width="48" height="48" />
         </div>
         <p class="site-footer__brand-name">Koshi<br />Chhyang</p>
       </div>
@@ -201,7 +169,7 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"></path>
       <nav class="site-footer__col" aria-label="Explore">
         <h3>Explore</h3>
         <a href="index.html">Home</a>
-        <a href="heritage.html" aria-current="page">Our story</a>
+        <a href="heritage.html">Our story</a>
         <a href="collection.html">Shop</a>
         <a href="../visit.html">Visit</a>
         <a href="../events.html">Events</a>
@@ -210,7 +178,7 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"></path>
       <nav class="site-footer__col" aria-label="More">
         <h3>More</h3>
         <a href="../stockists.html">Where to buy</a>
-        <a href="business.html">Trade &amp; wholesale</a>
+        <a href="business.html" aria-current="page">Trade &amp; wholesale</a>
         <a href="https://www.instagram.com/koshichhyang/" target="_blank" rel="noopener">Instagram</a>
       </nav>
       <div class="site-footer__col site-footer__newsletter" id="footer-newsletter">
@@ -231,10 +199,26 @@ h78.747C231.693,100.736,232.77,106.162,232.77,111.694z"></path>
   </footer>
 
   <script src="assets/landing.js"></script>
-  <script src="../assets/site-nav.js"></script>
+  <script src="../../assets/site-nav.js"></script>
+  <script src="assets/btn-playful.js" defer></script>
+  <script>
+    document.getElementById("business-form").addEventListener("submit", function (e) {
+      e.preventDefault();
+      var name = document.getElementById("biz-name").value.trim();
+      var business = document.getElementById("biz-business").value.trim();
+      var type = document.getElementById("biz-type").value;
+      var email = document.getElementById("biz-email").value.trim();
+      var message = document.getElementById("biz-message").value.trim();
+      var subject = encodeURIComponent("Koshi Chhyang — business enquiry: " + business);
+      var body = encodeURIComponent(
+        "Name: " + name + "\nBusiness: " + business + "\nType: " + type + "\nEmail: " + email + "\n\n" + message
+      );
+      window.location.href = "mailto:hello@koshichhyang.com?subject=" + subject + "&body=" + body;
+    });
+  </script>
 <p class="design-switcher" data-design-switcher>
     <a href="#" data-design-switch-target>View new site</a>
   </p>
-  <script src="../assets/design-switcher.js"></script>
+  <script src="../design-switcher.js"></script>
 </body>
 </html>

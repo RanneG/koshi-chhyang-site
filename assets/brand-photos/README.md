@@ -9,7 +9,7 @@ python3 scripts/install_brand_photos.py
 python3 scripts/build_deploy.py
 ```
 
-That writes optimised JPEGs to `assets/images/` per `assets/brand-photos-manifest.json` (hero, event band, shop range, community carousel, team).
+That writes optimised JPEGs to `assets/images/` per `assets/brand-photos-manifest.json` (hero, event band, shop range, etc.). **Team portraits** are separate: `python scripts/fetch_wix_team.py`.
 
 ## Add or swap a photo
 

@@ -76,16 +76,9 @@
     "collection/reserve-oak-chhyang.jpg": {
       "file": "101_0779-2bd8d7d3-4b25-4476-b269-bf3ca0aa47cf.png",
       "aspect": "4:3"
-    },
-    "team/awisha-magar.jpg": {
-      "file": "101_0819-f435cd8a-c1dd-4e0d-905b-837b36b29e34.png",
-      "aspect": "1:1"
-    },
-    "team/avash-magar.jpg": {
-      "file": "5E55AF5B-24EC-42EC-8813-269E548AE701-4cf66a21-8063-4bcf-81c9-d042bcfac88c.png",
-      "aspect": "1:1"
     }
   },
+  "team_portraits": "Not in slots — run python scripts/fetch_wix_team.py (Wix: awisha magar ELEVATE, IMG_7096)",
   "archive_in_sources": [
     "101_0778-a91ae5f9-d82a-4d23-8ffb-7d92caca7b12.png",
     "101_0800-0ed428ff-2258-408b-9c6d-1bf709349371.png",

@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="assets/palette-warm.js"></script>
   <link rel="icon" href="assets/images/koshi-logo.svg" type="image/svg+xml" />
   <title>Koshi Chhyang</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,6 +11,7 @@
   <link rel="stylesheet" href="assets/brand.css" />
   <link rel="stylesheet" href="assets/site-nav.css" />
   <link rel="stylesheet" href="assets/theme-preview.css" />
+  <link rel="stylesheet" href="assets/theme-site.css" />
   <link rel="stylesheet" href="assets/kc-forms.css" />
   <link rel="stylesheet" href="assets/theme-preview-pages.css" />
   <link rel="stylesheet" href="assets/theme-preview-promise-stack.css" />
@@ -19,7 +19,6 @@
   <link rel="stylesheet" href="assets/theme-preview-home.css" />
   <link rel="stylesheet" href="assets/theme-preview-community.css" />
   <link rel="stylesheet" href="assets/age-gate.css" />
-  <link rel="stylesheet" href="assets/design-switcher.css" />
   <script>
     (function () {
       var simple = window.matchMedia(
@@ -155,13 +154,6 @@
     </div>
   </section>
 
-  <section class="preview-range-hero" id="range" aria-labelledby="range-heading">
-    <div class="preview-range-hero__inner">
-      <h2 id="range-heading" class="preview-range-hero__headline">Visit the brewery</h2>
-      <a class="btn-preview btn-preview--white" href="business.html">Book Tour</a>
-    </div>
-  </section>
-
   <section class="preview-section preview-section--smoke" id="visit" aria-labelledby="visit-heading">
     <div class="preview-section__inner preview-event">
       <div>
@@ -249,7 +241,7 @@
         <form class="preview-newsletter preview-newsletter--inline preview-newsletter--light kc-form" data-kc-form="customer" name="customer-waitlist" method="POST">
           <input type="text" name="_gotcha" class="kc-form__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
           <label class="visually-hidden" for="newsletter-email">Email</label>
-          <input id="newsletter-email" type="email"           <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+          <input id="newsletter-email" type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
           <button type="submit" class="btn-preview btn-preview--red">Join waiting list</button>
         </form>
       </div>
@@ -351,11 +343,8 @@
   <script src="assets/community-notes.js"></script>
   <script src="assets/community-carousel.js"></script>
   <script src="assets/countdown.js"></script>
-<p class="design-switcher" data-design-switcher>
-    <a href="#" data-design-switch-target>View classic site</a>
-  </p>
-  <script src="assets/kc-forms-config.js"></script>
+  <p class="site-archive-link"><a href="archive/">Earlier design experiments</a></p>
+<script src="assets/kc-forms-config.js"></script>
   <script src="assets/kc-forms.js"></script>
-  <script src="assets/design-switcher.js"></script>
 </body>
 </html>
