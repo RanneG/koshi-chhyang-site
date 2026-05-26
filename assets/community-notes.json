@@ -1,6 +1,6 @@
 {
   "source": "https://www.instagram.com/koshichhyang/",
-  "note": "Post images map via posts.*.thumb (synced @koshichhyang slots). Handles below are placeholders until you import real comments: Import-CommunityComments.bat",
+  "note": "Updated from community-comments-export.json via merge_community_comments.py",
   "posts": {
     "hero": {
       "thumb": "hero.jpg",
@@ -33,52 +33,67 @@
   },
   "comments": [
     {
-      "handle": "folkestone_eats",
-      "name": "Folkestone Eats",
-      "post": "hero",
-      "text": "Never tried Nepalese rice wine before — this looks incredible. Saving the launch date 📍"
-    },
-    {
-      "handle": "homebrew_kent",
-      "name": "Homebrew Kent",
-      "post": "brew",
-      "text": "The ferment story in your reel is so good. Proper slow craft — can't wait to taste at launch."
-    },
-    {
-      "handle": "maya.kitchen",
-      "name": "Maya",
-      "post": "pour",
-      "text": "That pour colour is gorgeous 😍 when can we buy?"
-    },
-    {
-      "handle": "gurkha_heritage_uk",
-      "name": "Gurkha Heritage UK",
-      "post": "product-1",
-      "text": "Chhyang done properly — proud to see this in Kent. See you in Folkestone."
-    },
-    {
-      "handle": "wineandthyme",
-      "name": "Wine & Thyme",
-      "post": "product-2",
-      "text": "Beautiful branding — love the bottle on this one. Following for launch news."
-    },
-    {
-      "handle": "kentfoodscene",
-      "name": "Kent Food Scene",
+      "handle": "midlandpress",
+      "name": "midlandpress",
       "post": "product-3",
-      "text": "A story that actually means something. Rooting for you 🙌"
+      "text": "midlandpress",
+      "when": "on Instagram"
     },
     {
-      "handle": "folkestone_wine_club",
-      "name": "Folkestone Wine Club",
-      "post": "event",
-      "text": "Counted down to July — exactly the kind of producer Kent needs. See you at launch 🥂"
+      "handle": "dorrieandmarthabrunn",
+      "name": "dorrieandmarthabrunn",
+      "post": "product-3",
+      "text": "dorrieandmarthabrunn",
+      "when": "on Instagram"
     },
     {
-      "handle": "nepali_flavours",
-      "name": "Nepali Flavours",
+      "handle": "mychi_pham",
+      "name": "mychi_pham",
       "post": "pour",
-      "text": "That golden pour — tastes like home already. Respect for keeping it traditional."
+      "text": "So excited!!",
+      "when": "on Instagram"
+    },
+    {
+      "handle": "seresastore",
+      "name": "seresastore",
+      "post": "pour",
+      "text": "this is amazing, I'm so excited for you!!!",
+      "when": "on Instagram"
+    },
+    {
+      "handle": "geelagirl",
+      "name": "geelagirl",
+      "post": "pour",
+      "text": "yayyy!!!!",
+      "when": "on Instagram"
+    },
+    {
+      "handle": "uswizzyy",
+      "name": "uswizzyy",
+      "post": "pour",
+      "text": "😍😍😍",
+      "when": "on Instagram"
+    },
+    {
+      "handle": "alvin.khatri",
+      "name": "alvin.khatri",
+      "post": "pour",
+      "text": "I really like the taste of koshichhyang which was really gives Nepali taste and thank you so much for koshichhyang teams.",
+      "when": "on Instagram"
+    },
+    {
+      "handle": "serima.s",
+      "name": "serima.s",
+      "post": "pour",
+      "text": "EYYYYY!! drop us a few test bottles then 😛",
+      "when": "on Instagram"
+    },
+    {
+      "handle": "dolmayuki",
+      "name": "dolmayuki",
+      "post": "pour",
+      "text": "So lucky to see the journey 🤞✨",
+      "when": "on Instagram"
     }
   ]
 }
