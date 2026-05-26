@@ -1,15 +1,20 @@
 /**
- * Promise stack + launch countdown overlap (GSAP ScrollTrigger).
- * Overlap pattern inspired by Skiper UI Skiper44 (https://skiper-ui.com/v1/skiper44)
- * and vercel.com — cream promise sheet covers the hero, craft lines accumulate,
- * then onyx/garnet countdown scrolls up over the light band. Not a copy of Skiper source.
+ * Home overlap: hero → promise → countdown.
+ * Production uses stacked layout (static). GSAP scrub is opt-in only.
  */
 (function () {
   "use strict";
 
+  /** Set true locally to test Skiper-style scrub; keep false for live reliability. */
+  var ENABLE_OVERLAP_SCRUB = false;
+
+  var OVERLAP_HASH_IDS = {
+    "behind-every-pour": true,
+    countdown: true,
+  };
+
   var root = document.querySelector("[data-overlap-scroll]");
   if (!root) return;
-  root.classList.add("preview-overlap--booting");
 
   var track = root.querySelector(".preview-overlap__track");
   var pinEl = root.querySelector("[data-overlap-pin]");
@@ -19,33 +24,17 @@
   var prefix = stack && stack.querySelector("[data-promise-prefix], .preview-promise__prefix");
   var lines = root.querySelectorAll("[data-promise-line]");
   var darkPanel = root.querySelector(".preview-overlap__panel--dark");
-  if (
-    !track ||
-    !pinEl ||
-    !heroStage ||
-    !lightPanel ||
-    !stack ||
-    !prefix ||
-    !lines.length ||
-    !darkPanel
-  ) {
-    root.classList.add("preview-overlap--static");
-    return;
-  }
+  var timeline = null;
+  var resizeObserver = null;
 
   var motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   var narrowQuery = window.matchMedia("(max-width: 47.99rem)");
   var touchQuery = window.matchMedia("(hover: none) and (pointer: coarse)");
-  var timeline = null;
-  var resizeObserver = null;
 
-  /** Longer hero phase so the splash stays visible until the cream sheet covers it. */
   var HERO_SEGMENT = 1.05;
   var LINE_SEGMENT = 0.6;
   var OVERLAP_SEGMENT = 0.8;
-  /** Brief beat after the hero is covered before craft lines begin. */
   var LINE_PHASE_DELAY = 0.12;
-  /** Viewport heights of scrub per timeline unit (hero cover + lines + countdown). */
   var SCROLL_UNIT = 0.42;
 
   function prefersReduced() {
@@ -56,18 +45,21 @@
     return narrowQuery.matches;
   }
 
-  /** Sticky scrub overlap is unreliable on phones; use stacked sections instead. */
   function shouldAnimateOverlap() {
+    if (!ENABLE_OVERLAP_SCRUB) return false;
     if (prefersReduced()) return false;
     if (isNarrowViewport()) return false;
     if (touchQuery.matches) return false;
     return true;
   }
 
+  function hashTargetsBelowOverlap() {
+    var id = window.location.hash && window.location.hash.slice(1);
+    return id && !OVERLAP_HASH_IDS[id];
+  }
+
   function measurePrefixTravel() {
-    if (lines.length < 2) {
-      return 56;
-    }
+    if (lines.length < 2) return 56;
     var firstTop = lines[0].offsetTop;
     var lastTop = lines[lines.length - 1].offsetTop;
     return Math.max(56, lastTop - firstTop);
@@ -89,13 +81,14 @@
 
   function clearGsap() {
     if (typeof gsap === "undefined") return;
-    gsap.set(lightPanel, { clearProps: "transform" });
-    gsap.set(darkPanel, { clearProps: "transform" });
-    gsap.set(prefix, { clearProps: "transform" });
-    gsap.set(lines, { clearProps: "all" });
+    if (lightPanel) gsap.set(lightPanel, { clearProps: "transform" });
+    if (darkPanel) gsap.set(darkPanel, { clearProps: "transform" });
+    if (prefix) gsap.set(prefix, { clearProps: "transform" });
+    if (lines.length) gsap.set(lines, { clearProps: "all" });
   }
 
   function setTrackScrollRoom(totalUnits) {
+    if (!track) return;
     var roomVh = totalUnits * SCROLL_UNIT * 100;
     track.style.setProperty("--overlap-scroll-vh", roomVh.toFixed(2));
   }
@@ -112,10 +105,6 @@
     root.classList.remove("preview-overlap--scrub-ready");
   }
 
-  /**
-   * Mark overlap complete for sections below (RSVP z-index). Never collapse pin
-   * height or clear transforms — that breaks reverse scrub.
-   */
   function releaseOverlap() {
     root.classList.add("preview-overlap--released");
   }
@@ -125,15 +114,32 @@
     clearGsap();
     clearScrubReady();
     engageOverlap();
-    track.style.removeProperty("--overlap-scroll-vh");
-    root.classList.remove("preview-overlap--animated");
+    if (track) track.style.removeProperty("--overlap-scroll-vh");
+    root.classList.remove(
+      "preview-overlap--animated",
+      "preview-overlap--booting",
+      "preview-overlap--released"
+    );
     root.classList.add("preview-overlap--static");
-    root.classList.remove("preview-overlap--booting");
-    stack.classList.add("preview-promise--static");
-    setLatest(lines.length - 1);
+    if (stack) stack.classList.add("preview-promise--static");
+    if (lines.length) setLatest(lines.length - 1);
   }
 
   function build() {
+    if (
+      !track ||
+      !pinEl ||
+      !heroStage ||
+      !lightPanel ||
+      !stack ||
+      !prefix ||
+      !lines.length ||
+      !darkPanel
+    ) {
+      showStatic();
+      return;
+    }
+
     killTimeline();
     clearScrubReady();
     engageOverlap();
@@ -150,6 +156,7 @@
       return;
     }
 
+    root.classList.add("preview-overlap--booting");
     gsap.registerPlugin(ScrollTrigger);
     root.classList.add("preview-overlap--animated");
 
@@ -162,10 +169,7 @@
     var darkOverlapStart = linePhaseStart + (lineCount - 0.35) * LINE_SEGMENT;
 
     setTrackScrollRoom(totalUnits);
-
-    /* Panels off-screen via yPercent only (no force3D — it pins y in px and stacks with yPercent). */
     gsap.set([lightPanel, darkPanel], { y: 0, yPercent: 100 });
-    /* Drop CSS translate fallback so it does not stack with GSAP yPercent. */
     markScrubReady();
 
     timeline = gsap.timeline({
@@ -178,9 +182,7 @@
         onEnter: engageOverlap,
         onEnterBack: engageOverlap,
         onLeave: function (self) {
-          if (self.direction === 1) {
-            releaseOverlap();
-          }
+          if (self.direction === 1) releaseOverlap();
         },
         onLeaveBack: engageOverlap,
         onUpdate: function (self) {
@@ -212,47 +214,28 @@
     timeline.fromTo(
       lightPanel,
       { yPercent: 100, y: 0 },
-      {
-        yPercent: 0,
-        y: 0,
-        duration: HERO_SEGMENT,
-        ease: "none",
-        immediateRender: true,
-      },
+      { yPercent: 0, y: 0, duration: HERO_SEGMENT, ease: "none", immediateRender: true },
       0
     );
 
     timeline.fromTo(
       darkPanel,
       { yPercent: 100, y: 0 },
-      {
-        yPercent: 0,
-        y: 0,
-        duration: OVERLAP_SEGMENT,
-        ease: "none",
-        immediateRender: true,
-      },
+      { yPercent: 0, y: 0, duration: OVERLAP_SEGMENT, ease: "none", immediateRender: true },
       darkOverlapStart
     );
 
     if (prefixTravel > 0) {
       timeline.to(
         prefix,
-        {
-          y: prefixTravel,
-          duration: linePhaseDuration,
-          ease: "none",
-        },
+        { y: prefixTravel, duration: linePhaseDuration, ease: "none" },
         linePhaseStart
       );
     }
 
     for (var i = 0; i < lineCount; i += 1) {
-      var line = lines[i];
-      var pos = linePhaseStart + i * LINE_SEGMENT;
-
       timeline.fromTo(
-        line,
+        lines[i],
         { opacity: 0, y: 28 },
         {
           opacity: 1,
@@ -261,14 +244,19 @@
           ease: "power2.out",
           immediateRender: false,
         },
-        pos
+        linePhaseStart + i * LINE_SEGMENT
       );
     }
 
     if (timeline.scrollTrigger) {
       timeline.scrollTrigger.update();
-      timeline.progress(timeline.scrollTrigger.progress);
+      if (!hashTargetsBelowOverlap()) {
+        timeline.progress(timeline.scrollTrigger.progress);
+      } else {
+        timeline.progress(0);
+      }
     }
+
     root.classList.remove("preview-overlap--booting");
 
     if (!resizeObserver && typeof ResizeObserver !== "undefined") {
@@ -287,9 +275,40 @@
       resizeObserver = null;
     }
     build();
-    if (typeof ScrollTrigger !== "undefined") {
-      ScrollTrigger.refresh();
+    if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+  }
+
+  function scrollToPageHash() {
+    var id = window.location.hash && window.location.hash.slice(1);
+    if (!id) return;
+    var target = document.getElementById(id);
+    if (!target) return;
+
+    if (!OVERLAP_HASH_IDS[id]) {
+      showStatic();
+      releaseOverlap();
     }
+
+    var marginTop = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    var top = target.getBoundingClientRect().top + window.scrollY - marginTop;
+
+    if (
+      timeline &&
+      timeline.scrollTrigger &&
+      top > timeline.scrollTrigger.end + 8
+    ) {
+      releaseOverlap();
+      if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+      top = target.getBoundingClientRect().top + window.scrollY - marginTop;
+    }
+
+    window.scrollTo(0, Math.max(0, top));
+  }
+
+  function init() {
+    if (hashTargetsBelowOverlap()) showStatic();
+    build();
+    if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
   }
 
   if (motionQuery.addEventListener) {
@@ -310,36 +329,10 @@
     touchQuery.addListener(onModeChange);
   }
 
-  function init() {
-    build();
-    if (typeof ScrollTrigger !== "undefined") {
-      ScrollTrigger.refresh();
-    }
-  }
-
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", init);
   } else {
     init();
-  }
-
-  function scrollToPageHash() {
-    var id = window.location.hash && window.location.hash.slice(1);
-    if (!id) return;
-    var target = document.getElementById(id);
-    if (!target) return;
-    var marginTop = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
-    var top = target.getBoundingClientRect().top + window.scrollY - marginTop;
-    if (
-      timeline &&
-      timeline.scrollTrigger &&
-      top > timeline.scrollTrigger.end + 8
-    ) {
-      releaseOverlap();
-      ScrollTrigger.refresh();
-      top = target.getBoundingClientRect().top + window.scrollY - marginTop;
-    }
-    window.scrollTo(0, Math.max(0, top));
   }
 
   window.addEventListener("load", function () {
@@ -349,6 +342,7 @@
     ) {
       showStatic();
     }
+    if (hashTargetsBelowOverlap()) showStatic();
     if (typeof ScrollTrigger !== "undefined") {
       ScrollTrigger.refresh();
       requestAnimationFrame(function () {
@@ -361,6 +355,7 @@
   });
 
   window.addEventListener("pageshow", function () {
+    if (hashTargetsBelowOverlap()) showStatic();
     onModeChange();
   });
 })();
