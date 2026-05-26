@@ -36,6 +36,8 @@ Deploy excludes dev-only assets (import HTML, SVG placeholders, `load-photos.js`
 
 **Forms:** [Formspree](https://formspree.io) — customer waiting list + trade enquiry (`business.html`). Set form IDs in **`assets/kc-forms-config.js`**; notifications to **info@koshichhyang.com**. See **`docs/EMAIL-FORMS.md`**.
 
+**Community carousel (real IG comments):** **`docs/COMMUNITY-NOTES-IMPORT.md`** — fetch/merge into **`assets/community-notes.json`**.
+
 **What ships:** `index.html`, `heritage.html`, `collection.html`, `business.html`, `assets/`, redirect stubs, `.nojekyll`.
 
 Edit production HTML at the **repo root** (`index.html`, etc.). See **`archive/README.md`** for retired layouts.
