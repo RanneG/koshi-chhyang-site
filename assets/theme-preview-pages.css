@@ -69,7 +69,10 @@
       rgb(11 9 10 / 0.68) 62%,
       rgb(11 9 10 / 0.82) 100%
     ),
-    url("images/event.jpg");
+    image-set(
+      url("images/event.webp") type("image/webp"),
+      url("images/event.jpg") type("image/jpeg")
+    );
   background-repeat: no-repeat;
   background-position: center 40%;
   background-size: cover;
@@ -550,7 +553,10 @@
 .page-theme-preview .preview-heritage-band__bg {
   position: absolute;
   inset: 0;
-  background-image: url("images/product-1.jpg");
+  background-image: image-set(
+    url("images/product-1.webp") type("image/webp"),
+    url("images/product-1.jpg") type("image/jpeg")
+  );
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 55% 22%;

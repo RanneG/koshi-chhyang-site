@@ -62,6 +62,34 @@ html.kc-overlap-simple
   position: relative;
 }
 
+/* Boot-safe fallback: keep hero visible until JS marks static or scrub-ready. */
+.page-theme-preview .preview-overlap.preview-overlap--booting .preview-overlap__pin {
+  position: relative;
+  min-height: min(100vh, 920px);
+  height: min(100vh, 920px);
+  overflow: hidden;
+}
+
+.page-theme-preview .preview-overlap.preview-overlap--booting .preview-overlap__hero.preview-hero {
+  position: relative;
+  inset: auto;
+  min-height: min(100vh, 920px);
+}
+
+.page-theme-preview .preview-overlap.preview-overlap--booting .preview-overlap__panel--light,
+.page-theme-preview .preview-overlap.preview-overlap--booting .preview-overlap__panel--dark {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  min-height: 0;
+  height: 0;
+  margin: 0;
+  overflow: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
 /* Scroll room for scrub (set --overlap-scroll-vh from JS; fallback matches default units) */
 .page-theme-preview .preview-overlap--animated .preview-overlap__track {
   min-height: calc(100vh + var(--overlap-scroll-vh, 146) * 1vh);

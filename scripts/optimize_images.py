@@ -45,7 +45,12 @@ def main() -> None:
             img.save(path, "PNG", optimize=True)
 
         webp_path = path.with_suffix(".webp")
-        img.save(webp_path, "WEBP", quality=WEBP_QUALITY, method=6)
+        if webp_path.is_file():
+            print(
+                f"  skip webp {webp_path.relative_to(ROOT)} (keep existing — e.g. Instagram export)"
+            )
+        else:
+            img.save(webp_path, "WEBP", quality=WEBP_QUALITY, method=6)
 
         after = path.stat().st_size
         saved += before - after

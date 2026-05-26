@@ -483,17 +483,14 @@ html {
       rgb(42 49 75 / 0.32) 62%,
       var(--vanilla-cream) 100%
     ),
-    url("images/event.jpg");
+    image-set(
+      url("images/event.webp") type("image/webp"),
+      url("images/event.jpg") type("image/jpeg")
+    );
 }
 
 .site-archive-link {
-  margin: 0;
-  padding: 0.85rem var(--page-gutter, 1.25rem) 1.35rem;
-  text-align: center;
-  font-family: var(--font-body, system-ui, sans-serif);
-  font-size: 0.8rem;
-  background: var(--pale-slate, #bbc2cc);
-  color: var(--dark-slate-grey, #183a37);
+  display: none !important;
 }
 
 .site-archive-link a {

@@ -26,12 +26,14 @@
       "aspect": "4:3"
     },
     "event.jpg": {
-      "file": "101_0812-8fcfb714-4f72-46c0-894f-e66d9cd3099a.png",
-      "aspect": "21:9"
+      "file": "101_0792-c0cf62ce-8be5-44ea-ad32-43d4efbca6f6.png",
+      "aspect": "21:9",
+      "note": "Bar bottles — launch / tasting atmosphere"
     },
     "product-1.jpg": {
-      "file": "101_0792-c0cf62ce-8be5-44ea-ad32-43d4efbca6f6.png",
-      "aspect": "4:3"
+      "file": "101_0812-8fcfb714-4f72-46c0-894f-e66d9cd3099a.png",
+      "aspect": "4:3",
+      "note": "Heritage band — team at the table (Our story)"
     },
     "product-2.jpg": {
       "file": "IMG_7868-ddefe985-659d-4f53-810c-0d6204d51350.png",

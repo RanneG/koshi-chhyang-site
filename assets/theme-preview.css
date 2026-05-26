@@ -960,7 +960,11 @@
   justify-content: center;
   min-height: 50vh;
   padding: var(--space-section) var(--page-gutter);
-  background: url("images/event.jpg") center / cover no-repeat;
+  background: image-set(
+      url("images/event.webp") type("image/webp"),
+      url("images/event.jpg") type("image/jpeg")
+    )
+    center / cover no-repeat;
   color: var(--white-smoke);
 }
 

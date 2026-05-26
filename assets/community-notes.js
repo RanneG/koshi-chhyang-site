@@ -89,12 +89,18 @@
     if (thumb) {
       var img = document.createElement("img");
       img.className = "note-thumb";
-      img.src = assets + "images/" + thumb;
+      var base = thumb.replace(/\.(jpe?g|webp)$/i, "");
+      img.src = assets + "images/" + base + ".webp";
       img.alt = posts[comment.post]
         ? "Instagram post: " + posts[comment.post].caption
         : "";
       img.loading = "lazy";
       img.onerror = function () {
+        if (!img.dataset.fallback) {
+          img.dataset.fallback = "1";
+          img.src = assets + "images/" + base + ".jpg";
+          return;
+        }
         img.remove();
       };
       article.appendChild(img);

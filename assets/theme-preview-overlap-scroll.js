@@ -9,6 +9,7 @@
 
   var root = document.querySelector("[data-overlap-scroll]");
   if (!root) return;
+  root.classList.add("preview-overlap--booting");
 
   var track = root.querySelector(".preview-overlap__track");
   var pinEl = root.querySelector("[data-overlap-pin]");
@@ -127,6 +128,7 @@
     track.style.removeProperty("--overlap-scroll-vh");
     root.classList.remove("preview-overlap--animated");
     root.classList.add("preview-overlap--static");
+    root.classList.remove("preview-overlap--booting");
     stack.classList.add("preview-promise--static");
     setLatest(lines.length - 1);
   }
@@ -267,6 +269,7 @@
       timeline.scrollTrigger.update();
       timeline.progress(timeline.scrollTrigger.progress);
     }
+    root.classList.remove("preview-overlap--booting");
 
     if (!resizeObserver && typeof ResizeObserver !== "undefined") {
       resizeObserver = new ResizeObserver(function () {
@@ -355,5 +358,9 @@
     } else {
       scrollToPageHash();
     }
+  });
+
+  window.addEventListener("pageshow", function () {
+    onModeChange();
   });
 })();

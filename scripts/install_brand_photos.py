@@ -1,4 +1,7 @@
-"""Install brand photography from assets/brand-photos/ into assets/images/."""
+"""Install brand photography from assets/brand-photos/ into assets/images/ (.jpg fallbacks).
+
+Instagram .webp files in assets/images/ are canonical — this script does not touch them.
+"""
 from __future__ import annotations
 
 import json

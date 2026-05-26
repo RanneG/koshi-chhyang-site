@@ -23,13 +23,6 @@ PAGES = [
     "thank-you.html",
 ]
 
-ARCHIVE_LEGACY_PAGES = [
-    "archive/legacy/index.html",
-    "archive/legacy/heritage.html",
-    "archive/legacy/collection.html",
-    "archive/legacy/business.html",
-]
-
 ASSET_SKIP = {
     "import-photos.html",
     "import-comments.html",
@@ -73,11 +66,11 @@ REDIRECTS = """# Legacy concept paths (bookmarks)
 /dev/theme-preview-stockists.html /stockists.html 301
 /dev/theme-preview-index.html / 301
 
-# Classic site moved under /archive/legacy/
-/legacy/index.html /archive/legacy/index.html 301
-/legacy/heritage.html /archive/legacy/heritage.html 301
-/legacy/collection.html /archive/legacy/collection.html 301
-/legacy/business.html /archive/legacy/business.html 301
+# Classic-site paths no longer published
+/legacy/index.html / 301
+/legacy/heritage.html /heritage.html 301
+/legacy/collection.html /collection.html 301
+/legacy/business.html /business.html 301
 """
 
 REDIRECT_HTML = """<!DOCTYPE html>
@@ -170,34 +163,10 @@ def main() -> None:
     for rel in PAGES:
         copy_page(rel)
 
-    for rel in ARCHIVE_LEGACY_PAGES:
-        copy_page(rel)
-
-    archive_src = ROOT / "archive"
-    if archive_src.is_dir():
-        for child in archive_src.iterdir():
-            if child.name == "legacy":
-                continue
-            dest = DIST / "archive" / child.name
-            if child.is_dir():
-                for sub in child.iterdir():
-                    copy_tree(sub, dest / sub.name)
-            else:
-                dest.parent.mkdir(parents=True, exist_ok=True)
-                shutil.copy2(child, dest)
-        print("  archive/ (except legacy pages copied above)")
-
     assets_src = ROOT / "assets"
     assets_dest = DIST / "assets"
     for child in assets_src.iterdir():
         copy_tree(child, assets_dest / child.name)
-
-    legacy_assets_src = ROOT / "archive" / "legacy" / "assets"
-    legacy_assets_dest = DIST / "archive" / "legacy" / "assets"
-    if legacy_assets_src.is_dir():
-        for child in legacy_assets_src.iterdir():
-            copy_tree(child, legacy_assets_dest / child.name)
-        print("  archive/legacy/assets/")
 
     (DIST / "_redirects").write_text(REDIRECTS, encoding="utf-8")
     print("  _redirects")
@@ -209,8 +178,7 @@ def main() -> None:
 
     print(f"\nDone — deploy contents of: {DIST}")
     print("Entry URL: /")
-    print("Design archive: /archive/")
-    print("Classic site: /archive/legacy/")
+    print("Design archive excluded from deploy.")
 
 
 if __name__ == "__main__":
