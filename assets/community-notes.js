@@ -4,6 +4,43 @@
 (function () {
   var root = document.querySelector("[data-community-notes-root]");
   if (!root) return;
+  var FALLBACK_DATA = {
+    posts: {
+      hero: { thumb: "hero.jpg", caption: "UK launch / brand intro" },
+      pour: { thumb: "pour.jpg", caption: "Pour reel" },
+      brew: { thumb: "brew.jpg", caption: "Fermentation / brew reel" },
+      "product-1": { thumb: "product-1.jpg", caption: "Heritage / Gurkha story" },
+      "product-2": { thumb: "product-2.jpg", caption: "Bottle & branding" },
+      "product-3": { thumb: "product-3.jpg", caption: "Terroir / landscape" },
+      event: { thumb: "event.jpg", caption: "Launch tasting / event" },
+    },
+    comments: [
+      {
+        handle: "folkestone_eats",
+        name: "Folkestone Eats",
+        post: "hero",
+        text: "Never tried Nepalese rice wine before — this looks incredible. Saving the launch date.",
+      },
+      {
+        handle: "homebrew_kent",
+        name: "Homebrew Kent",
+        post: "brew",
+        text: "The ferment story in your reel is so good. Proper slow craft — can't wait to taste at launch.",
+      },
+      {
+        handle: "maya.kitchen",
+        name: "Maya",
+        post: "pour",
+        text: "That pour colour is gorgeous. When can we buy?",
+      },
+      {
+        handle: "gurkha_heritage_uk",
+        name: "Gurkha Heritage UK",
+        post: "product-1",
+        text: "Chhyang done properly — proud to see this in Kent. See you in Folkestone.",
+      },
+    ],
+  };
 
   var script = document.querySelector('script[src*="community-notes.js"]');
   var assets =
@@ -90,8 +127,7 @@
     })
     .then(render)
     .catch(function () {
-      root.innerHTML =
-        '<p class="sub">Community notes load when served over HTTP (e.g. Open-Preview.bat).</p>';
+      render(FALLBACK_DATA);
       document.dispatchEvent(new CustomEvent("community-notes:error"));
       document.dispatchEvent(new CustomEvent("community-notes:ready"));
     });
