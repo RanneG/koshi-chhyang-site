@@ -9,7 +9,7 @@
  */
 window.KC_FORMSPREE = {
   /** Waiting list — https://formspree.io/f/mbdbzoyw */
-  customerWaitlist: "mdbzoyw",
+  customerWaitlist: "mbdbzoyw",
   /** Trade / business — https://formspree.io/f/xykvneqj */
   businessEnquiry: "xykvneqj",
 };
