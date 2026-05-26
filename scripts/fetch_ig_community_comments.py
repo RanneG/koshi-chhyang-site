@@ -35,9 +35,32 @@ POST_HINTS: list[tuple[str, str]] = [
     ("event", "505407617"),
 ]
 
-USERNAME = "koshichhyang"
+PROFILE = "koshichhyang"
 MAX_POSTS = 12
 MAX_COMMENTS_PER_POST = 8
+
+
+def default_instaloader_session(login_user: str) -> Path | None:
+    """Windows: %LOCALAPPDATA%\\Instaloader\\session-<login_user>"""
+    local = os.environ.get("LOCALAPPDATA", "")
+    if not local:
+        return None
+    path = Path(local) / "Instaloader" / f"session-{login_user}"
+    return path if path.is_file() else None
+
+
+def resolve_login_user() -> str:
+    return os.environ.get("IG_LOGIN", os.environ.get("INSTALOADER_LOGIN", "rannegerodias")).strip()
+
+
+def resolve_session_path(login_user: str) -> Path | None:
+    custom = os.environ.get("IG_SESSION_FILE", "").strip()
+    if custom:
+        p = Path(custom)
+        return p if p.is_file() else None
+    if SESSION.is_file():
+        return SESSION
+    return default_instaloader_session(login_user)
 
 
 def post_key_from_url(url: str) -> str:
@@ -67,16 +90,19 @@ def load_loader():
         loader.context._session.cookies.set("sessionid", sessionid, domain=".instagram.com")
         return loader
 
-    if SESSION.is_file():
-        loader.load_session_from_file(USERNAME, str(SESSION))
+    login_user = resolve_login_user()
+    session_path = resolve_session_path(login_user)
+    if session_path:
+        loader.load_session_from_file(login_user, str(session_path))
         return loader
 
     raise SystemExit(
         "No Instagram session.\n"
-        "Option A: instaloader --login YOUR_IG_USERNAME, then copy the session file to:\n"
-        f"  {SESSION}\n"
-        "Option B: set IG_SESSIONID for this shell (from browser cookies while logged in).\n"
-        "Option C: manual export via assets/import-comments.html (see docs/COMMUNITY-NOTES-IMPORT.md)."
+        f"Log in: python -m instaloader --login {login_user}\n"
+        f"Session file (Windows): %LOCALAPPDATA%\\Instaloader\\session-{login_user}\n"
+        f"Or copy to: {SESSION}\n"
+        "Or set IG_SESSIONID (browser cookie while logged into instagram.com).\n"
+        "Manual export: assets/import-comments.html (docs/COMMUNITY-NOTES-IMPORT.md)."
     )
 
 
@@ -84,7 +110,7 @@ def fetch_blocks() -> list[dict]:
     loader = load_loader()
     import instaloader
 
-    profile = instaloader.Profile.from_username(loader.context, USERNAME)
+    profile = instaloader.Profile.from_username(loader.context, PROFILE)
     blocks: list[dict] = []
 
     for i, post in enumerate(profile.get_posts()):
@@ -102,7 +128,7 @@ def fetch_blocks() -> list[dict]:
                     break
                 handle = (comment.owner.username or "").strip()
                 text = (comment.text or "").strip()
-                if not handle or not text or handle.lower() == USERNAME:
+                if not handle or not text or handle.lower() == PROFILE:
                     continue
                 if len(text) < 3:
                     continue
@@ -147,7 +173,7 @@ def fetch_from_html(html_path: Path) -> list[dict]:
         except json.JSONDecodeError:
             continue
         blob = json.dumps(data)
-        if USERNAME not in blob.lower():
+        if PROFILE not in blob.lower():
             continue
         # Best-effort: pull handle + text pairs
         pairs = re.findall(
@@ -167,7 +193,7 @@ def fetch_from_html(html_path: Path) -> list[dict]:
         comments = []
         seen = set()
         for handle, raw_text in pairs:
-            if handle.lower() == USERNAME:
+            if handle.lower() == PROFILE:
                 continue
             text_clean = raw_text.encode().decode("unicode_escape")
             key = handle + text_clean[:40]
@@ -208,7 +234,7 @@ def main() -> None:
         print(f"Parsing saved HTML: {html_arg}")
         blocks = fetch_from_html(html_arg)
     else:
-        print(f"Fetching comments from @{USERNAME}…")
+        print(f"Fetching comments from @{PROFILE}…")
         blocks = fetch_blocks()
 
     if not blocks:

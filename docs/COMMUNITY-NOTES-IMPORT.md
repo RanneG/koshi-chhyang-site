@@ -7,18 +7,21 @@ The home carousel reads **`assets/community-notes.json`**. To use **real @koshic
 ### A — Instaloader session (fastest repeat runs)
 
 1. Install: `pip install instaloader`
-2. Log in once (creates a session file in your home folder):
+2. Log in once (use **module form** — `instaloader` may not be on PATH):
    ```powershell
-   instaloader --login YOUR_IG_USERNAME
+   python -m instaloader --login rannegerodias
    ```
-3. Copy the session file into this repo (create folder first):
+   Session saves to: `%LOCALAPPDATA%\Instaloader\session-rannegerodias`
+
+3. Optional: copy session into repo (or the fetch script auto-finds the file above):
    ```powershell
    mkdir .secrets
-   copy "$env:USERPROFILE\.config\instaloader\session-YOUR_IG_USERNAME" .secrets\session-koshichhyang
+   copy "$env:LOCALAPPDATA\Instaloader\session-rannegerodias" .secrets\session-koshichhyang
    ```
-   Or set **`IG_SESSIONID`** in the shell (Instagram cookie `sessionid` while logged in on instagram.com).
 
-4. Fetch + merge:
+4. **Wait ~5–10 minutes** if Instagram says “Please wait a few minutes before you try again” (rate limit after login attempts).
+
+5. Fetch + merge:
    ```powershell
    python scripts/fetch_ig_community_comments.py
    python scripts/merge_community_comments.py
