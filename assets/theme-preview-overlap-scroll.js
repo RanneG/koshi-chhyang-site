@@ -1,12 +1,11 @@
 /**
- * Home overlap: hero → promise → countdown.
- * Production uses stacked layout (static). GSAP scrub is opt-in only.
+ * Home overlap: hero → promise → countdown (GSAP ScrollTrigger scrub).
+ * Falls back to stacked layout on mobile, touch, or reduced motion.
  */
 (function () {
   "use strict";
 
-  /** Set true locally to test Skiper-style scrub; keep false for live reliability. */
-  var ENABLE_OVERLAP_SCRUB = false;
+  var ENABLE_OVERLAP_SCRUB = true;
 
   var OVERLAP_HASH_IDS = {
     "behind-every-pour": true,
@@ -51,11 +50,6 @@
     if (isNarrowViewport()) return false;
     if (touchQuery.matches) return false;
     return true;
-  }
-
-  function hashTargetsBelowOverlap() {
-    var id = window.location.hash && window.location.hash.slice(1);
-    return id && !OVERLAP_HASH_IDS[id];
   }
 
   function measurePrefixTravel() {
@@ -248,15 +242,7 @@
       );
     }
 
-    if (timeline.scrollTrigger) {
-      timeline.scrollTrigger.update();
-      if (!hashTargetsBelowOverlap()) {
-        timeline.progress(timeline.scrollTrigger.progress);
-      } else {
-        timeline.progress(0);
-      }
-    }
-
+    syncTimelineToScroll();
     root.classList.remove("preview-overlap--booting");
 
     if (!resizeObserver && typeof ResizeObserver !== "undefined") {
@@ -278,16 +264,17 @@
     if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
   }
 
+  function syncTimelineToScroll() {
+    if (!timeline || !timeline.scrollTrigger) return;
+    timeline.scrollTrigger.update();
+    timeline.progress(timeline.scrollTrigger.progress);
+  }
+
   function scrollToPageHash() {
     var id = window.location.hash && window.location.hash.slice(1);
     if (!id) return;
     var target = document.getElementById(id);
     if (!target) return;
-
-    if (!OVERLAP_HASH_IDS[id]) {
-      showStatic();
-      releaseOverlap();
-    }
 
     var marginTop = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
     var top = target.getBoundingClientRect().top + window.scrollY - marginTop;
@@ -298,15 +285,21 @@
       top > timeline.scrollTrigger.end + 8
     ) {
       releaseOverlap();
-      if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
-      top = target.getBoundingClientRect().top + window.scrollY - marginTop;
     }
 
     window.scrollTo(0, Math.max(0, top));
+
+    if (typeof ScrollTrigger !== "undefined") {
+      ScrollTrigger.refresh();
+      syncTimelineToScroll();
+    }
+
+    if (!OVERLAP_HASH_IDS[id]) {
+      releaseOverlap();
+    }
   }
 
   function init() {
-    if (hashTargetsBelowOverlap()) showStatic();
     build();
     if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
   }
@@ -342,12 +335,12 @@
     ) {
       showStatic();
     }
-    if (hashTargetsBelowOverlap()) showStatic();
     if (typeof ScrollTrigger !== "undefined") {
       ScrollTrigger.refresh();
       requestAnimationFrame(function () {
         scrollToPageHash();
         ScrollTrigger.refresh();
+        syncTimelineToScroll();
       });
     } else {
       scrollToPageHash();
@@ -355,7 +348,15 @@
   });
 
   window.addEventListener("pageshow", function () {
-    if (hashTargetsBelowOverlap()) showStatic();
     onModeChange();
+    if (window.location.hash) {
+      requestAnimationFrame(function () {
+        scrollToPageHash();
+      });
+    }
+  });
+
+  window.addEventListener("hashchange", function () {
+    scrollToPageHash();
   });
 })();
