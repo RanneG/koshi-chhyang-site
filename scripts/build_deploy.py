@@ -21,6 +21,7 @@ PAGES = [
     "guide.html",
     "stockists.html",
     "thank-you.html",
+    "tickets.html",
 ]
 
 ASSET_SKIP = {

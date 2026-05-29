@@ -1,0 +1,49 @@
+.main {
+  max-width: 36rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+.card {
+  background: var(--white);
+  border: 2px solid var(--dark-slate-grey);
+  padding: 2rem 1.5rem;
+}
+
+.eyebrow {
+  font-family: var(--font-heading);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clay-soil);
+  margin: 0 0 0.5rem;
+}
+
+.card h1 {
+  font-family: var(--font-heading);
+  font-size: 2.5rem;
+  margin: 0 0 1rem;
+}
+
+.summary {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: var(--eggshell);
+}
+
+.summary dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--blue-slate);
+}
+
+.summary dd {
+  margin: 0 0 0.75rem;
+  font-weight: 600;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--blue-slate);
+}

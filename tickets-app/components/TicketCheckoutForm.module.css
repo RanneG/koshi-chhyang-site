@@ -1,0 +1,237 @@
+.wrap {
+  max-width: 42rem;
+  margin: 0 auto;
+  padding: 1.5rem clamp(1rem, 4vw, 2rem) 3rem;
+}
+
+.hero {
+  margin-bottom: 2rem;
+}
+
+.eyebrow {
+  font-family: var(--font-heading);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clay-soil);
+  margin: 0 0 0.5rem;
+}
+
+.hero h1 {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 6vw, 3rem);
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin: 0 0 0.75rem;
+  color: var(--dark-slate-grey);
+}
+
+.lead {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  margin: 0 0 1.5rem;
+}
+
+.facts {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 1.25rem;
+  background: var(--white);
+  border: 2px solid var(--dark-slate-grey);
+}
+
+.facts dt {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--clay-soil);
+  margin-bottom: 0.25rem;
+}
+
+.facts dd {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+.meta {
+  color: var(--blue-slate);
+  font-size: 0.9rem;
+}
+
+.banner {
+  background: #fff4e8;
+  border: 1px solid var(--golden-apricot);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 0.25rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section {
+  background: var(--white);
+  border: 2px solid var(--dark-slate-grey);
+  padding: 1.25rem;
+}
+
+.section h2 {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 0 0 0.75rem;
+}
+
+.hint {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: var(--blue-slate);
+}
+
+.ticketRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border-top: 1px solid var(--khaki-beige);
+}
+
+.ticketRow h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.ticketSub {
+  margin: 0.2rem 0;
+  font-size: 0.88rem;
+  color: var(--blue-slate);
+}
+
+.price {
+  margin: 0;
+  font-family: var(--font-heading);
+  font-size: 1.35rem;
+  letter-spacing: 0.05em;
+  color: var(--clay-soil);
+}
+
+.qty {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.qty button {
+  width: 2.25rem;
+  height: 2.25rem;
+  border: 2px solid var(--dark-slate-grey);
+  background: var(--eggshell);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 0.15rem;
+}
+
+.qty button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.qty span {
+  min-width: 1.5rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.total {
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 2px solid var(--dark-slate-grey);
+  font-size: 1.05rem;
+}
+
+.label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 1rem 0 0.35rem;
+}
+
+.optional {
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+  color: var(--blue-slate);
+}
+
+.input,
+.select {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 2px solid var(--dark-slate-grey);
+  background: var(--eggshell);
+  font: inherit;
+  color: var(--dark-slate-grey);
+}
+
+.input:focus-visible,
+.select:focus-visible,
+.qty button:focus-visible,
+.submit:focus-visible {
+  outline: 2px solid var(--crimson-carrot);
+  outline-offset: 2px;
+}
+
+.fieldError {
+  margin: 0.35rem 0 0;
+  color: var(--crimson-carrot);
+  font-size: 0.88rem;
+}
+
+.formError {
+  margin: 0;
+  padding: 0.85rem 1rem;
+  background: #fdecea;
+  border: 1px solid var(--crimson-carrot);
+  color: var(--dark-slate-grey);
+}
+
+.submit {
+  appearance: none;
+  border: 0;
+  background: var(--crimson-carrot);
+  color: var(--white);
+  font: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 0.9rem 1.25rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.submit:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.secure {
+  margin: 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--blue-slate);
+}
+
+@media (min-width: 640px) {
+  .facts {
+    grid-template-columns: 1fr 1fr;
+  }
+}
