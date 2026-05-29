@@ -10,6 +10,10 @@
 window.KC_FORMSPREE = {
   /** Waiting list — https://formspree.io/f/mbdbzoyw */
   customerWaitlist: "mbdbzoyw",
-  /** Trade / business — https://formspree.io/f/xykvneqj */
-  businessEnquiry: "xykvneqj",
+  /**
+   * Trade / business — uses the waitlist form until you create a dedicated
+   * “Business enquiry” form on Formspree and paste its ID here.
+   * (xykvneqj was invalid / deleted on Formspree.)
+   */
+  businessEnquiry: "mbdbzoyw",
 };

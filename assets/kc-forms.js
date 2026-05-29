@@ -98,6 +98,54 @@
     el.value = value;
   }
 
+  function submitFormspree(form) {
+    var btn = form.querySelector('[type="submit"]');
+    var hp = form.querySelector('input[name="_gotcha"]');
+    if (hp && hp.value) return;
+
+    if (btn) {
+      btn.disabled = true;
+      if (!btn.dataset.kcLabel) btn.dataset.kcLabel = btn.textContent;
+      btn.textContent = "Sending…";
+    }
+    showStatus(form, "Sending…", true);
+
+    fetch(form.action, {
+      method: "POST",
+      body: new FormData(form),
+      headers: { Accept: "application/json" },
+    })
+      .then(function (res) {
+        return res.json().then(function (data) {
+          if (res.ok) {
+            window.location.href = thankYouUrl();
+            return;
+          }
+          var msg =
+            (data && data.error) ||
+            (data && data.errors && data.errors[0] && data.errors[0].message) ||
+            "Could not send your message.";
+          throw new Error(msg);
+        });
+      })
+      .catch(function (err) {
+        showStatus(
+          form,
+          (err && err.message ? err.message + " — " : "") +
+            "Please try again or email " +
+            TO_EMAIL +
+            " directly.",
+          false
+        );
+      })
+      .finally(function () {
+        if (btn) {
+          btn.disabled = false;
+          if (btn.dataset.kcLabel) btn.textContent = btn.dataset.kcLabel;
+        }
+      });
+  }
+
   function wireFormspree(form, id, subject) {
     form.method = "POST";
     form.removeAttribute("data-netlify");
@@ -105,6 +153,11 @@
     form.action = formspreeAction(id);
     ensureHidden(form, "_next", thankYouUrl());
     if (subject) ensureHidden(form, "_subject", subject);
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      submitFormspree(form);
+    });
   }
 
   function wireForm(form) {

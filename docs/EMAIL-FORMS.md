@@ -55,7 +55,9 @@ The HTML only sends data to Formspree. **Who receives email is chosen in the For
 
 Until that setting is changed, every submission (waiting list + trade) will keep going to whatever address Formspree has on file.
 
-**Waiting list:** `customerWaitlist` → `mdbzoyw` ([formspree.io/f/mbdbzoyw](https://formspree.io/f/mbdbzoyw)). **Trade:** `businessEnquiry` → `xykvneqj` ([formspree.io/f/xykvneqj](https://formspree.io/f/xykvneqj)). Confirm both have **info@koshichhyang.com** in Formspree **Settings → Email**.
+**Waiting list:** `customerWaitlist` → `mbdbzoyw` ([formspree.io/f/mbdbzoyw](https://formspree.io/f/mbdbzoyw)). **Trade:** currently shares `mbdbzoyw` (subject line tags trade vs waitlist) until you create a dedicated **Business enquiry** form and paste its ID into `businessEnquiry`. Confirm **info@koshichhyang.com** in Formspree **Settings → Email**.
+
+If submit shows **Form not found**, the ID in `kc-forms-config.js` does not match a live form in your Formspree account — create the form or fix the ID.
 
 ## 5. Test
 
