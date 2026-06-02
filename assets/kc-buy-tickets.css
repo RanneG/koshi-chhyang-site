@@ -1,6 +1,6 @@
 /**
  * Prominent “Buy tickets” CTA — Stripe Payment Link
- * Update the href on each .btn-buy-tickets if your link changes.
+ * URL: assets/kc-tickets-config.js (or href on each button)
  */
 
 .page-theme-preview .btn-buy-tickets {
@@ -8,10 +8,10 @@
   align-items: center;
   justify-content: center;
   gap: 0.35rem;
-  padding: 1rem 1.85rem;
+  padding: 1rem 1.5rem;
   min-height: 3.25rem;
   font-family: var(--font-body, "DM Sans", system-ui, sans-serif);
-  font-size: clamp(0.8rem, 2.8vw, 0.95rem);
+  font-size: clamp(0.85rem, 3vw, 1rem);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -42,6 +42,31 @@
 
 .page-theme-preview .btn-buy-tickets:active {
   transform: translateY(0);
+}
+
+/* Gentle pulse to draw attention */
+@media (prefers-reduced-motion: no-preference) {
+  .btn-buy-tickets--pulse {
+    animation: kc-ticket-pulse 2.4s ease-in-out infinite;
+  }
+}
+
+@keyframes kc-ticket-pulse {
+  0%,
+  100% {
+    box-shadow: 0 4px 18px rgb(247 79 28 / 0.4);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 6px 28px rgb(204 150 72 / 0.55);
+    transform: scale(1.02);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-buy-tickets--pulse {
+    animation: none;
+  }
 }
 
 /* Hero: primary action on teal poster */

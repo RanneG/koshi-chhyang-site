@@ -1,0 +1,105 @@
+/**
+ * Event FAQ + venue announcement block
+ */
+
+.kc-event-faq {
+  background: rgb(240 228 200 / 0.88);
+}
+
+.kc-event-faq__inner {
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.kc-event-faq__intro {
+  margin-bottom: 1.5rem;
+}
+
+.kc-event-faq details {
+  border: 2px solid #824532;
+  background: rgb(255 255 255 / 0.65);
+  margin-bottom: 0.65rem;
+}
+
+.kc-event-faq summary {
+  padding: 0.85rem 1rem;
+  font-weight: 600;
+  font-size: clamp(0.92rem, 2.5vw, 1rem);
+  cursor: pointer;
+  list-style: none;
+}
+
+.kc-event-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.kc-event-faq summary::after {
+  content: "+";
+  float: right;
+  font-weight: 700;
+  color: #824532;
+}
+
+.kc-event-faq details[open] summary::after {
+  content: "−";
+}
+
+.kc-event-faq details[open] summary {
+  border-bottom: 1px solid rgb(130 69 40 / 0.25);
+}
+
+.kc-event-faq__answer {
+  padding: 0 1rem 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 0.98rem);
+  line-height: 1.55;
+  color: #183a37;
+}
+
+.kc-venue-announce {
+  margin-top: 1.5rem;
+  padding: 1.25rem;
+  background: rgb(255 255 255 / 0.55);
+  border: 2px solid #cc9648;
+}
+
+.kc-venue-announce h3 {
+  margin: 0 0 0.5rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 1.15rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #824532;
+}
+
+.kc-venue-announce p {
+  margin: 0 0 1rem;
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
+}
+
+.kc-venue-announce .preview-newsletter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.kc-venue-announce .preview-newsletter input[type="email"] {
+  flex: 1 1 12rem;
+  min-width: 0;
+  min-height: 2.75rem;
+}
+
+.kc-venue-announce .preview-newsletter button {
+  flex: 1 1 auto;
+  min-height: 2.75rem;
+}
+
+@media (max-width: 24rem) {
+  .kc-venue-announce .preview-newsletter {
+    flex-direction: column;
+  }
+
+  .kc-venue-announce .preview-newsletter input,
+  .kc-venue-announce .preview-newsletter button {
+    width: 100%;
+  }
+}

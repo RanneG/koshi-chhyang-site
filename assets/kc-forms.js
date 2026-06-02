@@ -165,15 +165,22 @@
     form.dataset.kcWired = "1";
 
     var kind = form.getAttribute("data-kc-form");
-    var fsId = kind === "business" ? formId("businessEnquiry") : kind === "customer" ? formId("customerWaitlist") : "";
+    var fsId =
+      kind === "business"
+        ? formId("businessEnquiry")
+        : kind === "customer" || kind === "venue"
+          ? formId("customerWaitlist")
+          : "";
 
     if (fsId) {
       var subject =
         kind === "business"
           ? "Koshi Chhyang — trade enquiry"
-          : kind === "customer"
-            ? "Koshi Chhyang — customer waiting list"
-            : "";
+          : kind === "venue"
+            ? "Koshiyali Launch Tasting — venue address notification"
+            : kind === "customer"
+              ? "Koshi Chhyang — customer waiting list"
+              : "";
       wireFormspree(form, fsId, subject);
       return;
     }

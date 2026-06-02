@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="assets/theme-site.css" />
   <link rel="stylesheet" href="assets/kc-grainy-bg.css" />
  <link rel="stylesheet" href="assets/theme-preview-pages.css" />
+ <link rel="stylesheet" href="assets/kc-buy-tickets.css" />
+ <link rel="stylesheet" href="assets/kc-event-faq.css" />
+ <link rel="stylesheet" href="assets/kc-forms.css" />
  <link rel="stylesheet" href="assets/age-gate.css" />
 </head>
 <body class="page-theme-preview page-theme-preview--visit">
@@ -75,20 +78,27 @@
  </div>
 
  <header class="preview-page-hero preview-page-hero--visit" aria-label="Visit introduction">
- <p class="badge">Folkestone · 18 July 2026</p>
+ <p class="badge">Koshiyali Launch Tasting · 18 July 2026</p>
  <h1>Visit</h1>
  <p class="script">Your table is ready.</p>
- <p class="lead">Launch tasting now — tasting room and pop-ups to follow after we open. Doors from 6pm on launch night.</p>
+ <p class="lead">Koshiyali Launch Tasting in Folkestone — doors 6pm. Tasting room and pop-ups to follow after we open.</p>
  <div class="preview-hero__cta">
- <a class="btn-preview btn-preview--white" href="#launch">Launch night</a>
- <a class="btn-preview btn-preview--outline" href="/#newsletter">Join the list</a>
+ <a
+   class="btn-buy-tickets btn-buy-tickets--pulse"
+   data-auto-label="1"
+   href="https://buy.stripe.com/test_9B64gA4Ti1OB1Rd9UebQY00"
+   target="_blank"
+   rel="noopener noreferrer"
+ >Buy tickets — £20</a>
+ <a class="btn-preview btn-preview--white" href="#launch">Event details</a>
+ <a class="btn-preview btn-preview--outline" href="/#faq">Ticket FAQ</a>
  </div>
  </header>
  <section class="preview-section preview-section--cream" aria-labelledby="launch-heading">
  <div class="preview-section__inner preview-event preview-event--expanded">
  <div class="preview-event__intro">
- <p class="sub">Launch tasting</p>
- <h2 id="launch-heading">Launch night</h2>
+ <p class="sub">Koshiyali Launch Tasting</p>
+ <h2 id="launch-heading">18 July 2026 · Folkestone</h2>
  <p class="preview-event__lede">One night in Folkestone: limited seats, live music, our blend on the bar, and first-access pre-orders before the shop opens.</p>
  <p>We’ll pour our signature blend. Taste, ask questions, and order on the night.</p>
  <p>Doors at 6pm. Welcome pour, then a tasting flight. Light Nepalese-style food <span class="preview-event__tbc">(menu TBC with venue)</span>. Our founders will say hello. After that, music and open pours until 10pm. Dress up — we’ll look after the drinks.</p>
@@ -125,7 +135,26 @@
  <p class="preview-launch-schedule__footnote">Timings are a guide for launch night and may shift slightly once the venue is confirmed.</p>
  </div>
 
- <p class="preview-event__cta"><a class="btn-preview btn-preview--red" href="tickets.html">Get tickets</a></p>
+ <p class="preview-event__cta">
+ <a
+   class="btn-buy-tickets btn-buy-tickets--pulse"
+   data-auto-label="1"
+   href="https://buy.stripe.com/test_9B64gA4Ti1OB1Rd9UebQY00"
+   target="_blank"
+   rel="noopener noreferrer"
+ >Buy tickets — £20</a>
+ </p>
+ <div class="kc-venue-announce" id="venue-announce">
+ <h3>Venue address — coming soon</h3>
+ <p>We&apos;ll email the exact Folkestone address to ticket holders and anyone on the list below.</p>
+ <form class="preview-newsletter kc-form" data-kc-form="venue" name="venue-announce" method="POST">
+ <input type="text" name="_gotcha" class="kc-form__hp" tabindex="-1" autocomplete="off" aria-hidden="true" />
+ <input type="hidden" name="interest" value="venue-address-announcement" />
+ <label class="visually-hidden" for="venue-email-visit">Email</label>
+ <input id="venue-email-visit" type="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+ <button type="submit" class="btn-preview btn-preview--red">Notify me when venue is announced</button>
+ </form>
+ </div>
  </div>
  <aside class="preview-event__aside" aria-label="Event details">
  <dl class="preview-event__facts">
@@ -135,7 +164,7 @@
  </div>
  <div>
  <dt>Where</dt>
- <dd>Folkestone, Kent<br /><span class="preview-event__meta">Street address TBC</span></dd>
+ <dd>Folkestone, Kent<br /><span class="preview-event__meta">Address emailed before the event</span></dd>
  </div>
  <div>
  <dt>What</dt>
@@ -263,7 +292,9 @@
 <script src="assets/theme-preview-nav.js"></script>
  <script src="assets/theme-preview-marquee.js"></script>
   <p class="site-archive-link"><a href="archive/">Earlier design experiments</a></p>
-<script src="assets/kc-forms-config.js"></script>
+<script src="assets/kc-tickets-config.js"></script>
+ <script src="assets/kc-tickets-wire.js"></script>
+ <script src="assets/kc-forms-config.js"></script>
  <script src="assets/kc-forms.js"></script>
 </body>
 </html>

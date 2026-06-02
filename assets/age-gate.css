@@ -1,27 +1,25 @@
 /**
  * Age verification gate — UK 18+ (alcohol brand).
- * Production: brand.css tokens. Preview: red-room vars on .page-theme-preview.
- * See age-gate.js and docs/THEME-REDESIGN-DRAFT.md § Age gate.
  */
 
 .kc-age-gate {
-  --kc-gate-bg: var(--onyx, var(--primary));
-  --kc-gate-panel: var(--cream);
-  --kc-gate-text: var(--text, var(--onyx, #2c2c2a));
-  --kc-gate-muted: var(--silver, var(--primary-b, #55737a));
-  --kc-gate-accent: var(--strawberry-red, var(--accent));
-  --kc-gate-accent-hover: var(--mahogany-red-2, var(--primary));
-  --kc-gate-error: var(--mahogany-red, #a4161a);
-  --kc-gate-on-accent: var(--white, var(--cream));
+  --kc-gate-bg: #4a1c14;
+  --kc-gate-panel: #f4f2e1;
+  --kc-gate-text: #183a37;
+  --kc-gate-muted: #55737d;
+  --kc-gate-enter: #cc9648;
+  --kc-gate-enter-hover: #b85c28;
+  --kc-gate-leave: transparent;
+  --kc-gate-on-accent: #fff;
 
   position: fixed;
   inset: 0;
-  z-index: 10000;
+  z-index: 100000;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--page-gutter, clamp(1.25rem, 4vw, 2rem));
-  background: color-mix(in srgb, var(--kc-gate-bg) 92%, transparent);
+  padding: clamp(1rem, 4vw, 2rem);
+  background: rgb(74 28 20 / 0.94);
   color: var(--kc-gate-on-accent);
 }
 
@@ -30,131 +28,104 @@
 }
 
 .kc-age-gate__panel {
-  width: min(100%, 26rem);
+  width: min(100%, 22rem);
   padding: clamp(1.75rem, 5vw, 2.25rem);
   background: var(--kc-gate-panel);
   color: var(--kc-gate-text);
-  border: 1px solid color-mix(in srgb, var(--kc-gate-text) 12%, transparent);
-  box-shadow: 0 1rem 3rem color-mix(in srgb, var(--kc-gate-bg) 35%, transparent);
+  border: 2px solid #824532;
+  border-radius: 0.35rem;
+  box-shadow: 0 1rem 3rem rgb(0 0 0 / 0.35);
 }
 
 .kc-age-gate__title {
-  font-family: var(--font-display, Georgia, serif);
-  font-size: var(--text-title, clamp(1.5rem, 4vw, 2rem));
+  font-family: Georgia, "Cormorant Garamond", serif;
+  font-size: clamp(1.35rem, 4vw, 1.75rem);
   font-weight: 600;
-  line-height: 1.15;
-  margin-bottom: 0.75rem;
+  line-height: 1.2;
+  margin: 0 0 0.75rem;
 }
 
-.kc-age-gate__legal {
-  font-size: var(--text-body, 1rem);
+.kc-age-gate__legal,
+.kc-age-gate__note {
+  font-size: clamp(0.9rem, 2.5vw, 1rem);
   line-height: 1.5;
-  margin-bottom: 0.35rem;
+  margin: 0 0 0.65rem;
 }
 
 .kc-age-gate__note {
-  font-size: var(--text-small, 0.8125rem);
-  color: var(--kc-gate-muted);
-  margin-bottom: 1.5rem;
-}
-
-.kc-age-gate__fieldset {
-  border: 0;
-  margin: 0 0 1rem;
-  padding: 0;
-}
-
-.kc-age-gate__legend {
-  font-size: var(--text-small, 0.8125rem);
   font-weight: 600;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 0.65rem;
+  color: #824532;
+  margin-bottom: 1.35rem;
 }
 
-.kc-age-gate__dob {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+.kc-age-gate__actions {
+  display: flex;
+  flex-direction: column;
   gap: 0.65rem;
 }
 
-.kc-age-gate__field label {
-  display: block;
-  font-size: var(--text-small, 0.75rem);
-  margin-bottom: 0.25rem;
-  color: var(--kc-gate-muted);
-}
-
-.kc-age-gate__field input {
+.kc-age-gate__enter,
+.kc-age-gate__leave {
   width: 100%;
-  min-height: 2.75rem;
-  padding: 0.5rem 0.65rem;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
   font: inherit;
-  font-size: 1rem;
-  color: var(--kc-gate-text);
-  background: var(--white, #fff);
-  border: 1px solid color-mix(in srgb, var(--kc-gate-text) 22%, transparent);
-  border-radius: 2px;
-}
-
-.kc-age-gate__field input:focus {
-  outline: 2px solid var(--kc-gate-accent);
-  outline-offset: 1px;
-}
-
-.kc-age-gate__field input:invalid {
-  box-shadow: none;
-}
-
-.kc-age-gate__error {
-  min-height: 1.25rem;
-  margin: 0 0 0.75rem;
-  font-size: var(--text-small, 0.8125rem);
-  color: var(--kc-gate-error);
-}
-
-.kc-age-gate__error:empty {
-  margin-bottom: 0.25rem;
-}
-
-.kc-age-gate__submit {
-  width: 100%;
-  min-height: 2.75rem;
-  padding: 0.65rem 1rem;
-  font: inherit;
-  font-size: var(--text-body, 1rem);
+  font-size: clamp(0.82rem, 2.5vw, 0.95rem);
   font-weight: 600;
   letter-spacing: 0.04em;
-  text-transform: uppercase;
-  color: var(--kc-gate-on-accent);
-  background: var(--kc-gate-accent);
-  border: 1px solid var(--kc-gate-accent);
-  border-radius: 2px;
+  border-radius: 999px;
   cursor: pointer;
+  border: 2px solid transparent;
 }
 
-.kc-age-gate__submit:hover:not(:disabled) {
-  background: var(--kc-gate-accent-hover);
-  border-color: var(--kc-gate-accent-hover);
+.kc-age-gate__enter {
+  color: #fff;
+  background: linear-gradient(145deg, #f74f1c 0%, #b85c28 100%);
+  border-color: #824532;
+  box-shadow: 0 4px 16px rgb(130 69 40 / 0.45);
 }
 
-.kc-age-gate__submit:disabled {
-  opacity: 0.45;
-  cursor: not-allowed;
+.kc-age-gate__enter:hover,
+.kc-age-gate__enter:focus-visible {
+  background: linear-gradient(145deg, #e04514 0%, #824532 100%);
+  outline: 2px solid #cc9648;
+  outline-offset: 2px;
+}
+
+.kc-age-gate__leave {
+  color: var(--kc-gate-text);
+  background: var(--kc-gate-leave);
+  border-color: var(--kc-gate-muted);
+}
+
+.kc-age-gate__leave:hover,
+.kc-age-gate__leave:focus-visible {
+  background: rgb(85 115 125 / 0.12);
+  outline: 2px solid var(--kc-gate-muted);
+  outline-offset: 2px;
 }
 
 .kc-age-gate__denied {
   margin: 0;
-  font-size: var(--text-body, 1rem);
-  line-height: 1.5;
+  font-size: 0.95rem;
+  line-height: 1.55;
 }
 
-.kc-age-gate--denied .kc-age-gate__form {
+.kc-age-gate__denied a {
+  color: #824532;
+  font-weight: 600;
+}
+
+.kc-age-gate--denied .kc-age-gate__actions {
   display: none;
 }
 
 html.kc-age-gate-active {
   overflow: hidden;
+}
+
+html.kc-age-gate-active body > *:not(.kc-age-gate) {
+  visibility: hidden;
 }
 
 @media (prefers-reduced-motion: no-preference) {
