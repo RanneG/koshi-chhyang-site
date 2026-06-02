@@ -1,0 +1,87 @@
+/**
+ * Prominent “Buy tickets” CTA — Stripe Payment Link
+ * Update the href on each .btn-buy-tickets if your link changes.
+ */
+
+.page-theme-preview .btn-buy-tickets {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  padding: 1rem 1.85rem;
+  min-height: 3.25rem;
+  font-family: var(--font-body, "DM Sans", system-ui, sans-serif);
+  font-size: clamp(0.8rem, 2.8vw, 0.95rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  text-align: center;
+  color: #fff;
+  background: var(--crimson-carrot, #f74f1c);
+  border: 2px solid var(--crimson-carrot, #f74f1c);
+  border-radius: 999px;
+  box-shadow: 0 4px 18px rgb(247 79 28 / 0.4);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.page-theme-preview .btn-buy-tickets:hover,
+.page-theme-preview .btn-buy-tickets:focus-visible {
+  background: #e04514;
+  border-color: #e04514;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 26px rgb(247 79 28 / 0.5);
+  outline: 2px solid var(--eggshell, #f4f2e1);
+  outline-offset: 3px;
+}
+
+.page-theme-preview .btn-buy-tickets:active {
+  transform: translateY(0);
+}
+
+/* Hero: primary action on teal poster */
+.page-theme-preview--home .preview-hero__poster .btn-buy-tickets {
+  background: var(--crimson-carrot, #f74f1c);
+  border-color: var(--crimson-carrot, #f74f1c);
+}
+
+/* Countdown panel — centred below timer */
+.launch-countdown__tickets {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.launch-countdown__event-name {
+  margin: 0;
+  font-family: var(--font-display, "Cormorant Garamond", Georgia, serif);
+  font-size: clamp(1rem, 3vw, 1.15rem);
+  font-style: italic;
+  color: var(--eggshell, #f4f2e1);
+  opacity: 0.9;
+}
+
+@media (max-width: 36rem) {
+  .page-theme-preview .preview-hero__cta .btn-buy-tickets,
+  .launch-countdown__tickets .btn-buy-tickets {
+    width: 100%;
+    max-width: 20rem;
+  }
+
+  .page-theme-preview .preview-hero__cta {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .page-theme-preview .preview-hero__cta .btn-preview {
+    width: 100%;
+    max-width: 20rem;
+  }
+}
