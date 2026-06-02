@@ -1,0 +1,211 @@
+/**
+ * Site-wide grainy gradient — SVG noise + CSS gradients
+ * @see https://css-tricks.com/grainy-gradients/
+ */
+
+.page-theme-preview {
+  --kc-festive-deep: #4a1c14;
+  --kc-festive-maroon: #6d3828;
+  --kc-festive-clay: #824532;
+  --kc-festive-orange: #b85c28;
+  --kc-festive-gold: #cc9648;
+  --kc-festive-cream: #f0e4c8;
+
+  isolation: isolate;
+  position: relative;
+  min-height: 100vh;
+  /* Fallback when filter / noise unsupported */
+  background: linear-gradient(
+    180deg,
+    var(--kc-festive-deep) 0%,
+    var(--kc-festive-maroon) 22%,
+    var(--kc-festive-clay) 42%,
+    var(--kc-festive-orange) 62%,
+    var(--kc-festive-gold) 82%,
+    var(--kc-festive-cream) 100%
+  );
+}
+
+/* Solid at top → transparent lower band reveals grainy noise */
+.page-theme-preview::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    linear-gradient(
+      180deg,
+      var(--kc-festive-deep) 0%,
+      var(--kc-festive-maroon) 12%,
+      var(--kc-festive-clay) 28%,
+      transparent 58%
+    ),
+    url("noise.svg");
+  background-size: auto, 200px 200px;
+  filter: contrast(125%) brightness(850%);
+  will-change: auto;
+}
+
+/* Warm colour wash over noise */
+.page-theme-preview::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    rgb(74 28 20 / 0.88) 0%,
+    rgb(109 56 40 / 0.72) 30%,
+    rgb(184 92 40 / 0.5) 65%,
+    rgb(240 228 200 / 0.78) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Browsers without CSS filter on pseudo-elements */
+@supports not (filter: contrast(125%)) {
+  .page-theme-preview::before {
+    filter: none;
+    opacity: 0.4;
+    background:
+      linear-gradient(
+        180deg,
+        var(--kc-festive-deep) 0%,
+        var(--kc-festive-clay) 45%,
+        var(--kc-festive-gold) 100%
+      ),
+      url("noise.svg");
+    background-size: auto, 200px 200px;
+  }
+
+  .page-theme-preview::after {
+    mix-blend-mode: normal;
+    opacity: 0.65;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .page-theme-preview::before {
+    filter: none;
+    background: linear-gradient(
+      180deg,
+      var(--kc-festive-deep) 0%,
+      var(--kc-festive-clay) 50%,
+      var(--kc-festive-cream) 100%
+    );
+  }
+
+  .page-theme-preview::after {
+    display: none;
+  }
+}
+
+/* Lighter grain on small screens (performance) */
+@media (max-width: 47.99rem) {
+  .page-theme-preview::before {
+    background-size: auto, 140px 140px;
+    filter: contrast(115%) brightness(650%);
+  }
+}
+
+/* Keep page content above background */
+.page-theme-preview > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Semi-transparent section panels so grain shows through */
+.page-theme-preview:not(.page-theme-preview--collection) .preview-section--smoke,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--smoke,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-promise,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--cream,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-section--cream,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-cta-combined,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-section.preview-cta-combined {
+  background: rgb(240 228 200 / 0.82);
+  background-image: none;
+}
+
+.page-theme-preview:not(.page-theme-preview--collection) .site-footer {
+  background: rgb(238 232 209 / 0.9);
+}
+
+.page-theme-preview:not(.page-theme-preview--collection) .promo-marquee {
+  background: rgb(244 242 225 / 0.92);
+}
+
+.page-theme-preview:not(.page-theme-preview--collection) .preview-overlap__panel--dark.launch-countdown,
+.page-theme-preview:not(.page-theme-preview--collection) .launch-countdown {
+  background: rgb(42 28 38 / 0.92);
+  background-image: none;
+}
+
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--red,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-section--red {
+  background: rgb(109 56 40 / 0.9);
+  background-image: none;
+}
+
+/* Home hero poster — warm festive (replaces blue-slate) */
+.page-theme-preview--home .preview-hero__poster {
+  background: linear-gradient(
+    155deg,
+    var(--kc-festive-maroon) 0%,
+    var(--kc-festive-clay) 42%,
+    #5c2418 100%
+  );
+  background-image: none;
+}
+
+.page-theme-preview--home .preview-hero__poster .btn-preview--white {
+  background: var(--kc-festive-deep);
+  border-color: var(--kc-festive-deep);
+  box-shadow: 0 2px 12px rgb(0 0 0 / 0.2);
+}
+
+.page-theme-preview--home .preview-hero__poster .btn-preview--outline {
+  background: rgb(0 0 0 / 0.15);
+  backdrop-filter: blur(4px);
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
+}
+
+.page-theme-preview--home .preview-hero__poster .btn-preview--outline:hover,
+.page-theme-preview--home .preview-hero__poster .btn-preview--outline:focus-visible {
+  background: var(--eggshell, #f4f2e1);
+  color: var(--kc-festive-clay);
+  text-shadow: none;
+}
+
+/* Buttons stay readable on textured areas */
+.page-theme-preview .btn-preview,
+.page-theme-preview .btn-buy-tickets {
+  box-shadow: 0 2px 14px rgb(0 0 0 / 0.18);
+}
+
+.page-theme-preview .btn-preview--red,
+.page-theme-preview .btn-buy-tickets {
+  background: var(--crimson-carrot, #f74f1c);
+  color: #fff;
+  border-color: var(--crimson-carrot, #f74f1c);
+}
+
+.page-theme-preview .site-nav--primary {
+  box-shadow: 0 4px 20px rgb(0 0 0 / 0.15);
+}
+
+/* Collection shop variant — warm grain visible behind */
+.page-theme-preview--collection {
+  background: linear-gradient(
+    180deg,
+    var(--kc-festive-deep) 0%,
+    var(--kc-festive-clay) 40%,
+    var(--kc-festive-cream) 100%
+  );
+}
+
+.page-theme-preview--collection .preview-section,
+.page-theme-preview--collection .site-footer {
+  background: rgb(244 242 225 / 0.85);
+}
