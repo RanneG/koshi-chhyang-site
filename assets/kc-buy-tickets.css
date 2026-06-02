@@ -1,81 +1,67 @@
 /**
- * Prominent “Buy tickets” CTA — Stripe Payment Link
- * URL: assets/kc-tickets-config.js (or href on each button)
+ * Checkout step only — matches .btn-preview (not loud pill CTAs).
+ * Funnel: .btn-tickets-details → event details → .btn-buy-tickets[data-kc-checkout] → Stripe
  */
 
-.page-theme-preview .btn-buy-tickets {
+.page-theme-preview .btn-buy-tickets,
+.page-theme-preview .btn-tickets-details {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.35rem;
-  padding: 1rem 1.5rem;
-  min-height: 3.25rem;
+  padding: 0.85rem 1.35rem;
+  min-height: auto;
   font-family: var(--font-body, "DM Sans", system-ui, sans-serif);
-  font-size: clamp(0.85rem, 3vw, 1rem);
-  font-weight: 700;
-  letter-spacing: 0.12em;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   text-align: center;
   color: #fff;
   background: var(--crimson-carrot, #f74f1c);
   border: 2px solid var(--crimson-carrot, #f74f1c);
-  border-radius: 999px;
-  box-shadow: 0 4px 18px rgb(247 79 28 / 0.4);
-  transition:
-    background 0.2s ease,
-    border-color 0.2s ease,
-    transform 0.15s ease,
-    box-shadow 0.2s ease;
+  border-radius: 0;
+  box-shadow: none;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .page-theme-preview .btn-buy-tickets:hover,
-.page-theme-preview .btn-buy-tickets:focus-visible {
-  background: #e04514;
-  border-color: #e04514;
+.page-theme-preview .btn-buy-tickets:focus-visible,
+.page-theme-preview .btn-tickets-details:hover,
+.page-theme-preview .btn-tickets-details:focus-visible {
+  background: #d94314;
+  border-color: #d94314;
   color: #fff;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 26px rgb(247 79 28 / 0.5);
+  transform: none;
+  box-shadow: none;
   outline: 2px solid var(--eggshell, #f4f2e1);
-  outline-offset: 3px;
+  outline-offset: 2px;
 }
 
 .page-theme-preview .btn-buy-tickets:active {
-  transform: translateY(0);
+  transform: none;
 }
 
-/* Gentle pulse to draw attention */
-@media (prefers-reduced-motion: no-preference) {
-  .btn-buy-tickets--pulse {
-    animation: kc-ticket-pulse 2.4s ease-in-out infinite;
-  }
-}
-
-@keyframes kc-ticket-pulse {
-  0%,
-  100% {
-    box-shadow: 0 4px 18px rgb(247 79 28 / 0.4);
-    transform: scale(1);
-  }
-  50% {
-    box-shadow: 0 6px 28px rgb(204 150 72 / 0.55);
-    transform: scale(1.02);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .btn-buy-tickets--pulse {
-    animation: none;
-  }
-}
-
-/* Hero: primary action on teal poster */
-.page-theme-preview--home .preview-hero__poster .btn-buy-tickets {
+/* Cream/smoke bands — keep button text white (theme-site link colour excluded above) */
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--cream a.btn-buy-tickets,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--cream a.btn-tickets-details,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--smoke a.btn-buy-tickets,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--smoke a.btn-tickets-details,
+.page-theme-preview .preview-section--cream a.btn-buy-tickets,
+.page-theme-preview .preview-section--cream a.btn-tickets-details,
+.page-theme-preview .preview-event-row a.btn-buy-tickets,
+.page-theme-preview .preview-event-row a.btn-tickets-details,
+.page-theme-preview .preview-event__cta a.btn-buy-tickets {
+  color: #fff;
   background: var(--crimson-carrot, #f74f1c);
   border-color: var(--crimson-carrot, #f74f1c);
 }
 
-/* Countdown panel — centred below timer */
+.page-theme-preview .preview-event-row .btn-tickets-details,
+.page-theme-preview .launch-countdown__tickets .btn-tickets-details {
+  white-space: nowrap;
+}
+
 .launch-countdown__tickets {
   margin-top: 1.5rem;
   display: flex;
@@ -93,19 +79,22 @@
   opacity: 0.9;
 }
 
+.preview-event__cta--checkout {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgb(24 58 55 / 0.12);
+}
+
+.preview-event__checkout-note {
+  display: block;
+  margin-top: 0.65rem;
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.85;
+}
+
 @media (max-width: 36rem) {
-  .page-theme-preview .preview-hero__cta .btn-buy-tickets,
-  .launch-countdown__tickets .btn-buy-tickets {
-    width: 100%;
-    max-width: 20rem;
-  }
-
-  .page-theme-preview .preview-hero__cta {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .page-theme-preview .preview-hero__cta .btn-preview {
+  .page-theme-preview .launch-countdown__tickets .btn-tickets-details {
     width: 100%;
     max-width: 20rem;
   }

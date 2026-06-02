@@ -8,7 +8,7 @@
 }
 
 .page-theme-preview--home .preview-hero__poster {
-  /* Warm gradient — see kc-grainy-bg.css */
+  /* Blue-slate + subtle grain — assets/kc-hero-grain.css */
   color: var(--eggshell, #f4f2e1);
 }
 

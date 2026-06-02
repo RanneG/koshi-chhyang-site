@@ -404,13 +404,13 @@
   color: var(--clay-soil);
 }
 
-.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--cream a,
-.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--smoke a {
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--cream a:not(.btn-preview):not(.btn-buy-tickets):not(.btn-tickets-details),
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--smoke a:not(.btn-preview):not(.btn-buy-tickets):not(.btn-tickets-details) {
   color: var(--blue-slate);
 }
 
-.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--cream a:hover,
-.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--smoke a:hover {
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--cream a:not(.btn-preview):not(.btn-buy-tickets):not(.btn-tickets-details):hover,
+.page-theme-preview:not(.page-theme-preview--collection) .preview-chapter--smoke a:not(.btn-preview):not(.btn-buy-tickets):not(.btn-tickets-details):hover {
   color: var(--deep-teal);
 }
 

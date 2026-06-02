@@ -22,7 +22,6 @@
   <link rel="stylesheet" href="assets/theme-preview-home.css" />
   <link rel="stylesheet" href="assets/theme-preview-community.css" />
   <link rel="stylesheet" href="assets/kc-buy-tickets.css" />
-  <link rel="stylesheet" href="assets/kc-event-faq.css" />
   <link rel="stylesheet" href="assets/age-gate.css" />
   <script>
     (function () {
@@ -58,24 +57,19 @@
       <div class="site-nav__links">
         <a href="/" aria-current="page">Home</a>
         <a href="collection.html">Shop</a>
-        <a href="visit.html">Visit</a>
+       
         <a href="events.html">Events</a>
         <a href="business.html">Trade</a>
         <a href="heritage.html">Our story</a>
       </div>
-      <a
-        href="https://buy.stripe.com/test_9B64gA4Ti1OB1Rd9UebQY00"
-        class="site-nav__cta"
-        target="_blank"
-        rel="noopener noreferrer"
-      >Tickets</a>
+      <a href="events.html#launch" class="site-nav__cta">Tickets</a>
     </nav>
     <div class="site-nav__backdrop" data-nav-backdrop aria-hidden="true"></div>
     <nav id="site-nav-drawer" class="site-nav__drawer" aria-label="Menu" aria-hidden="true">
       <div class="site-nav__drawer-panel">
         <a href="/" aria-current="page">Home</a>
         <a href="collection.html">Shop</a>
-        <a href="visit.html">Visit</a>
+       
         <a href="events.html">Events</a>
         <a href="business.html">Trade</a>
         <a href="heritage.html">Our story</a>
@@ -117,17 +111,9 @@
             <p class="script">Patiently fermented.</p>
             <p class="lead">Nepalese rice wine — small-batch chhyang from heritage rice and marcha ferment, tended by hand until the pour is right.</p>
             <div class="preview-hero__cta">
-              <a
-                class="btn-buy-tickets btn-buy-tickets--pulse"
-                data-auto-label="1"
-                href="https://buy.stripe.com/test_9B64gA4Ti1OB1Rd9UebQY00"
-                target="_blank"
-                rel="noopener noreferrer"
-              >Buy tickets — £20</a>
               <a class="btn-preview btn-preview--white" href="collection.html">Shop</a>
               <a class="btn-preview btn-preview--outline" href="events.html">See events</a>
             </div>
-            <p class="preview-hero__note">Koshiyali Launch Tasting — 18 July 2026, Folkestone. Secure checkout via Stripe.</p>
           </div>
           <!-- Hero photo: hero-splash.webp (CSS on .preview-hero__photo) -->
           <div
@@ -167,13 +153,7 @@
           </div>
           <p class="countdown-sub">Launch 18 July 2026 · 6pm · Folkestone, Kent</p>
           <div class="launch-countdown__tickets">
-            <a
-              class="btn-buy-tickets btn-buy-tickets--pulse"
-              data-auto-label="1"
-              href="https://buy.stripe.com/test_9B64gA4Ti1OB1Rd9UebQY00"
-              target="_blank"
-              rel="noopener noreferrer"
-            >Buy tickets — £20</a>
+            <a class="btn-tickets-details" data-kc-details data-auto-label="1" href="events.html#launch">Buy tickets — £20</a>
           </div>
         </section>
       </div>
@@ -185,16 +165,10 @@
       <div>
         <p class="sub">Koshiyali Launch Tasting</p>
         <h2 id="visit-heading">Folkestone &amp; beyond</h2>
-        <p><strong>Koshiyali Launch Tasting — 18 July 2026</strong>, Folkestone — 6pm to 10pm. Tasting flight, music, limited seats, and first-access pre-orders from Koshi Chhyang. <a href="#countdown">Countdown on home</a> · <a href="#faq">Ticket FAQ</a>.</p>
+        <p><strong>Koshiyali Launch Tasting — 18 July 2026</strong>, Folkestone — 6pm to 10pm. Tasting flight, music, limited seats, and first-access pre-orders from Koshi Chhyang. <a href="#countdown">Countdown on home</a> · <a href="events.html#faq">Ticket FAQ</a>.</p>
         <p style="margin-top:1rem">
-          <a
-            class="btn-buy-tickets btn-buy-tickets--pulse"
-            data-auto-label="1"
-            href="https://buy.stripe.com/test_9B64gA4Ti1OB1Rd9UebQY00"
-            target="_blank"
-            rel="noopener noreferrer"
-          >Buy tickets — £20</a>
-          <a class="btn-preview btn-preview--red" href="visit.html" style="margin-left:0.5rem">Full event details</a>
+          <a class="btn-tickets-details" data-kc-details data-auto-label="1" href="events.html#launch">Buy tickets — £20</a>
+          <a class="btn-preview btn-preview--outline" href="events.html#launch-schedule" style="margin-left:0.5rem;border-color:var(--mahogany-red);color:var(--mahogany-red)">Full schedule</a>
         </p>
         <div class="kc-venue-announce" id="venue-announce">
           <h3>Venue address — coming soon</h3>
@@ -209,7 +183,7 @@
         </div>
         <p class="preview-visit-offers">
           <a href="#newsletter">Join the customer waiting list</a>
-          <a href="visit.html">Event schedule</a>
+          <a href="events.html#launch-schedule">Event schedule</a>
           <a href="business.html">Trade enquiries</a>
         </p>
       </div>
@@ -231,32 +205,6 @@
           <dd><a href="mailto:info@koshichhyang.com">info@koshichhyang.com</a> (TBC)</dd>
         </div>
       </dl>
-    </div>
-  </section>
-
-  <section class="preview-section kc-event-faq" id="faq" aria-labelledby="faq-heading">
-    <div class="preview-section__inner kc-event-faq__inner">
-      <div class="kc-event-faq__intro">
-        <p class="sub">Before you book</p>
-        <h2 id="faq-heading">Koshiyali Launch Tasting — ticket FAQ</h2>
-        <p>Answers for guests booking through our secure Stripe checkout (<a href="https://buy.stripe.com/test_9B64gA4Ti1OB1Rd9UebQY00" target="_blank" rel="noopener noreferrer">buy tickets — £20</a>).</p>
-      </div>
-      <details>
-        <summary>What does the £20 ticket include?</summary>
-        <p class="kc-event-faq__answer">Entry to the Koshiyali Launch Tasting on 18 July 2026 (doors 6pm), a welcome pour, tasting flight of Koshi Chhyang chhyang, and access to music and open pours until last pour at 10pm. Food pairing is planned and confirmed with the venue.</p>
-      </details>
-      <details>
-        <summary>Is my ticket refundable if the venue changes?</summary>
-        <p class="kc-event-faq__answer">If we move to a different Folkestone venue, your ticket remains valid and we will email all ticket holders with the new address. If the event is cancelled, we will contact you directly about refunds or transfers. For other requests, email <a href="mailto:info@koshichhyang.com">info@koshichhyang.com</a>.</p>
-      </details>
-      <details>
-        <summary>Are there ID requirements?</summary>
-        <p class="kc-event-faq__answer">Yes. This is an 18+ alcohol event in the UK. Please bring valid photo ID (passport or driving licence). We may check ID at the door.</p>
-      </details>
-      <details>
-        <summary>Is the venue accessible?</summary>
-        <p class="kc-event-faq__answer">We are confirming step-free access, toilets, and nearest parking with the venue. Once announced, accessibility details will be included in the venue email to all ticket holders and on this page. Contact us in advance if you have specific needs.</p>
-      </details>
     </div>
   </section>
 
@@ -331,14 +279,7 @@
           Folkestone, Kent
         </p>
         <p style="margin-top:0.75rem">
-          <a
-            class="btn-buy-tickets"
-            data-auto-label="1"
-            href="https://buy.stripe.com/test_9B64gA4Ti1OB1Rd9UebQY00"
-            target="_blank"
-            rel="noopener noreferrer"
-            style="font-size:0.75rem;padding:0.5rem 1rem;min-height:auto"
-          >Buy tickets — £20</a>
+          <a class="btn-tickets-details" data-kc-details data-auto-label="1" href="events.html#launch" style="font-size:0.75rem;padding:0.5rem 1rem">Buy tickets — £20</a>
         </p>
       </div>
       <nav class="site-footer__col" aria-label="Explore">
@@ -346,7 +287,7 @@
         <a href="/">Home</a>
         <a href="heritage.html">Our story</a>
         <a href="collection.html">Shop</a>
-        <a href="visit.html">Visit</a>
+       
         <a href="events.html">Events</a>
         <a href="guide.html">Guide to chhyang</a>
       </nav>
