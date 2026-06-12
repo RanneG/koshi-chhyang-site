@@ -4,8 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Koshi Chhyang — Patiently Fermented · Nepalese Rice Wine</title>
-  <meta name="description" content="Small-batch Nepalese chhyang from heritage rice and marcha ferment — a Gurkha family story, brewed in Kent. Shop the first release." />
-  <meta name="theme-color" content="#141119" />
+  <meta name="description" content="Small-batch Nepalese chhyang from heritage rice and marcha ferment — a Gurkha family story, brewed in Kent. An immersive journey from the Koshi hills to your table." />
+  <meta name="theme-color" content="#0d0a10" />
   <link rel="canonical" href="https://www.koshichhyang.com/" />
 
   <meta property="og:type" content="website" />
@@ -16,18 +16,22 @@
   <meta property="og:image" content="https://www.koshichhyang.com/assets/koshi-award-films/clip-2-poster.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="%23b4502a"/><text x="32" y="42" font-size="30" text-anchor="middle" fill="%23f4edde" font-family="serif">छ</text></svg>' />
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="30" fill="%23c14e28"/><text x="32" y="42" font-size="30" text-anchor="middle" fill="%23f3ecdc" font-family="serif">छ</text></svg>' />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&family=Noto+Serif+Devanagari:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/koshi-award.css" />
+
+  <script type="importmap">
+  { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js" } }
+  </script>
 </head>
-<body data-theme="paper">
+<body>
 
   <a class="skip-link" href="#lineage">Skip to content</a>
 
-  <!-- Film grain overlay -->
+  <!-- Film grain -->
   <svg class="grain" aria-hidden="true">
     <filter id="grain-filter">
       <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" stitchTiles="stitch" />
@@ -37,90 +41,134 @@
   </svg>
 
   <!-- Custom cursor -->
-  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor" aria-hidden="true">
+    <span class="cursor__ring"></span>
+    <span class="cursor__dot"></span>
+    <span class="cursor__label"></span>
+  </div>
 
   <!-- Preloader -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader__inner">
       <span class="preloader__dev">छ्याङ</span>
       <span class="preloader__count" id="preloaderCount">Day 01</span>
-      <span class="preloader__word">patience is the recipe</span>
+      <span class="preloader__step" id="preloaderStep">steam the rice</span>
+      <span class="preloader__bar"><span class="preloader__bar-fill" id="preloaderFill"></span></span>
     </div>
+    <span class="preloader__pct" id="preloaderPct">0</span>
   </div>
+
+  <!-- Scroll progress hairline -->
+  <span class="pageprogress" id="pageProgress" aria-hidden="true"></span>
 
   <!-- Navigation -->
   <header class="nav" id="nav">
-    <a class="nav__brand" href="#top">
+    <a class="nav__brand" href="#top" data-magnetic>
       <span class="nav__brand-en">Koshi Chhyang</span>
       <span class="nav__brand-ne">छ्याङ</span>
     </a>
     <nav class="nav__links" aria-label="Sections">
-      <a href="#lineage" data-chapter="01">The Lineage</a>
-      <a href="#journey" data-chapter="02">The Journey</a>
-      <a href="#shop" data-chapter="03">The Shop</a>
+      <a href="#lineage" data-chapter="01" data-hover-flip><span>The Lineage</span></a>
+      <a href="#journey" data-chapter="02" data-hover-flip><span>The Journey</span></a>
+      <a href="#shop" data-chapter="03" data-hover-flip><span>The Shop</span></a>
     </nav>
-    <a class="nav__cta" href="#shop">Shop</a>
+    <div class="nav__end">
+      <button class="nav__basket" id="basketBtn" type="button" aria-label="Basket" data-magnetic>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 8h14l-1.5 11.5a1.6 1.6 0 0 1-1.6 1.5H8.1a1.6 1.6 0 0 1-1.6-1.5L5 8Z"/><path d="M8.5 8V6.6a3.5 3.5 0 0 1 7 0V8"/></svg>
+        <span class="nav__basket-count" id="basketCount">0</span>
+      </button>
+      <button class="nav__burger" id="menuToggle" type="button" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
   </header>
+
+  <!-- Fullscreen menu -->
+  <div class="menu" id="menu" aria-hidden="true">
+    <div class="menu__bg" aria-hidden="true"></div>
+    <nav class="menu__links" aria-label="Menu">
+      <a href="#lineage" class="menu__link"><em>01</em><span data-split>The Lineage</span></a>
+      <a href="#journey" class="menu__link"><em>02</em><span data-split>The Journey</span></a>
+      <a href="#shop" class="menu__link"><em>03</em><span data-split>The Shop</span></a>
+      <a href="#waitlist" class="menu__link"><em>04</em><span data-split>The Waiting List</span></a>
+    </nav>
+    <div class="menu__foot">
+      <span>Folkestone, Kent · UK</span>
+      <span>info@koshichhyang.com</span>
+      <span class="menu__dev">छ्याङ</span>
+    </div>
+  </div>
 
   <main id="top">
 
     <!-- ============ HERO ============ -->
-    <section class="hero" id="hero">
-      <div class="hero__dev" aria-hidden="true">छ्याङ</div>
+    <section class="hero" id="hero" data-theme="night">
+      <canvas class="hero__gl" id="glCanvas" aria-hidden="true"></canvas>
+      <div class="hero__veil" aria-hidden="true"></div>
+      <div class="hero__dev" id="heroDev" aria-hidden="true">छ्याङ</div>
 
-      <div class="hero__eyebrow reveal">
-        <span class="rule"></span>
-        Small-batch Nepalese rice wine · Folkestone, Kent
-        <span class="rule"></span>
+      <div class="hero__content">
+        <p class="hero__eyebrow reveal">
+          <span class="rule"></span>
+          The first Himalayan rice wine · brewed in Kent
+          <span class="rule"></span>
+        </p>
+
+        <h1 class="hero__title">
+          <span class="hero__row"><span data-split-chars>Koshi</span></span>
+          <span class="hero__row hero__row--accent"><span data-split-chars>Chhyang</span></span>
+        </h1>
+
+        <p class="hero__tag reveal">Patiently fermented —</p>
+
+        <p class="hero__rotator reveal" aria-label="Brewed for festivals, for guests, for the first snow, for you">
+          brewed for <span class="rotator" id="rotator"><span class="rotator__word is-on">festivals</span><span class="rotator__word">guests</span><span class="rotator__word">the first snow</span><span class="rotator__word">you</span></span>
+        </p>
+
+        <p class="hero__sub reveal">
+          Heritage rice and a wild marcha culture, carried from the Koshi hills to
+          the Kent coast by a Gurkha family — and tended by hand for fourteen days
+          and more, until the pour is right.
+        </p>
+
+        <div class="hero__actions reveal">
+          <a class="btn btn--solid" href="#shop" data-magnetic><span>Shop the first pour</span></a>
+          <a class="btn btn--ghost" href="#lineage" data-magnetic><span>Walk the journey ↓</span></a>
+        </div>
       </div>
 
-      <h1 class="hero__title">
-        <span class="hero__line"><span data-split>Koshi</span></span>
-        <span class="hero__line hero__line--indent"><span data-split>Chhyang</span></span>
-      </h1>
-
-      <p class="hero__tag reveal">Patiently fermented.</p>
-
-      <p class="hero__sub reveal">
-        Heritage rice and a wild marcha culture, carried from the Koshi hills to
-        the Kent coast by a Gurkha family — and tended by hand for fourteen days
-        and more, until the pour is right.
-      </p>
-
-      <div class="hero__actions reveal">
-        <a class="btn btn--solid" href="#shop">Shop the first pour</a>
-        <a class="btn btn--ghost" href="#lineage">Walk the journey ↓</a>
-      </div>
-
-      <canvas class="hero__rice" id="riceCanvas" aria-hidden="true"></canvas>
-
-      <div class="hero__scrollcue" aria-hidden="true">
-        <span>scroll</span>
-        <span class="hero__scrollline"></span>
+      <div class="hero__foot" aria-hidden="true">
+        <span class="hero__coord">27.96° N · the Koshi basin</span>
+        <span class="hero__scrollcue"><span>scroll</span><span class="hero__scrollline"></span></span>
+        <span class="hero__coord">51.08° N · Folkestone, Kent</span>
       </div>
     </section>
 
-    <!-- Marquee -->
+    <!-- ============ MARQUEE ============ -->
     <div class="marquee" aria-hidden="true">
-      <div class="marquee__track" id="marqueeTrack">
-        <span>Heritage rice · Marcha ferment · Zero added sugar · 14+ days · One signature blend · Tradition in every glass · </span><span>Heritage rice · Marcha ferment · Zero added sugar · 14+ days · One signature blend · Tradition in every glass · </span>
+      <div class="marquee__row" data-marquee data-dir="1">
+        <span>Heritage rice — Marcha ferment — Zero added sugar — 14+ days — One signature blend — </span>
+      </div>
+      <div class="marquee__row marquee__row--alt" data-marquee data-dir="-1">
+        <span>The first Himalayan rice wine — yeti approved — poured for guests before they ask — </span>
       </div>
     </div>
 
     <!-- ============ MANIFESTO ============ -->
-    <section class="manifesto">
-      <p class="manifesto__text" data-split-lines>
+    <section class="manifesto" data-theme="paper">
+      <p class="manifesto__text" data-split-words>
         In the valleys of the Koshi, rice wine was never rushed. It was brewed for
         festivals, for guests, for the first snow — and it waited as long as it
         needed to. This is that journey, and the family that carried it here.
       </p>
+      <span class="manifesto__sig reveal">— the Magar family kitchen</span>
     </section>
 
-    <!-- ============ LINEAGE (origin story) ============ -->
-    <section class="lineage" id="lineage">
+    <!-- ============ LINEAGE ============ -->
+    <section class="lineage" id="lineage" data-theme="paper2">
       <div class="lineage__head">
-        <span class="lineage__kicker reveal">The conception — five generations in the glass</span>
-        <h2 class="lineage__title" data-split>The Lineage</h2>
+        <span class="kicker reveal">The conception — five generations in the glass</span>
+        <h2 class="h2" data-split-chars>The Lineage</h2>
         <p class="lineage__intro reveal">
           Before it was a brand, chhyang was a household duty — and a long walk
           from the Koshi hills to the English Channel.
@@ -130,7 +178,7 @@
       <div class="lineage__timeline" id="lineageTimeline">
         <span class="lineage__line" aria-hidden="true"><span class="lineage__line-fill" id="lineageFill"></span></span>
 
-        <article class="milestone">
+        <article class="milestone" data-tilt-soft>
           <span class="milestone__marker" aria-hidden="true"></span>
           <div class="milestone__meta">
             <span class="milestone__index">०१</span>
@@ -147,7 +195,7 @@
           </div>
         </article>
 
-        <article class="milestone">
+        <article class="milestone" data-tilt-soft>
           <span class="milestone__marker" aria-hidden="true"></span>
           <div class="milestone__meta">
             <span class="milestone__index">०२</span>
@@ -165,7 +213,7 @@
           </div>
         </article>
 
-        <article class="milestone">
+        <article class="milestone" data-tilt-soft>
           <span class="milestone__marker" aria-hidden="true"></span>
           <div class="milestone__meta">
             <span class="milestone__index">०३</span>
@@ -182,7 +230,7 @@
           </div>
         </article>
 
-        <article class="milestone">
+        <article class="milestone" data-tilt-soft>
           <span class="milestone__marker" aria-hidden="true"></span>
           <div class="milestone__meta">
             <span class="milestone__index">०४</span>
@@ -198,31 +246,34 @@
           </div>
         </article>
 
-        <article class="milestone milestone--founder">
+        <article class="milestone milestone--founder" data-tilt-soft>
           <span class="milestone__marker" aria-hidden="true"></span>
           <div class="milestone__meta">
             <span class="milestone__index">०५</span>
             <span class="milestone__era">Today — the brand</span>
           </div>
           <div class="milestone__body">
-            <h3 class="milestone__title">Awisha bottles the inheritance</h3>
+            <h3 class="milestone__title">Awisha &amp; Avash bottle the inheritance</h3>
             <p>
-              Awisha grew up watching chhyang made the slow way, and decided the
-              tradition deserved more than memory. Koshi Chhyang is her answer:
+              They grew up watching chhyang made the slow way, and decided the
+              tradition deserved more than memory. Koshi Chhyang is their answer:
               the family ferment, brewed in Kent, poured for everyone — exactly
               as patient as it has always been.
             </p>
-            <a class="btn btn--solid" href="#journey">See how it's brewed ↓</a>
+            <a class="btn btn--solid" href="#journey" data-magnetic><span>See how it's brewed ↓</span></a>
           </div>
         </article>
       </div>
     </section>
 
-    <!-- ============ JOURNEY (pinned horizontal) ============ -->
-    <section class="journey" id="journey">
+    <!-- ============ JOURNEY ============ -->
+    <section class="journey" id="journey" data-theme="night">
       <div class="journey__pin">
         <div class="journey__progress" aria-hidden="true">
           <span class="journey__progress-fill" id="journeyProgress"></span>
+        </div>
+        <div class="journey__index" aria-hidden="true">
+          <span id="journeyIndex">01</span><i>/</i><span>07</span>
         </div>
 
         <div class="journey__track" id="journeyTrack">
@@ -231,8 +282,8 @@
           <article class="chapter chapter--grain">
             <div class="chapter__num" aria-hidden="true">०१</div>
             <div class="chapter__body">
-              <span class="chapter__kicker">Chapter 01 — the foothills</span>
-              <h2 class="chapter__title" data-split>The Grain</h2>
+              <span class="kicker">Chapter 01 — the foothills</span>
+              <h2 class="chapter__title" data-split-chars>The Grain</h2>
               <p class="chapter__text">
                 It begins on terraces cut into Himalayan foothills, where heritage
                 rice ripens slowly in mountain air. Short, starchy, fragrant —
@@ -253,15 +304,15 @@
             </div>
           </article>
 
-          <!-- Film I — the rice, worked by hand -->
+          <!-- Film I -->
           <article class="chapter chapter--film" style="--poster: url('assets/koshi-award-films/clip-2-poster.jpg')">
             <div class="film__bg" aria-hidden="true"></div>
             <video class="film__video" muted loop playsinline preload="metadata"
-                   poster="assets/koshi-award-films/clip-2-poster.jpg" data-film>
+                   poster="assets/koshi-award-films/clip-2-poster.jpg" data-film data-cursor="film">
               <source src="assets/koshi-award-films/clip-2.mp4" type="video/mp4" />
             </video>
             <div class="film__caption">
-              <span class="film__index">Film I — from our kitchen</span>
+              <span class="kicker">Film I — from our kitchen</span>
               <p>Steamed rice, turned and cooled by hand — the bed of the ferment.</p>
             </div>
           </article>
@@ -270,8 +321,8 @@
           <article class="chapter chapter--marcha">
             <div class="chapter__num" aria-hidden="true">०२</div>
             <div class="chapter__body">
-              <span class="chapter__kicker">Chapter 02 — the starter</span>
-              <h2 class="chapter__title" data-split>The Marcha</h2>
+              <span class="kicker">Chapter 02 — the starter</span>
+              <h2 class="chapter__title" data-split-chars>The Marcha</h2>
               <p class="chapter__text">
                 Steamed rice meets marcha — sun-dried starter cakes carrying wild
                 yeasts and herbs, a living culture passed hand to hand for
@@ -293,15 +344,15 @@
             </div>
           </article>
 
-          <!-- Film II — grinding the marcha -->
+          <!-- Film II -->
           <article class="chapter chapter--film" style="--poster: url('assets/koshi-award-films/clip-1-poster.jpg')">
             <div class="film__bg" aria-hidden="true"></div>
             <video class="film__video" muted loop playsinline preload="metadata"
-                   poster="assets/koshi-award-films/clip-1-poster.jpg" data-film>
+                   poster="assets/koshi-award-films/clip-1-poster.jpg" data-film data-cursor="film">
               <source src="assets/koshi-award-films/clip-1.mp4" type="video/mp4" />
             </video>
             <div class="film__caption">
-              <span class="film__index">Film II — from our kitchen</span>
+              <span class="kicker">Film II — from our kitchen</span>
               <p>Marcha, ground in the stone mortar — the culture that wakes the brew.</p>
             </div>
           </article>
@@ -310,8 +361,8 @@
           <article class="chapter chapter--wait">
             <div class="chapter__num" aria-hidden="true">०३</div>
             <div class="chapter__body">
-              <span class="chapter__kicker">Chapter 03 — fermentation</span>
-              <h2 class="chapter__title" data-split>The Wait</h2>
+              <span class="kicker">Chapter 03 — fermentation</span>
+              <h2 class="chapter__title" data-split-chars>The Wait</h2>
               <p class="chapter__text">
                 Then, nothing — and everything. Sealed in the dark, the grain
                 softens into sweetness and the sweetness into wine. We don't add
@@ -335,8 +386,8 @@
           <article class="chapter chapter--pour">
             <div class="chapter__num" aria-hidden="true">०४</div>
             <div class="chapter__body">
-              <span class="chapter__kicker">Chapter 04 — the reveal</span>
-              <h2 class="chapter__title" data-split>The Pour</h2>
+              <span class="kicker">Chapter 04 — the reveal</span>
+              <h2 class="chapter__title" data-split-chars>The Pour</h2>
               <p class="chapter__text">
                 Cloud-bright and gently sparkling, chhyang pours like silk —
                 rice-sweet, faintly tart, alive. At 5–7% it asks you to linger,
@@ -357,14 +408,14 @@
           <article class="chapter chapter--table">
             <div class="chapter__num" aria-hidden="true">०५</div>
             <div class="chapter__body">
-              <span class="chapter__kicker">Chapter 05 — your table</span>
-              <h2 class="chapter__title" data-split>The Table</h2>
+              <span class="kicker">Chapter 05 — your table</span>
+              <h2 class="chapter__title" data-split-chars>The Table</h2>
               <p class="chapter__text">
                 Chhyang is for sharing — poured for guests before they ask. The
                 first bottles are ready to travel from our kitchen to your table.
                 Set it down, pour generously, and take your time.
               </p>
-              <a class="btn btn--solid" href="#shop">Shop the blend</a>
+              <a class="btn btn--solid" href="#shop" data-magnetic><span>Shop the blend</span></a>
             </div>
             <div class="chapter__art" aria-hidden="true">
               <svg viewBox="0 0 400 400" class="art-table">
@@ -381,48 +432,51 @@
     </section>
 
     <!-- ============ STATS ============ -->
-    <section class="stats">
+    <section class="stats" data-theme="clay">
       <div class="stats__grid">
-        <div class="stat reveal"><span class="stat__value">0<small>%</small></span><span class="stat__label">added sugar</span></div>
-        <div class="stat reveal"><span class="stat__value">5–7<small>%</small></span><span class="stat__label">ABV, table-friendly</span></div>
-        <div class="stat reveal"><span class="stat__value">14<small>+</small></span><span class="stat__label">days of fermentation</span></div>
-        <div class="stat reveal"><span class="stat__value">01</span><span class="stat__label">signature blend</span></div>
+        <div class="stat reveal"><span class="stat__value"><span data-count="0">0</span><small>%</small></span><span class="stat__label">added sugar</span></div>
+        <div class="stat reveal"><span class="stat__value"><span data-count="5">0</span>–<span data-count="7">0</span><small>%</small></span><span class="stat__label">ABV, table-friendly</span></div>
+        <div class="stat reveal"><span class="stat__value"><span data-count="14">0</span><small>+</small></span><span class="stat__label">days of fermentation</span></div>
+        <div class="stat reveal"><span class="stat__value"><span data-count="1" data-pad="2">00</span></span><span class="stat__label">signature blend</span></div>
       </div>
     </section>
 
     <!-- ============ SHOP ============ -->
-    <section class="shop" id="shop">
+    <section class="shop" id="shop" data-theme="clay">
       <div class="shop__inner">
-        <span class="shop__kicker reveal">The shop · first release</span>
-        <h2 class="shop__title" data-split>Bring the pour home</h2>
+        <span class="kicker reveal">The shop · first release</span>
+        <h2 class="h2" data-split-chars>Bring the pour home</h2>
         <p class="shop__meta reveal">
           One signature blend, brewed in Kent from heritage rice and marcha.
           Small batches — when a ferment sells out, the next one takes 14 days.
         </p>
 
         <div class="shop__grid">
-          <article class="product reveal">
+          <article class="product reveal" data-tilt>
+            <span class="product__glare" aria-hidden="true"></span>
             <span class="product__badge">Single</span>
             <h3 class="product__name">Koshiyali Blend</h3>
             <p class="product__desc">One 750ml bottle of the signature ferment. The introduction.</p>
             <span class="product__price">£16</span>
-            <button class="btn btn--paper" type="button">Add to basket</button>
+            <button class="btn btn--paper" type="button" data-add><span>Add to basket</span></button>
           </article>
 
-          <article class="product product--feature reveal">
+          <article class="product product--feature reveal" data-tilt>
+            <span class="product__glare" aria-hidden="true"></span>
             <span class="product__badge">Most poured</span>
             <h3 class="product__name">Twin Pour Set</h3>
             <p class="product__desc">Two bottles and two clay cups — chhyang the way it's meant to be drunk: shared.</p>
             <span class="product__price">£38</span>
-            <button class="btn btn--paper" type="button">Add to basket</button>
+            <button class="btn btn--paper" type="button" data-add><span>Add to basket</span></button>
           </article>
 
-          <article class="product reveal">
+          <article class="product reveal" data-tilt>
+            <span class="product__glare" aria-hidden="true"></span>
             <span class="product__badge">Case</span>
             <h3 class="product__name">Festival Case</h3>
             <p class="product__desc">Six bottles for the long table — Dashain, birthdays, or a very good Friday.</p>
             <span class="product__price">£84</span>
-            <button class="btn btn--paper" type="button">Add to basket</button>
+            <button class="btn btn--paper" type="button" data-add><span>Add to basket</span></button>
           </article>
         </div>
 
@@ -430,22 +484,24 @@
 
         <div class="shop__waitlist reveal">
           <p>Batches are small and sell through. Leave your email for first access when a new ferment is bottled.</p>
-          <form class="venue-form" onsubmit="return false;">
+          <form class="wave-form" data-waitlist>
             <input type="email" placeholder="you@example.com" aria-label="Email for release access" required />
-            <button type="submit" class="btn btn--solid">Get first access</button>
+            <button type="submit" class="btn btn--solid"><span>Get first access</span></button>
           </form>
         </div>
       </div>
     </section>
 
-    <!-- ============ WAITLIST / FOOTER ============ -->
-    <footer class="footer">
+    <!-- ============ FOOTER ============ -->
+    <footer class="footer" id="waitlist" data-theme="night">
+      <div class="footer__dev" aria-hidden="true">छ्याङ</div>
+
       <div class="footer__cta">
-        <h2 class="footer__title" data-split>Stay for the next pour</h2>
+        <h2 class="footer__title" data-split-chars>Stay for the next pour</h2>
         <p class="reveal">New ferments, tasting invites, and a heads-up before each release sells out.</p>
-        <form class="venue-form reveal" onsubmit="return false;">
+        <form class="wave-form reveal" data-waitlist>
           <input type="email" placeholder="you@example.com" aria-label="Email for waiting list" required />
-          <button type="submit" class="btn btn--paper">Join the waiting list</button>
+          <button type="submit" class="btn btn--paper"><span>Join the waiting list</span></button>
         </form>
       </div>
 
@@ -456,11 +512,17 @@
         </div>
         <div>
           <span class="footer__head">The story</span>
-          <a href="#lineage">The Lineage</a><a href="#journey">The Grain</a><a href="#journey">The Marcha</a><a href="#journey">The Wait</a><a href="#journey">The Pour</a>
+          <a href="#lineage" data-hover-flip><span>The Lineage</span></a>
+          <a href="#journey" data-hover-flip><span>The Grain</span></a>
+          <a href="#journey" data-hover-flip><span>The Marcha</span></a>
+          <a href="#journey" data-hover-flip><span>The Wait</span></a>
+          <a href="#journey" data-hover-flip><span>The Pour</span></a>
         </div>
         <div>
           <span class="footer__head">Shop</span>
-          <a href="#shop">First release</a><a href="#">Trade &amp; wholesale</a><a href="#">Instagram</a>
+          <a href="#shop" data-hover-flip><span>First release</span></a>
+          <a href="#" data-hover-flip><span>Trade &amp; wholesale</span></a>
+          <a href="#" data-hover-flip><span>Instagram</span></a>
         </div>
       </div>
 
@@ -474,7 +536,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-  <script src="assets/koshi-award.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script type="module" src="assets/koshi-award.js"></script>
 </body>
 </html>
