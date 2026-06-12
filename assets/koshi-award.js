@@ -64,6 +64,25 @@
       }, "+=0.25");
   }
 
+  /* ---------------- smooth anchor navigation ---------------- */
+  document.querySelectorAll('a[href^="#"]').forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const target = document.querySelector(a.getAttribute("href"));
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target, { offset: -64, duration: 1.4 });
+      else target.scrollIntoView({ behavior: prefersReduced ? "auto" : "smooth" });
+    });
+  });
+
+  /* ---------------- hero watermark parallax ---------------- */
+  if (hasGsap && !prefersReduced) {
+    gsap.to(".hero__dev", {
+      yPercent: 18, ease: "none",
+      scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true }
+    });
+  }
+
   /* ---------------- generic reveals ---------------- */
   if (hasGsap && !prefersReduced) {
     document.querySelectorAll(".reveal").forEach((el) => {
